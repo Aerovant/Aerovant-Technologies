@@ -1,0 +1,237 @@
+body{
+  background-color: black;
+}
+
+#navimg img{
+  width: 200px;
+}
+
+.navbar-nav .nav-link{
+  border-radius:30px;  
+}
+
+.navbar-toggler{
+  border-radius:6px;
+}
+
+.navbar-nav{
+  text-align:center;
+}
+
+.navbar-nav .nav-link{
+  color:white !important;
+  transition:0.3s;
+}
+
+.navbar-nav .nav-link:hover{
+  color:#ffffff !important;
+}
+
+#foottext p{
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+#footmenu img{
+  width: 200px;
+}
+
+footer .list-unstyled a:hover {
+  color: #1a8cff !important;
+}
+
+.footer-icons a:hover .bxl-linkedin-square { color: #0A66C2; }
+.footer-icons a:hover .bxl-facebook-square { color: #1877F2; }
+.footer-icons a:hover .bxl-whatsapp-square { color: #25D366; }
+.footer-icons a:hover .bxl-youtube { color: #FF0000; }
+.footer-icons a:hover .bxl-instagram{ color: #E1306C; }
+
+
+#feature img{
+  width: auto;
+}
+
+/* Center the footer columns */
+footer .col-lg-3 {
+  text-align: center;
+}
+
+/* Remove default ul spacing */
+footer .list-unstyled {
+  padding: 0;
+  margin: 0;
+  display: inline-block;   /* shrink to content width */
+  text-align: left;        /* keep text left aligned */
+}
+
+/* Align arrow + text properly */
+footer .list-unstyled li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+
+/* Give icon fixed width for perfect vertical line */
+footer .list-unstyled li i {
+  width: 20px;
+  text-align: center;
+}
+
+
+
+/* ===============================
+   GLOBAL RESPONSIVE BREAKPOINTS
+================================*/
+
+/* Large Desktop */
+@media (max-width: 1200px) {
+    .banner-heading {
+        font-size: 3rem;
+    }
+
+    .projects {
+        justify-content: center;
+    }
+}
+
+/* Laptop */
+@media (max-width: 992px) {
+
+    /* Navbar */
+    /* #navbar-toggler-success {
+        margin-left: 0 !important;
+    }
+
+    .nav.navbar-nav {
+        flex-direction: column;
+        gap: 10px;
+    } */
+
+    /* Banner */
+    .banner-heading {
+        font-size: 2.5rem;
+    }
+
+    .banner-body {
+        font-size: 1rem;
+    }
+
+    /* Feature Section */
+    #feature img {
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .feature-work-title,
+    .feature-work-heading {
+        text-align: center;
+    }
+
+    .feature-work-body,
+    .feature-work-footer {
+        text-align: justify;
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+
+    /* Banner */
+    .banner-heading {
+        font-size: 2rem;
+    }
+
+    .banner-content {
+        padding: 20px;
+    }
+
+    /* Product Cards */
+    .projects a {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .card {
+        margin-bottom: 30px;
+    }
+
+    /* Feature Section Stack */
+    .feature-work .row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #feature {
+        margin-top: 30px;
+    }
+
+    /* Footer */
+    footer .row {
+        text-align: center;
+    }
+
+    footer ul {
+        padding: 0;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+
+    /* Navbar */
+    .navbar-brand img {
+        width: 150px;
+    }
+
+    /* Banner */
+    .banner-heading {
+        font-size: 1.7rem;
+    }
+
+    .banner-wrapper {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .filter-btns {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .filter-btn {
+        margin: 5px !important;
+        font-size: 0.85rem;
+    }
+
+    /* Cards */
+    .service-work {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* Footer */
+    footer {
+        padding-top: 30px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 400px) {
+
+  .banner-heading {
+      font-size: 1.4rem;
+  }
+
+  .banner-body {
+      font-size: 0.9rem;
+  }
+
+  .btn {
+      font-size: 0.85rem;
+      padding: 8px 14px;
+  }
+}

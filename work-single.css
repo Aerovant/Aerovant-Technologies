@@ -1,0 +1,17 @@
+body{
+  background-color: black;
+}
+
+#navimg img{
+  width: 200px;
+}
+
+#foottext p{
+  margin-left: 60%;
+  text-align: center;
+  width: 500px;
+}
+
+#footmenu img{
+  width: 200px;
+}

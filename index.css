@@ -1,0 +1,209 @@
+.header--logo img{
+    width: 180px;
+}
+
+/* HOME BANNER LAYOUT */
+
+.intro--banner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+.intro--banner h1{
+  display:block;
+  margin-bottom:25px;
+  width:100%;
+  line-height: 1.2;
+}
+
+.intro--banner .cta{
+  display:inline-block;
+  margin-top:-50px;
+  width:100%;
+  max-width:220px;
+}
+
+.intro--banner img{
+  max-width:900px;
+  margin-right: -400px;
+  margin-bottom: -100px;
+
+}
+
+/* .slider h4{
+    width: 200px;
+} */
+
+#abtus h2{
+  line-height: 1.2;
+}
+
+.about--options {
+  margin-top: -100px;
+}
+
+.about--options p{
+  font-size: 18px;
+  text-align: justify;
+}
+
+.about--banner img{
+  width: 800px;
+  margin-right: -300px;
+  margin-bottom: 50px;
+
+}
+
+/* careeer */
+
+#careers .career-text h1{
+  margin-top: -100px;
+  line-height: 1.2;
+}
+
+
+#careers img{
+  width: 70%;
+  margin-right: -20%;
+  margin-bottom: -1%;
+}
+   
+ /* contact */
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  /* Modal Container */
+  .modal {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    margin: 40px auto;
+    margin-top: -50px;
+  }
+
+  /* Heading */
+  .modal h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 28px;
+  }
+
+  /* Paragraph */
+  .modal p {
+    color: #cccccc;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+  }
+
+  /* Input Container */
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* Inputs & Textarea */
+  .inputs input,
+  .inputs textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: #f2f2f2;
+    transition: 0.3s ease;
+  }
+
+  /* Focus Effect */
+  .inputs input:focus,
+  .inputs textarea:focus {
+    background: #ffffff;
+    box-shadow: 0 0 0 2px #4da6ff;
+  }
+
+  /* Textarea */
+  .inputs textarea {
+    min-height: 100px;
+    resize: none;
+  }
+
+  /* Button */
+  .inputs button {
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #4da6ff;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  .inputs button:hover {
+    background: #1a8cff;
+    transform: translateY(-2px);
+  }
+
+  .inputs button:active {
+    transform: scale(0.98);
+  }
+
+  #contacts{
+    margin-left: 100px;
+  }
+
+
+/* Prevent modal shrinking */
+
+.contact--lockup iframe{
+
+  height: 450px;
+  width: 600px;
+}
+
+.contact--lockup .modal {
+  flex-shrink: 0;
+  width: 400px; /* Adjust if needed */
+}
+
+/* Position social icons without affecting layout */
+.smicons {
+  position: absolute;
+  bottom: 80px;
+  display: flex;
+  gap: 15px;
+  margin-left: 62%;
+}
+
+.smicons img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease;
+}
+
+.smicons img:hover {
+  transform: scale(1.2);
+}
+
+
+/* Hide side nav on mobile and tablet */
+@media (max-width: 1024px) {
+  .l-side-nav {
+    display: none;
+  }
+}

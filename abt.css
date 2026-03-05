@@ -1,0 +1,22 @@
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+}
+
+nav img {
+  width: 180px;
+}
+
+#dlogo img {
+  width: 120px;
+  filter: brightness(0) invert(1);
+}
+
+#vismis img {
+  width: 100%;
+  max-width: 400px;
+}
+
+#vis p, #mis p{
+  font-size: 18px;
+}

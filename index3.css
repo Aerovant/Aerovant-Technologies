@@ -1,0 +1,234 @@
+/* Small phones */
+@media (max-width:480px) { }
+
+/* Phones */
+@media (max-width:768px) { }
+
+/* Tablets */
+@media (max-width:1024px) { }
+
+/* Laptops / small desktops */
+@media (max-width:1440px) { }
+
+
+
+@media (max-width:768px){
+
+.career--banner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.career--banner h1{
+  font-size:34px;
+  line-height:1.2;
+}
+
+.career--banner .cta{
+  margin-top:20px;
+  margin-bottom:25px;
+}
+
+#careers img{
+  width:90%;
+  max-width:320px;
+  margin:0 auto;
+  position:static;
+}
+
+}
+
+@media (max-width:768px){
+
+.intro--banner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.cta{
+  order:2;
+  margin-top:20px;
+}
+
+
+
+}
+
+/* ================= MOBILE FIX ================= */
+
+@media (max-width:768px){
+
+/* Logo */
+.header--logo img{
+  width:140px;
+}
+
+/* Banner layout */
+.intro--banner{
+    display:inline;
+    flex-direction:column;
+    text-align:center;
+}
+
+/* Banner heading (increase mobile font) */
+.intro--banner h1{
+  font-size:42px;
+}
+
+/* CTA button */
+.intro--banner .cta{
+  margin-top:20px;
+  margin-bottom: 50px;
+}
+
+/* About cards */
+.about--options{
+  margin-top:20px;
+}
+
+.about--options a{
+  margin-left:0;
+  margin-right:0;
+}
+
+/* About banner image */
+.about--banner img{
+  width:100%;
+  margin-right:0;
+}
+
+/* Careers image */
+
+#careers img{
+  width:100%;
+}
+
+/* Contact section */
+#contacts{
+  margin-left:0;
+}
+
+/* Social icons */
+.smicons{
+  position:relative;
+  margin-left:0;
+  justify-content:center;
+  bottom:0;
+}
+
+}
+
+
+@media (max-width:768px){
+
+  .intro{
+    display: inline;
+  }
+
+  .intro .intro--banner h1{
+    font-size: 50px;
+    text-align: left;
+    margin-top: 90px;
+    margin-bottom: 10px;
+    line-height: 1.1;
+
+  } 
+
+  .intro .intro--banner .cta {
+    margin-bottom: 205px;
+  }
+
+  .intro .intro--banner img{
+    width: 700px;
+    margin-right: -320px;
+    margin-bottom: -300px;
+    position: absolute;
+    z-index: -100;
+    opacity: 0.5;
+  }
+
+  .intro--options{
+    display: inline;
+  }
+
+  .intro--options a p{
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+
+  /* about final  */
+
+  .about--banner{
+    display: inline;
+  }
+
+  .about--banner h2{
+    font-size: 50px;
+  }
+
+  .about--banner a{
+    margin-top: 20px;
+  }
+
+  .about--options p{
+    font-size: 18px;
+    text-align: justify;
+    margin-top: 350px;
+  }
+
+  .about--banner img{
+    width: 550px;
+    margin-right: -90px;
+    margin-bottom: -300px;
+
+  }
+
+  /* career final */
+
+  #careers h2
+  {
+    margin-top: 10px;
+    margin-bottom: 80px;
+  }
+
+  #careers .career-text h1{
+    margin-top: -30px;
+    text-align: left;
+    font-size: 45px;
+  }
+
+  /* contact */
+
+  .contact--lockup{
+    display: inline;
+  }
+
+  .contact--lockup iframe{
+
+    margin-top: 100px;
+    height: 250px;
+    width: 100%;
+
+  }
+
+  .contact--lockup .modal{
+
+    margin-top: -10px;
+    height: 200px;
+    width: 100%;
+
+  }
+
+  .contact--lockup .smicons{
+
+    margin-top: 300px;
+    height: 200px;
+    width: 100%;
+
+  }
+}
