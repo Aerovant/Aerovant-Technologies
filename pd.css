@@ -1,5 +1,7 @@
 body{
   background-color: black;
+  font-family: 'Space Grotesk', sans-serif;
+
 }
 
 #navimg img{
@@ -80,6 +82,22 @@ footer .list-unstyled li i {
   text-align: center;
 }
 
+#scales p{
+    width: 130%;
+    font-size: 17px;
+}
+
+#productimgs .service-work:hover{
+    cursor: default;
+}
+
+#productimgs .card-body p{
+    font-size: 14px;
+}
+
+#topclicks #clicks a:hover{
+    cursor: default;
+}
 
 
 /* ===============================

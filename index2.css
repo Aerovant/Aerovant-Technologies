@@ -1,0 +1,181 @@
+/* tablet */
+
+@media (min-width: 770px) and (max-width: 1024px) {
+
+
+    /* home */
+
+    .intro .intro--banner h1{
+        margin-left: -80px;
+        font-size: 75px;
+        text-align: left;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        line-height: 1.1;
+
+    } 
+
+    .intro .intro--banner .cta {
+        
+        margin-top: 20px;
+        margin-left: -100px;
+        margin-bottom: 60px;
+    }
+
+    .intro .intro--banner img{
+        width: 1100px;
+        margin-left: 100px;
+        margin-bottom: -400px;   
+        position: absolute;
+        z-index: -100;
+        opacity: 0.5;
+    }
+
+    .intro--options{
+        display: inline;
+        margin-left: -80px;
+    }
+    
+    .intro--options a h3{
+        margin-bottom: 10px;
+        font-size: 25px;
+    }
+
+    .intro--options a p{
+        margin-bottom: 30px;
+        font-size: 25px;
+    }
+
+    /* about final  */
+
+    #abtus h2{
+        line-height: 1.2;
+        font-size: 70px;
+        margin-top: -50px;
+        margin-left: 20px;
+    }
+
+    .about--options{
+        margin-top:20px;
+    }
+
+    #abtus a{
+        font-size: 20px;
+        margin-left: 25px;
+    }
+
+    .about--banner img{
+        width: 1000px;
+        margin-right: -200px;
+        margin-bottom: -200px;
+        position: absolute;
+        z-index: -100;
+        opacity: .4;
+    }
+
+    .about--options p{
+        font-size: 25px;
+        text-align: justify;
+        margin-top: 150px;
+        margin-left: 25px;
+        width: 600px;
+    }
+
+
+    /* works */
+
+    #works
+    {
+        margin-top: 400px;
+        display: inline;
+    }
+
+    #works h2{
+        margin-top: 300px;
+        margin-bottom: 100px;
+        font-size: 40px;
+    }
+
+     
+    /* career final */
+
+    .career--banner{
+        display:inline;
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+    }
+
+    #careers h2
+    {
+        margin-top: -350px;
+        font-size: 50px;
+    }
+
+    #careers .career-text h1{
+        margin-top: 30px;
+        text-align: left;
+        font-size: 70px;
+    }
+
+    .career--banner .cta{
+        margin-top: 20px;
+        margin-bottom: 125px;
+
+    }
+
+    #car img{
+        width:100%;
+        margin-top: 400px;
+        margin-bottom: -100px;
+        max-width:520px;
+        margin:0 auto;
+        position:static;
+    }
+
+    /* contact */
+
+     #contacts{
+        margin-left:0;
+    }
+
+    .contact--lockup{
+        display: inline;
+    }
+
+    .contact--lockup iframe{
+
+        margin-top: 150px;
+        height: 350px;
+        width: 100%;
+
+    }
+
+    .contact--lockup .modal{
+
+        margin-top: -30px;
+        height: 180px;
+        width: 100%;
+
+    }
+
+    .contact--lockup .modal input, 
+    .contact--lockup .modal button,
+    .contact--lockup .modal textarea {
+        margin-left: -210px;
+        width: 240%;
+    }
+
+    .contact--lockup .smicons{
+
+        margin-top: 300px;
+        height: 200px;
+        width: 100%;
+        margin-left:0;
+        justify-content:center;
+        bottom:0;
+        position: relative;
+
+    }
+
+}

@@ -1,6 +1,19 @@
-.header--logo img{
-    width: 180px;
+*{
+  font-family: 'Space Grotesk', sans-serif;
 }
+
+.squada-one-regular {
+  font-family: cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.header--logo img{
+  width: 180px;
+}
+
+
 
 /* HOME BANNER LAYOUT */
 
@@ -16,21 +29,24 @@
   margin-bottom:25px;
   width:100%;
   line-height: 1.2;
+  font-size: 60px;
 }
 
 .intro--banner .cta{
   display:inline-block;
-  margin-top:-50px;
+  margin-top:-100px;
   width:100%;
   max-width:220px;
 }
 
 .intro--banner img{
-  max-width:900px;
-  margin-right: -400px;
-  margin-bottom: -100px;
-
+  max-width:850px;
+  margin-right: -350px;
+  margin-bottom: -90px;
+  z-index: -100;
 }
+
+
 
 /* .slider h4{
     width: 200px;
@@ -38,6 +54,7 @@
 
 #abtus h2{
   line-height: 1.2;
+  font-size: 60px;
 }
 
 .about--options {
@@ -45,29 +62,33 @@
 }
 
 .about--options p{
-  font-size: 18px;
+  width: 500px;
+  font-size: 16px;
   text-align: justify;
+  margin-top: -30px;
 }
 
 .about--banner img{
   width: 800px;
-  margin-right: -300px;
+  margin-right: -250px;
   margin-bottom: 50px;
-
+  z-index: -100;
 }
 
 /* careeer */
 
 #careers .career-text h1{
-  margin-top: -100px;
+  margin-top: -30px;
   line-height: 1.2;
+  font-size: 60px;
 }
 
 
 #careers img{
-  width: 70%;
-  margin-right: -20%;
-  margin-bottom: -1%;
+  position: relative;
+  bottom: 5%;
+  left: 5%;
+  width: 500px;
 }
    
  /* contact */
@@ -76,17 +97,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
   }
 
   /* Modal Container */
   .modal {
-    width: 100%;
-    max-width: 420px;
-    background: rgba(0, 0, 0, 0.85);
+    width: 90%;
+    max-width: 400px;
+    /* background: rgba(0, 0, 0, 0.85); */
     padding: 40px 30px;
     border-radius: 12px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    /* box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); */
     margin: 40px auto;
     margin-top: -50px;
   }
@@ -112,8 +132,9 @@
   .inputs {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 7px;
   }
+ 
 
   /* Inputs & Textarea */
   .inputs input,
@@ -141,17 +162,22 @@
     resize: none;
   }
 
+  .inputs input,
+  .inputs textarea{
+    color: black;
+  }
+
   /* Button */
   .inputs button {
     padding: 12px;
     border: none;
     border-radius: 6px;
-    background: #4da6ff;
     color: #ffffff;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s ease;
+    background: #1a8cff;
   }
 
   .inputs button:hover {
@@ -172,8 +198,8 @@
 
 .contact--lockup iframe{
 
-  height: 450px;
-  width: 600px;
+  height: 350px;
+  width: 500px;
 }
 
 .contact--lockup .modal {
@@ -181,13 +207,16 @@
   width: 400px; /* Adjust if needed */
 }
 
+
+
 /* Position social icons without affecting layout */
 .smicons {
   position: absolute;
   bottom: 80px;
   display: flex;
   gap: 15px;
-  margin-left: 62%;
+  margin-left: 59%;
+  margin-bottom: 20px;
 }
 
 .smicons img {
@@ -201,9 +230,47 @@
 }
 
 
+
 /* Hide side nav on mobile and tablet */
 @media (max-width: 1024px) {
   .l-side-nav {
     display: none;
   }
+}
+
+
+.about--banner button {
+  position: relative;
+  padding: 5px 17px 5px 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.about--banner button .btn-background {
+  position: absolute;
+  top: 0;
+  left: 23px;
+  right: 0;
+  height: 100%;
+  background-color: #0f33ff;
+  z-index: -1;
+  transition: left .2s ease-in-out;
+}
+
+.about--banner button:hover .btn-background {
+  left: 0;
+}
+
+.about--banner button:focus {
+  outline: none;
+}
+
+.about--banner button svg {
+  position: relative;
+  left: 5px;
+  width: 15px;
+  fill: #fff;
 }

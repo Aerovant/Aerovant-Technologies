@@ -1,5 +1,7 @@
 body{
   background-color: black;
+  font-family: 'Space Grotesk', sans-serif;
+
 }
 
 #navimg img{
@@ -69,6 +71,15 @@ footer .list-unstyled a:hover {
     justify-content:center;
 }
 
+#topclicks ul li a, .service {
+  cursor: default;
+}
+
+#topclicks #tops :hover{
+  cursor: default;
+}
+
+
 /* Center the footer columns */
 footer .col-lg-3 {
   text-align: center;
@@ -96,31 +107,110 @@ footer .list-unstyled li i {
   text-align: center;
 }
 
-/* 
-.projects{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  align-items:stretch;
+
+
+/* Card container */
+.service-work{
+  position:relative;
+  overflow:hidden;
 }
 
-.project{
-  display:flex;
-  justify-content:center;
+/* Image transition */
+.service-work img{
+  transition:0.4s ease;
 }
 
-.row.projects{
+/* Hide paragraph initially */
+.service-work-content p{
+  opacity:0;
+  transform:translateY(10px);
+  transition:0.4s ease;
+}
+
+/* Dark overlay */
+.service-work::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
   width:100%;
-  margin:auto;
-} */
+  height:100%;
+  background:black;
+  opacity:0;
+  transition:0.4s ease;
+  z-index:1;
+}
+
+/* Keep text above overlay */
+.service-work-content{
+  position:relative;
+  z-index:2;
+}
+
+/* Hover effects */
+.service-work:hover::before{
+  opacity:0.75;
+}
+
+.service-work:hover img{
+  transform:scale(1.05);
+}
+
+.service-work:hover .service-work-content p{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Keep button text white always */
+.service-btn,
+.service-btn:hover,
+.service-btn:focus{
+  color: white !important;
+  border-color: white !important;
+  background-color: transparent !important;
+}
+
+/* When card is hovered keep button white */
+.service-work:hover .service-btn{
+  color: white !important;
+  border-color: white !important;
+  background-color: transparent !important;
+}
+
+/* When hovering card make all text white */
+.service-work:hover .service-work-content,
+.service-work:hover .service-work-content p,
+.service-work:hover .service-work-content h3{
+  color: white !important;
+}
+
+/* Keep button text white */
+.service-work:hover .service-btn{
+  color:white !important;
+  border-color:white !important;
+}
+
+/* Force paragraph text white on hover */
+.service-work:hover .card-text{
+  color: white !important;
+}
+
+.service-work-content p{
+  opacity:0;
+  transform:translateY(10px);
+  transition:0.4s ease;
+  color:white;   /* add this line */
+}
+
+/* Force paragraph and bold text white on hover */
+.service-work:hover .card-text,
+.service-work:hover .card-text b{
+  color: white !important;
+}
+
 
 /* Tablet */
 @media (max-width: 768px) {
-
-  /* Footer */
-  footer .row {
-    /* text-align: center; */
-  }
 
   .footer ul {
     display: flex;
@@ -152,3 +242,38 @@ footer .list-unstyled li i {
     margin:auto;
 }
 
+
+/* Prevent bootstrap button hover color change */
+.service-work .service-btn,
+.service-work .service-btn:hover,
+.service-work .service-btn:focus,
+.service-work .service-btn:active{
+  color:white !important;
+  border-color:white !important;
+  background-color:transparent !important;
+}
+
+.service-work:hover .service-btn{
+  background-color:transparent !important;
+  color:white !important;
+  border-color:white !important;
+}
+
+/* Override bootstrap button hover completely */
+.service-btn{
+  color:white !important;
+  border-color:white !important;
+  background:transparent !important;
+}
+
+.service-btn:hover{
+  color:white !important;
+  border-color:white !important;
+  background:transparent !important;
+}
+
+.service-work:hover .service-btn{
+  color:white !important;
+  border-color:white !important;
+  background:transparent !important;
+}

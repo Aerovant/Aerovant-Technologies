@@ -1,5 +1,5 @@
 /* ===== FONTS ===== */
-@font-face {
+/* @font-face {
   font-family: 'Montserrat';
   src: url("fonts/Montserrat-Black.eot");
   src: local("☺"), url("fonts/Montserrat-Black.woff") format("woff"),
@@ -37,7 +37,7 @@
     url("fonts/Montserrat-Light.svg") format("svg");
   font-weight: 300;
   font-style: normal;
-}
+} */
 
 /* ===== NORMALIZE ===== */
 html {
@@ -607,9 +607,10 @@ img::selection {
 }
 
 .intro--banner img {
-  position: absolute;
-  bottom: 21px;
-  right: -12px;
+  position: relative;
+  margin-top: -450px;
+  margin-left: 450px;
+  width: 700px;
 }
 
 .intro--options {
@@ -622,16 +623,18 @@ img::selection {
 }
 
 .intro--options > a {
-  max-width: 250px;
+  max-width: 270px;
   text-decoration: none;
-  color: #575050;
+  /* color: #575050; */
+  color: white;
   transition: color .2s ease-in-out;
-
+  margin-top: -94px;
+  cursor: default;
 }
 
-.intro--options > a:hover {
+/* .intro--options > a:hover {
   color: #fff;
-}
+} */
 
 .intro--options h3 {
   font-size: 16px;
@@ -708,6 +711,12 @@ img::selection {
   width: 100%;
 }
 
+.work--lockup .slider--item-image img:hover {
+  filter: brightness(0) saturate(100%) invert(19%) sepia(96%) saturate(5500%) hue-rotate(227deg) brightness(100%) contrast(105%);
+}
+
+
+
 .work--lockup .slider--item-left {
   top: 50%;
   left: 0;
@@ -766,6 +775,10 @@ img::selection {
   fill: #fff;
 }
 
+.work--lockup .slider--next :hover, .work--lockup .slider--prev :hover {
+  filter: brightness(0) saturate(100%) invert(19%) sepia(96%) saturate(5500%) hue-rotate(227deg) brightness(100%) contrast(105%);
+}
+
 .work--lockup .slider--next {
   right: 0;
 }
@@ -802,16 +815,6 @@ img::selection {
   border-bottom-color: transparent;
 }
 
-.about--banner::after {
-  content: "";
-  position: absolute;
-  top: 75px;
-  left: 400px;
-  transform: rotate(45deg);
-  width: 10px;
-  height: 10px;
-  background-color: #0f33ff;
-}
 
 .about--banner h2 {
   position: relative;
@@ -821,27 +824,6 @@ img::selection {
   line-height: 1;
   z-index: 1;
   margin-bottom: 40px;
-}
-
-.about--banner h2::before {
-  content: "";
-  position: absolute;
-  top: 60px;
-  left: 268px;
-  width: 30px;
-  height: 30px;
-  background-color: #0f33ff;
-  border-radius: 50%;
-}
-
-.about--banner h2::after {
-  content: "";
-  position: absolute;
-  top: 255px;
-  left: 255px;
-  width: 10px;
-  height: 10px;
-  background-color: #0f33ff;
 }
 
 .about--banner a {
@@ -1132,7 +1114,7 @@ img::selection {
   border-bottom-color: transparent
 }
 
-.about--banner::after {
+/* .about--banner::after {
   content: "";
   position: absolute;
   top: 75px;
@@ -1142,7 +1124,7 @@ img::selection {
   width: 10px;
   height: 10px;
   background-color: #0f33ff
-}
+} */
 
 .about--banner h2 {
   position: relative;
@@ -1153,7 +1135,7 @@ img::selection {
   z-index: 1
 }
 
-.about--banner h2::before {
+/* .about--banner h2::before {
   content: "";
   position: absolute;
   top: 60px;
@@ -1172,7 +1154,7 @@ img::selection {
   width: 10px;
   height: 10px;
   background-color: #0f33ff
-}
+} */
 
 .about--banner a {
   padding: 5px 17px 5px 0;
@@ -1211,57 +1193,16 @@ img::selection {
   list-style: none
 }
 
-@media (max-width: 767px) {
-  .about--banner {
-    height: 305px
-  }
 
-  .about--banner::before {
-    top: 0;
-    left: 125px
-  }
-
-  .about--banner h2 {
-    margin-top: 10px;
-    font-size: 44px
-  }
-
-  .about--banner h2::after {
-    top: 163px;
-    left: 163px
-  }
-
-  .about--banner img {
-    width: 315px;
-  }
-}
 
 @media (max-width: 600px) {
   .about--banner {
     height: auto
   }
 
-  .about--banner::before {
-    left: 155px
-  }
-
-  .about--banner::after {
-    left: 310px
-  }
-
   .about--banner h2 {
     margin-top: 0;
     font-size: 55px
-  }
-
-  .about--banner h2::before {
-    top: 43px;
-    left: 214px
-  }
-
-  .about--banner h2::after {
-    top: 205px;
-    left: 205px
   }
 }
 
@@ -1319,8 +1260,8 @@ img::selection {
 .contact--lockup .modal {
   padding: 45px 45px;
   text-align: center;
-  background-color: #0c0c0c;
-  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.75)
+  /* background-color: #0c0c0c; */
+  /* box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.75) */
 }
 
 .contact--lockup .modal--information p,
