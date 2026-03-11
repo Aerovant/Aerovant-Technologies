@@ -805,6 +805,7 @@ img::selection {
 }
 
 .about--banner::before {
+  display: none;
   content: "";
   position: absolute;
   top: 20px;
@@ -1134,27 +1135,6 @@ img::selection {
   line-height: 1;
   z-index: 1
 }
-
-/* .about--banner h2::before {
-  content: "";
-  position: absolute;
-  top: 60px;
-  left: 268px;
-  width: 30px;
-  height: 30px;
-  background-color: #0f33ff;
-  border-radius: 50%
-}
-
-.about--banner h2::after {
-  content: "";
-  position: absolute;
-  top: 255px;
-  left: 255px;
-  width: 10px;
-  height: 10px;
-  background-color: #0f33ff
-} */
 
 .about--banner a {
   padding: 5px 17px 5px 0;
