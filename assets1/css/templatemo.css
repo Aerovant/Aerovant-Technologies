@@ -1,34 +1,4 @@
 
-html {font-family: 'Open Sans', sans-serif;}
-/* Typography */
-p, a {font-weight: 400;}
-.h2 {font-size: 40px;}
-.h3 {font-size: 28px;}
-.light-300 {
-  font-family: 'Open Sans', sans-serif !important;
-  font-weight: 300;
-}
-.regular-400 {
-  font-family: 'Open Sans', sans-serif !important;
-  font-weight: 400;
-}
-.semi-bold-600 {
-  font-family: 'Open Sans', sans-serif !important;
-  font-weight: 600;
-}
-.typo-space-line::after,
-.typo-space-line-center::after {
-  content: "";
-  width: 150px;
-  display:block;
-  position: absolute;
-  border-bottom:  5px solid #6266ea;
-  padding-top: .5em;
-}
-.typo-space-line-center::after {
-  left: 50%;
-  margin-left: -75px;
-}
 /* Main Nav */
 #main_nav .nav-item .nav-link:hover {color: #fff;}
 
