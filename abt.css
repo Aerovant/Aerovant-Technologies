@@ -5,6 +5,9 @@ body {
   /* background-image: url(imgs/abt/abttt1.png); */
   background-image: url(imgs/bgs/blarr2.png);
   background-repeat: no-repeat;
+  background-size: cover; 
+  background-attachment: fixed; 
+  background-position: top;
 }
 
 nav img {
