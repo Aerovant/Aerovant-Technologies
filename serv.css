@@ -1,7 +1,13 @@
-body{
-  background-color: black;
+body {
   font-family: 'Space Grotesk', sans-serif;
 
+  margin: 0;
+  /* background-image: url(imgs/abt/abttt1.png); */
+  background-image: url(imgs/bgs/blarr2.png);
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-attachment: fixed; 
+  background-position: top;
 }
 
 #navimg img{
@@ -33,6 +39,10 @@ body{
 
 .navbar-nav .nav-link:hover{
   color:#ffffff !important;
+}
+
+.carousel-item{
+  margin-top: -70px;
 }
 
 #foottext p{
