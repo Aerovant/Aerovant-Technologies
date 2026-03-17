@@ -307,22 +307,25 @@
 
                       <ul class="modal--options">
                         <h2>Contact Us</h2>
-                        <p>Feel free to reach out for any inquiries or feedback. We are here to help!</p>
+                        <p>
+                          Have questions or feedback? Feel free to reach out!
+                        </p>
                        
-                        <form action="https://api.web3forms.com/submit" method="POST">
-
+                        <form action="https://api.web3forms.com/submit" method="POST" id="contact-form">
+                          
                           <div class="inputs">
+
                             <input type="hidden" name="access_key" value="fdce5957-5ac0-4118-811b-8704da29e5a5">
 
                             <input type="text" placeholder="Your Name" name="name" required>
+                            <input type="tel" placeholder="Your Number" name="phone" required>
                             <input type="email" placeholder="Your Email" name="email" required>
                             <textarea placeholder="Your Message" name="message" required></textarea>
 
                             <button type="submit">Send Message</button>
-                            
+
                           </div>
                         </form>
-
 
                       </ul>
 
@@ -411,6 +414,34 @@
         
         window.location.assign(" http://www.aerovantacademy.com/ ")
       }
+    </script>
+
+
+    <script>
+      document.getElementById("contact-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const form = this;
+        const formData = new FormData(form);
+
+        // Convert to JSON
+        const data = Object.fromEntries(formData.entries());
+
+        // ✅ Send to Web3Forms (Email)
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData
+        });
+
+        // ✅ Send to Google Sheets
+        fetch("https://script.google.com/macros/s/AKfycbyS4di6x8lkv0U16u5o_V7eT7mzMTeINYEGf3VQl9srq3S7ugqu43lTGmlyhwW7bkMD/exec", {
+          method: "POST",
+          body: JSON.stringify(data)
+        });
+
+        alert("✅ Message sent successfully!");
+        form.reset();
+      });
     </script>
   </body>
 
