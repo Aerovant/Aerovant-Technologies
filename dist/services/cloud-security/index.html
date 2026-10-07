@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloud Security | Aerovant Technologies</title>
+<meta name="description" content="AWS cloud security, cloud security assessment and AWS security configuration review. Know what is exposed in your AWS environment and what to change first.">
+<link rel="canonical" href="https://aerovanttech.com/services/cloud-security/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aerovant Technologies">
+<meta property="og:title" content="Cloud Security | Aerovant Technologies">
+<meta property="og:description" content="AWS cloud security, cloud security assessment and AWS security configuration review. Know what is exposed in your AWS environment and what to change first.">
+<meta property="og:url" content="https://aerovanttech.com/services/cloud-security/">
+<meta property="og:image" content="https://aerovanttech.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1A1648">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="">
+
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="hdr__logo" href="../../" aria-label="Aerovant Technologies, home"><img src="../../assets/img/logo.svg" width="154" height="50" alt=""></a>
+    <button class="hdr__toggle" type="button" aria-expanded="false" aria-controls="nav"><span class="hdr__bars" aria-hidden="true"></span><span class="hdr__label">Menu</span></button>
+    
+  <nav id="nav" class="nav" aria-label="Primary">
+    <ul class="nav__list">
+      <li><a class="nav__a" href="../../about/">About</a></li>
+      
+    <li class="nav__has">
+      <a class="nav__a" href="../../products/">Product</a>
+      <button class="nav__more" type="button" aria-expanded="false" aria-controls="sub-products" aria-label="Show product menu"><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <div class="nav__sub" id="sub-products">
+        <ul>
+          <li><a href="../../products/#threatready"><strong>ThreatReady</strong><span>Cybersecurity job-readiness platform</span></a></li>
+        </ul>
+        
+      </div>
+    </li>
+      
+    <li class="nav__has">
+      <a class="nav__a" href="../../services/" aria-current="page">Services</a>
+      <button class="nav__more" type="button" aria-expanded="false" aria-controls="sub-services" aria-label="Show services menu"><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <div class="nav__sub" id="sub-services">
+        <ul>
+          <li><a href="../../services/cloud-security/"><strong>Cloud Security</strong><span>Know what is exposed.</span></a></li><li><a href="../../services/vapt/"><strong>VAPT</strong><span>Prove what is exploitable.</span></a></li><li><a href="../../services/managed-security/"><strong>Managed Security Services</strong><span>Know if it happens again.</span></a></li>
+        </ul>
+        <a class="nav__all" href="../../services/">All services <span aria-hidden="true">→</span></a>
+      </div>
+    </li>
+      <li><a class="nav__a" href="../../industries/">Industries</a></li>
+      <li><a class="nav__a" href="../../insights/">Insights</a></li>
+      <li><a class="nav__a" href="../../careers/">Careers</a></li>
+    </ul>
+    <a class="btn btn--sm nav__cta" href="../../contact/"><span>Talk to an expert</span></a>
+  </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+
+<header class="phead ">
+  <div class="wrap phead__in">
+    <div class="phead__text">
+      <nav class="crumb" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../../services/">Services</a></li><li><span aria-current="page">Cloud Security</span></li></ol></nav>
+      <h1 class="t-display">Cloud security for teams building on AWS.</h1>
+      <p class="t-lead phead__lead">A clear picture of how your AWS environment is exposed, and what to change first.</p>
+    </div>
+    <div class="phead__aside">
+<div class="scope">
+  <p class="t-label">In this practice</p>
+  <ul><li><strong>AWS Cloud Security</strong><span>Protecting the applications, data and infrastructure you run on AWS.</span></li><li><strong>Cloud Security Assessment</strong><span>A structured look at your cloud environment to find what is exposed and what that puts at risk.</span></li><li><strong>AWS Security Configuration Review</strong><span>A review of how your AWS services are configured against how they should be.</span></li></ul>
+</div></div>
+  </div>
+</header>
+
+<section class="sec sec--white" aria-labelledby="prob-h">
+  <div class="wrap split split--problem">
+    <div class="split__h"><h2 class="t-label" id="prob-h">The problem</h2><figure class="problem__fig">
+<svg class="fig fig-cloud-problem" viewBox="0 0 520 230" role="img" aria-label="A public bucket, broad permissions and an open admin port combine into cloud exposure.">
+  <text class="f-t" x="18" y="28">Small decisions</text>
+  <rect class="f-l" x="18" y="48" width="190" height="42"/><text class="f-t" x="113" y="73" text-anchor="middle">Public bucket</text>
+  <rect class="f-l" x="18" y="104" width="190" height="42"/><text class="f-t" x="113" y="129" text-anchor="middle">Broad permissions</text>
+  <rect class="f-l" x="18" y="160" width="190" height="42"/><text class="f-t" x="113" y="185" text-anchor="middle">Open admin port</text>
+  <path class="f-l" d="M208 69L342 116M337.8 111.7L342 116L336.0 116.7"/><path class="f-l" d="M208 125L342 125M336.6 122.4L342 125L336.6 127.6"/><path class="f-l" d="M208 181L342 134M336.0 133.3L342 134L337.8 138.3"/>
+  <rect class="f-x" x="350" y="99" width="154" height="52"/><text class="f-t" x="427" y="129" text-anchor="middle">Cloud exposure</text>
+</svg><figcaption class="t-note">Small decisions can add up to meaningful exposure.</figcaption></figure></div>
+    <div class="split__b"><p class="statement">Cloud accounts grow one quick decision at a time.</p><p class="prose">A bucket opened for a demo. A role given broad permissions to unblock a release. An admin port left reachable after a late fix. None of these looks like a security decision when it is made.</p><p class="prose">Added together, they are how most cloud exposure is created, and nobody on the team has the full list.</p></div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="assess-h">
+  <div class="wrap assess">
+    <div class="assess__head">
+      <h2 class="t-h2" id="assess-h">What we look at.</h2>
+      <p class="t-lead">We read your AWS account the way an attacker would: what is reachable, what is over-permitted, and what would be quietly useful to someone who got in.</p>
+    </div>
+    <figure class="assess__fig">
+<svg class="fig fig-cloud" viewBox="0 0 520 330" role="img" aria-label="Diagram of an AWS account: IAM roles, access keys and a storage bucket beside a VPC with a public and a private subnet. An IAM role, the storage bucket and an admin port are flagged as exposed.">
+  <rect class="f-l" x="6" y="6" width="508" height="318"/><text class="f-t" x="20" y="28">AWS account</text>
+  <rect class="f-x" x="22" y="56" width="112" height="40"/><path class="f-xf" d="M122 56h12v12z"/><text class="f-t" x="78" y="80" text-anchor="middle">IAM role</text>
+  <rect class="f-l" x="22" y="122" width="112" height="40"/><text class="f-t" x="78" y="146" text-anchor="middle">Access keys</text>
+  <rect class="f-x" x="22" y="188" width="112" height="40"/><path class="f-xf" d="M122 188h12v12z"/><text class="f-t" x="78" y="212" text-anchor="middle">Storage bucket</text>
+  <rect class="f-l" x="22" y="254" width="112" height="40"/><text class="f-t" x="78" y="278" text-anchor="middle">Logs</text>
+  <rect class="f-d" x="160" y="56" width="338" height="250"/><text class="f-t" x="172" y="76">VPC</text>
+  <rect class="f-l" x="176" y="92" width="146" height="198"/><text class="f-t" x="188" y="112">Public subnet</text>
+  <rect class="f-l" x="338" y="92" width="146" height="198"/><text class="f-t" x="350" y="112">Private subnet</text>
+  <rect class="f-l" x="193" y="132" width="112" height="38"/><text class="f-t" x="249" y="155" text-anchor="middle">Load balancer</text>
+  <rect class="f-x" x="193" y="222" width="112" height="38"/><path class="f-xf" d="M293 222h12v12z"/><text class="f-t" x="249" y="245" text-anchor="middle">Admin port</text>
+  <rect class="f-s-box" x="355" y="132" width="112" height="38"/><text class="f-t f-t--inv" x="411" y="155" text-anchor="middle">Application</text>
+  <rect class="f-l" x="355" y="222" width="112" height="38"/><text class="f-t" x="411" y="245" text-anchor="middle">Database</text>
+  <path class="f-l" d="M305 151L354 151M348.6 148.4L354 151L348.6 153.6"/><path class="f-l" d="M411 170L411 221M413.6 215.6L411 221L408.4 215.6"/>
+</svg></figure>
+    <dl class="ledger ledger--stack assess__list"><div><dt>Identity and access</dt><dd>Who and what can do what. Over-permissive IAM roles, leaked access keys, accounts without MFA.</dd></div><div><dt>Storage and data</dt><dd>What is readable from outside. A storage bucket that is public and should not be.</dd></div><div><dt>Network exposure</dt><dd>What is reachable from the internet. An admin port that was never meant to be.</dd></div></dl>
+  </div>
+</section>
+
+<section class="sec sec--white" aria-labelledby="proc-h">
+  <div class="wrap split">
+    <div class="split__h"><h2 class="t-h2" id="proc-h">How it runs.</h2><p>Four steps. You know the scope before any of it starts.</p></div>
+    <div class="split__b">
+<ol class="steps steps--col">
+  <li class="steps__i" style="--n:0"><span class="steps__n" aria-hidden="true">1</span><h3 class="steps__t">Agree the scope.</h3><p>Which AWS accounts and environments are in, and which are out.</p></li><li class="steps__i" style="--n:1"><span class="steps__n" aria-hidden="true">2</span><h3 class="steps__t">We review.</h3><p>Configuration and exposure, across the areas above.</p></li><li class="steps__i" style="--n:2"><span class="steps__n" aria-hidden="true">3</span><h3 class="steps__t">Findings, ranked.</h3><p>What we found, ordered by the risk it carries.</p></li><li class="steps__i" style="--n:3"><span class="steps__n" aria-hidden="true">4</span><h3 class="steps__t">Go through it together.</h3><p>We take your engineers through what to change first.</p></li>
+</ol></div>
+  </div>
+</section>
+
+<section class="sec out" aria-labelledby="out-h">
+  <div class="wrap split">
+    <div class="split__h"><h2 class="t-h2" id="out-h">What you have at the end.</h2></div>
+    <div class="split__b"><ul class="checks"><li>A clear answer to “what can be attacked?” for your AWS environment.</li><li>A list of what is exposed, ranked by risk.</li><li>A first set of changes your engineers can start on.</li></ul></div>
+  </div>
+</section>
+
+<section class="sec sec--white" aria-labelledby="faq-h">
+  <div class="wrap split">
+    <div class="split__h"><h2 class="t-h2" id="faq-h">Questions we get asked.</h2></div>
+    <div class="split__b">
+<div class="faq">
+  <details class="faq__i"><summary><span>Is this only for AWS?</span><span class="faq__mark" aria-hidden="true"></span></summary><div class="faq__a"><p>Our cloud security practice is built around AWS. If you run workloads elsewhere, tell us, and we will say plainly whether we are the right fit.</p></div></details><details class="faq__i"><summary><span>What is the difference between the assessment and the configuration review?</span><span class="faq__mark" aria-hidden="true"></span></summary><div class="faq__a"><p>The assessment is the broad view: how your cloud environment is exposed and what that puts at risk. The configuration review is the close view: how your AWS services are set up, compared with how they should be.</p></div></details><details class="faq__i"><summary><span>Do we have to fix everything you find?</span><span class="faq__mark" aria-hidden="true"></span></summary><div class="faq__a"><p>No. Findings are ranked so you can start with the ones an attacker would use first and schedule the rest.</p></div></details>
+</div></div>
+  </div>
+</section>
+
+<nav class="others" aria-label="Other services">
+  <div class="wrap others__in">
+    <a href="../../services/vapt/"><span class="t-label">Prove what is exploitable.</span><strong>VAPT</strong></a><a href="../../services/managed-security/"><span class="t-label">Know if it happens again.</span><strong>Managed Security Services</strong></a>
+  </div>
+</nav>
+
+<section class="cta sec--ink" aria-label="Next step">
+  <div class="wrap cta__in">
+    <div><h2 class="t-h2">Start with your AWS account.</h2><p class="t-lead">Tell us roughly what you run. We will suggest where to begin.</p></div>
+    <div class="cta__act"><a class="btn btn--light" href="../../contact/?topic=cloud"><span>Talk to a security expert</span><span class="btn__arrow" aria-hidden="true">→</span></a></div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <a class="ftr__logo" href="../../" aria-label="Aerovant Technologies, home"><img src="../../assets/img/logo-white.svg" width="172" height="56" alt=""></a>
+      <p class="ftr__tag">Where cloud, code and security converge.</p>
+    </div>
+    <div class="ftr__cols">
+      <nav aria-label="Company"><h2>Company</h2><ul>
+        <li><a href="../../about/">About</a></li>
+        <li><a href="../../industries/">Industries</a></li>
+        <li><a href="../../careers/">Careers</a></li>
+        <li><a href="../../contact/">Contact</a></li>
+      </ul></nav>
+      <nav aria-label="Product"><h2>Product</h2><ul>
+        <li><a href="../../products/#threatready">ThreatReady</a></li>
+      </ul></nav>
+      <nav aria-label="Services"><h2>Services</h2><ul>
+        <li><a href="../../services/cloud-security/">Cloud Security</a></li><li><a href="../../services/vapt/">VAPT</a></li><li><a href="../../services/managed-security/">Managed Security Services</a></li>
+        <li><a href="../../services/">All services</a></li>
+      </ul></nav>
+      <nav aria-label="Resources"><h2>Resources</h2><ul>
+        <li><a href="../../insights/">Insights</a></li>
+        <li><a href="https://www.aerovantacademy.com" rel="noopener">Aerovant Academy</a></li>
+        <li><a href="../../privacy/">Privacy Policy</a></li>
+        <li><a href="../../terms/">Terms</a></li>
+      </ul></nav>
+      <div><h2>Contact</h2>
+        <address>
+          <a href="mailto:hr@aerovanttech.com">hr@aerovanttech.com</a><br>
+          <a href="tel:+919042647714">+91 90426 47714</a><br>
+          Rayakkottai Road<br>Krishnagiri, Tamil Nadu 635002<br>India
+        </address>
+      </div>
+    </div>
+    <div class="ftr__base">
+      <p>© 2026 Aerovant Technology Pvt. Ltd.</p>
+      <ul class="ftr__social"><li><a href="https://www.linkedin.com/in/aerovant-technologies-7a72bb3aa" rel="noopener">LinkedIn</a></li><li><a href="https://youtube.com/@aerovanttechnologies" rel="noopener">YouTube</a></li><li><a href="https://x.com/aerovant_tech" rel="noopener">X</a></li><li><a href="https://www.instagram.com/aerovant_technologies" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/profile.php?id=61587139213075" rel="noopener">Facebook</a></li></ul>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/js/site.js" defer></script>
+</body>
+</html>
