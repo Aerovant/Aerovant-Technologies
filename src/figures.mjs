@@ -27,7 +27,7 @@ const flag = (x, y) => `<path class="f-xf" d="M${x - 12} ${y}h12v12z"/>`;
 export function markFigure() {
   const id = `hx${++uid}`;
   return `
-<svg class="fig fig-mark" viewBox="-100 -65 1380 1235" role="img" aria-labelledby="${id}-t">
+<svg class="fig fig-mark" viewBox="-100 -65 1380 1185" role="img" aria-labelledby="${id}-t">
   <defs>${hatch(id, 26)}</defs>
   <path class="f-d" d="M-70 977H1280"/>
   <polygon class="f-s mark-a" points="${A}"/>
@@ -38,11 +38,8 @@ export function markFigure() {
   <path class="f-l" d="M0 1002v36M203 1002v36M0 1020H203M712 1002v36M887 1002v36M712 1020H887"/>
   <path class="f-l" d="M604 0L512 -57M0 977L-92 920M512 -57L260 351M160 512L-92 920"/>
   <text class="fig-mark__k" x="0" y="1100">Build</text>
-  <text class="f-t fig-mark__s" x="0" y="1152">ThreatReady</text>
   <text class="fig-mark__k" x="234" y="447" text-anchor="middle" transform="rotate(-58.3 234 447)">Scale</text>
-  <text class="f-t fig-mark__s" x="278" y="474" text-anchor="middle" transform="rotate(-58.3 278 474)">Where cloud, code and security converge.</text>
   <text class="fig-mark__k" x="712" y="1100">Secure</text>
-  <text class="f-t fig-mark__s" x="712" y="1152">Cybersecurity services</text>
 </svg>`;
 }
 
@@ -87,19 +84,26 @@ export function cloudProblemFigure() {
 
 /* Product concept diagrams. These are schematics of the idea, not screenshots. */
 export const productFigure = {
-  threatready: () => `
-<svg class="fig fig-prod" viewBox="0 0 320 190" role="img" aria-label="Concept diagram: a system modelled as client, service and data store, with threats marked where data crosses a trust boundary.">
-<svg class="fig fig-prod" viewBox="0 0 320 190" role="img" aria-label="Concept diagram: a candidate completes an AI interview and role-specific attack simulation, scored against one skill profile.">
-  <rect class="f-d" x="12" y="22" width="296" height="146"/>
-  <text class="f-t" x="22" y="40">Candidate profile</text>
-  ${box(22, 68, 78, 42, 'Resume + role')}
-  ${box(122, 52, 82, 42, 'AI interview')}
-  ${box(122, 112, 82, 42, 'Attack sim')}
-  ${box(222, 82, 76, 42, 'Skill profile', 'f-s-box')}
-  ${arrow(100, 89, 120, 73)}${arrow(100, 89, 120, 132)}
-  ${arrow(204, 73, 220, 94)}${arrow(204, 132, 220, 111)}
-  <text class="f-t" x="160" y="181" text-anchor="middle">Role-specific readiness</text>
-</svg>`,
+  threatready: () => {
+    const b = (x, y, w, h, label, cls = 'f-l') =>
+      `<rect class="${cls}" x="${x}" y="${y}" width="${w}" height="${h}"/><text class="f-t${cls === 'f-s-box' ? ' f-t--inv' : ''}" x="${x + w / 2}" y="${y + h / 2 + 6}" text-anchor="middle">${label}</text>`;
+    return `
+<svg class="fig fig-prod" viewBox="0 0 680 300" role="img" aria-label="Concept diagram: two paths. Interview ready: resume plus job description leads to an AI interview and a skill profile. Skill ready: a role leads to attack reasoning and an enhanced skill. Both outcomes feed ThreatReady.">
+  <text class="f-t fig-prod__k" x="12" y="34">Interview ready</text>
+  ${b(12, 46, 136, 56, 'Resume + JD')}
+  ${b(196, 46, 148, 56, 'AI interview')}
+  ${b(392, 46, 136, 56, 'Skill profile')}
+  ${arrow(148, 74, 194, 74)}${arrow(344, 74, 390, 74)}
+  <text class="f-t fig-prod__k" x="12" y="190">Skill ready</text>
+  ${b(12, 202, 136, 56, 'Role')}
+  ${b(196, 202, 148, 56, 'Attack reasoning')}
+  ${b(392, 202, 136, 56, 'Enhanced skill')}
+  ${arrow(148, 230, 194, 230)}${arrow(344, 230, 390, 230)}
+  ${b(560, 116, 112, 72, 'ThreatReady', 'f-s-box')}
+  ${arrow(528, 74, 558, 128)}${arrow(528, 230, 558, 176)}
+  <text class="f-t" x="340" y="292" text-anchor="middle">Role-specific readiness</text>
+</svg>`;
+  },
 };
 
 /* Cloud security: an AWS account drawn as architecture, with the kind of thing a review flags. */

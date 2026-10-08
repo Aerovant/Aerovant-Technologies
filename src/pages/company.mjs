@@ -185,7 +185,7 @@ const careers = () => [
     <div class="tracks">
       <div class="track track--build"><h3 class="t-h3">Product engineering</h3><p>Designing and building ThreatReady.</p></div>
       <div class="track"><h3 class="t-h3">Security</h3><p>${services.map((s) => s.nav).join(', ').replace(/, ([^,]*)$/, ' and $1')}.</p></div>
-      <div class="track track--dash"><h3 class="t-h3">Internships and training</h3><p>Run through Aerovant Academy, our training arm.</p><p><a class="go" href="${site.academyUrl}" rel="noopener">Visit Aerovant Academy<span aria-hidden="true">→</span></a></p></div>
+      <div class="track track--dash"><h3 class="t-h3">Internships and training</h3><p>Run through Aerovant Academy, our training arm.</p><p><a class="go" href="${site.academyUrl}" target="_blank" rel="noopener">Visit Aerovant Academy<span aria-hidden="true">→</span></a></p></div>
     </div>
   </div>
 </section>`,
