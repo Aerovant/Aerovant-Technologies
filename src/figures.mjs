@@ -101,37 +101,41 @@ export const productFigure = {
   threatready: () => {
     const b = (x, y, w, h, label, cls = 'f-l') =>
       `<rect class="${cls}" x="${x}" y="${y}" width="${w}" height="${h}"/><text class="f-t${cls === 'f-s-box' ? ' f-t--inv' : ''}" x="${x + w / 2}" y="${y + h / 2 + 6}" text-anchor="middle">${label}</text>`;
-    const label = 'Concept diagram: two paths. Interview ready: resume plus job description leads to an AI interview and a skill profile. Skill ready: a role leads to attack reasoning and an enhanced skill. Both outcomes feed ThreatReady.';
+    const label = 'Concept diagram: ThreatReady starts two paths. Interview ready: resume plus job description, then an AI interview, then a skill profile. Skill ready: a role, then attack reasoning, then an enhanced skill, giving role-specific readiness.';
+    // Wide: ThreatReady on the left, a trunk splitting into two left-to-right branches.
+    // Narrow: ThreatReady on top, the same trunk splitting into two top-to-bottom columns.
     return pair(`
-<svg class="fig fig--wide fig-prod" viewBox="0 0 680 300" role="img" aria-label="${label}">
-  <text class="f-t fig-prod__k" x="12" y="34">Interview ready</text>
-  ${b(12, 46, 136, 56, 'Resume + JD')}
-  ${b(196, 46, 148, 56, 'AI interview')}
-  ${b(392, 46, 136, 56, 'Skill profile')}
-  ${arrow(148, 74, 194, 74)}${arrow(344, 74, 390, 74)}
-  <text class="f-t fig-prod__k" x="12" y="190">Skill ready</text>
-  ${b(12, 202, 136, 56, 'Role')}
-  ${b(196, 202, 148, 56, 'Attack reasoning')}
-  ${b(392, 202, 136, 56, 'Enhanced skill')}
-  ${arrow(148, 230, 194, 230)}${arrow(344, 230, 390, 230)}
-  ${b(560, 116, 112, 72, 'ThreatReady', 'f-s-box')}
-  ${arrow(528, 74, 558, 128)}${arrow(528, 230, 558, 176)}
-  <text class="f-t" x="340" y="292" text-anchor="middle">Role-specific readiness</text>
+<svg class="fig fig--wide fig-prod" viewBox="0 0 680 278" role="img" aria-label="${label}">
+  ${b(8, 101, 120, 72, 'ThreatReady', 'f-s-box')}
+  <path class="f-l" d="M128 137H150M150 64V210"/>
+  ${arrow(150, 64, 170, 64)}${arrow(150, 210, 170, 210)}
+  <text class="f-t fig-prod__k" x="172" y="24">Interview ready</text>
+  ${b(172, 36, 134, 56, 'Resume + JD')}
+  ${b(345, 36, 148, 56, 'AI interview')}
+  ${b(532, 36, 140, 56, 'Skill profile')}
+  ${arrow(306, 64, 343, 64)}${arrow(493, 64, 530, 64)}
+  <text class="f-t fig-prod__k" x="172" y="170">Skill ready</text>
+  ${b(172, 182, 134, 56, 'Role')}
+  ${b(345, 182, 148, 56, 'Attack reasoning')}
+  ${b(532, 182, 140, 56, 'Enhanced skill')}
+  ${arrow(306, 210, 343, 210)}${arrow(493, 210, 530, 210)}
+  <text class="f-t" x="422" y="268" text-anchor="middle">Role-specific readiness</text>
 </svg>`, `
-<svg class="fig fig--narrow fig-prod" viewBox="0 0 340 386" role="img" aria-label="${label}">
-  <text class="f-t fig-prod__k" x="6" y="20">Interview ready</text>
-  ${b(6, 32, 156, 50, 'Resume + JD')}
-  ${b(6, 108, 156, 50, 'AI interview')}
-  ${b(6, 184, 156, 50, 'Skill profile')}
-  ${arrow(84, 82, 84, 106)}${arrow(84, 158, 84, 182)}
-  <text class="f-t fig-prod__k" x="178" y="20">Skill ready</text>
-  ${b(178, 32, 156, 50, 'Role')}
-  ${b(178, 108, 156, 50, 'Attack reasoning')}
-  ${b(178, 184, 156, 50, 'Enhanced skill')}
-  ${arrow(256, 82, 256, 106)}${arrow(256, 158, 256, 182)}
-  ${b(98, 282, 144, 56, 'ThreatReady', 'f-s-box')}
-  ${arrow(84, 234, 126, 280)}${arrow(256, 234, 214, 280)}
-  <text class="f-t" x="170" y="372" text-anchor="middle">Role-specific readiness</text>
+<svg class="fig fig--narrow fig-prod" viewBox="0 0 340 356" role="img" aria-label="${label}">
+  ${b(98, 4, 144, 52, 'ThreatReady', 'f-s-box')}
+  <path class="f-l" d="M170 56V98M84 98H256"/>
+  ${arrow(84, 98, 84, 116)}${arrow(256, 98, 256, 116)}
+  <text class="f-t fig-prod__k" x="6" y="88">Interview ready</text>
+  ${b(6, 118, 156, 50, 'Resume + JD')}
+  ${b(6, 194, 156, 50, 'AI interview')}
+  ${b(6, 270, 156, 50, 'Skill profile')}
+  ${arrow(84, 168, 84, 192)}${arrow(84, 244, 84, 268)}
+  <text class="f-t fig-prod__k" x="334" y="88" text-anchor="end">Skill ready</text>
+  ${b(178, 118, 156, 50, 'Role')}
+  ${b(178, 194, 156, 50, 'Attack reasoning')}
+  ${b(178, 270, 156, 50, 'Enhanced skill')}
+  ${arrow(256, 168, 256, 192)}${arrow(256, 244, 256, 268)}
+  <text class="f-t" x="334" y="346" text-anchor="end">Role-specific readiness</text>
 </svg>`);
   },
 };
