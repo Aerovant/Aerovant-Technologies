@@ -32,8 +32,8 @@ const pillars = () => `
       <p class="t-label">SaaS product</p>
       <h2 class="t-h2">Technology we build.</h2>
       <p>One security product, designed, engineered and owned by Aerovant.</p>
-      <ul class="pillars__list">
-        ${products.map((p) => `<li><a href="${u(`/products/#${p.id}`)}"><strong>${p.name}</strong><span>${p.kind}</span></a></li>`).join('')}
+      <ul class="pillars__list${products.length === 1 ? ' pillars__list--solo' : ''}">
+        ${products.map((p) => `<li><a href="${u(`/products/#${p.id}`)}"><strong>${p.name}</strong><span>${p.kind}</span>${products.length === 1 ? `<span class="pillars__desc">${p.line}</span>` : ''}</a></li>`).join('')}
       </ul>
       ${btn('/products/', 'Explore the product', 'btn--light')}
     </div>
@@ -94,28 +94,43 @@ export const journeySec = () => `
   </div>
 </section>`;
 
-const productsSec = () => `
+const productText = (p) => `
+          <p class="t-label">${p.kind}</p>
+          <h3 class="hp__name">${p.name}</h3>
+          <p class="hp__line">${p.line}</p>
+          ${go(`/products/#${p.id}`, `Explore ${p.name.replace(' Platform', '')}`)}`;
+
+// One product: its text sits under the section heading and the diagram takes the wide column.
+// Several products: each gets a row of its own in the wide column.
+const productsSec = () => (products.length === 1 ? `
 <section class="sec sec--ink hp" aria-labelledby="hp-h">
-  <div class="wrap hp__grid">
+  <div class="wrap hp__grid hp__grid--solo">
     <div class="hp__head">
       <h2 class="t-h2" id="hp-h">The product we build.</h2>
       <p class="t-lead">Our own SaaS platform. We design it, engineer it and own it. Nothing here is resold or relabelled.</p>
-      ${go('/products/', 'Explore ThreatReady')}
+    </div>
+    <div class="hp__fig">${productFigure[products[0].id]()}</div>
+    <article class="hp__text">${productText(products[0])}
+    </article>
+  </div>
+</section>` : `
+<section class="sec sec--ink hp" aria-labelledby="hp-h">
+  <div class="wrap hp__grid">
+    <div class="hp__head">
+      <h2 class="t-h2" id="hp-h">The products we build.</h2>
+      <p class="t-lead">Our own SaaS platforms. We design them, engineer them and own them. Nothing here is resold or relabelled.</p>
+      ${go('/products/', 'All products')}
     </div>
     <div class="hp__list">
       ${products.map((p) => `
       <article class="hp__item">
         <div class="hp__fig">${productFigure[p.id]()}</div>
-        <div class="hp__text">
-          <p class="t-label">${p.kind}</p>
-          <h3 class="hp__name">${p.name}</h3>
-          <p class="hp__line">${p.line}</p>
-          ${go(`/products/#${p.id}`, `Explore ${p.name.replace(' Platform', '')}`)}
+        <div class="hp__text">${productText(p)}
         </div>
       </article>`).join('')}
     </div>
   </div>
-</section>`;
+</section>`);
 
 const [cloud, vapt, managed] = services;
 const vaptEx = ['An injection flaw or broken access control.', 'An endpoint returning another user’s data.', 'An exposed admin port.'];

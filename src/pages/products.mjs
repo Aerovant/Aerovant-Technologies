@@ -48,7 +48,7 @@ const value = () => `
       <table class="tbl">
         <thead><tr><th scope="col">Product</th><th scope="col">Without it</th><th scope="col">With it</th></tr></thead>
         <tbody>
-          ${products.map((p) => `<tr><th scope="row"><a href="#${p.id}">${p.name}</a></th><td>${p.problem}</td><td>${p.value}</td></tr>`).join('')}
+          ${products.map((p) => `<tr><th scope="row"><a href="#${p.id}">${p.name}</a></th><td data-label="Without it">${p.problem}</td><td data-label="With it">${p.value}</td></tr>`).join('')}
         </tbody>
       </table>
     </div>

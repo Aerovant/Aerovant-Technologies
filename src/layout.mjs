@@ -39,8 +39,10 @@ export const startHere = () => `
       <h2 class="t-h2" id="start-h">Not sure where to start? Start here.</h2>
       <p class="t-lead">You don’t need a brief, a budget line or the right vocabulary. Four steps, and you can stop after any of them.</p>
     </div>
-    ${steps(startSteps, 'steps--stair')}
-    <p class="start__cta">${btn('/contact/', 'Tell us what you want to protect')}</p>
+    <div class="start__body">
+      ${steps(startSteps, 'steps--stair')}
+      <p class="start__cta">${btn('/contact/', 'Tell us what you want to protect')}</p>
+    </div>
   </div>
 </section>`;
 

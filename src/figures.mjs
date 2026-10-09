@@ -3,6 +3,9 @@
 //   outline/hatch  = something examined
 //   signal colour  = something exposed
 // Classes (.f-l line, .f-s solid, .f-d dashed, .f-x signal line, .f-xf signal fill, .f-t text) are styled in site.css.
+//
+// Diagrams with labels come in two drawings: a wide one, and a narrow one re-laid-out for phones so the
+// labels stay readable instead of shrinking with the viewBox. site.css shows one or the other (.fig--wide / .fig--narrow).
 
 import { layers } from './site.mjs';
 
@@ -20,8 +23,12 @@ function arrow(x1, y1, x2, y2, cls = 'f-l') {
   return `<path class="${cls}" d="M${x1} ${y1}L${x2} ${y2}M${p(0.45)}L${x2} ${y2}L${p(-0.45)}"/>`;
 }
 const box = (x, y, w, h, label, cls = 'f-l') =>
-  `<rect class="${cls}" x="${x}" y="${y}" width="${w}" height="${h}"/><text class="f-t${cls === 'f-s-box' ? ' f-t--inv' : ''}" x="${x + w / 2}" y="${y + h / 2 + 4}" text-anchor="middle">${label}</text>`;
+  `<rect class="${cls}" x="${x}" y="${y}" width="${w}" height="${h}"/><text class="f-t${cls === 'f-s-box' ? ' f-t--inv' : ''}" x="${x + w / 2}" y="${y + h / 2 + 5}" text-anchor="middle">${label}</text>`;
 const flag = (x, y) => `<path class="f-xf" d="M${x - 12} ${y}h12v12z"/>`;
+const flagged = (x, y, w, h, label) =>
+  `<rect class="f-x" x="${x}" y="${y}" width="${w}" height="${h}"/>${flag(x + w, y)}<text class="f-t" x="${x + w / 2}" y="${y + h / 2 + 5}" text-anchor="middle">${label}</text>`;
+/** Both drawings of one diagram. Only the visible one is exposed to assistive tech (the other is display:none). */
+const pair = (wide, narrow) => wide + narrow;
 
 /* Hero: the Aerovant mark drawn as a construction drawing. One stroke built, one examined. */
 export function markFigure() {
@@ -33,8 +40,6 @@ export function markFigure() {
   <polygon class="f-s mark-a" points="${A}"/>
   <polygon class="mark-v-fill" fill="url(#${id})" points="${V}"/>
   <polygon class="f-l mark-v" pathLength="1" points="${V}"/>
-  <path class="f-l" d="M1047 977A160 160 0 0 0 970 840"/>
-  <text class="f-t fig-mark__deg" x="1068" y="925">58°</text>
   <path class="f-l" d="M0 1002v36M203 1002v36M0 1020H203M712 1002v36M887 1002v36M712 1020H887"/>
   <path class="f-l" d="M604 0L512 -57M0 977L-92 920M512 -57L260 351M160 512L-92 920"/>
   <text class="fig-mark__k" x="0" y="1100">Build</text>
@@ -71,15 +76,24 @@ export function stackFigure() {
 export const plateGlyph = () => '<svg class="as-glyph" viewBox="0 0 44 22" width="44" height="22" aria-hidden="true"><polygon points="22,1 43,9 22,17 1,9"/><path d="M1 9v4l21 8 21-8V9"/></svg>';
 
 export function cloudProblemFigure() {
-  return `
-<svg class="fig fig-cloud-problem" viewBox="0 0 520 230" role="img" aria-label="A public bucket, broad permissions and an open admin port combine into cloud exposure.">
-  <text class="f-t" x="18" y="28">Small decisions</text>
-  ${box(18, 48, 190, 42, 'Public bucket')}
-  ${box(18, 104, 190, 42, 'Broad permissions')}
-  ${box(18, 160, 190, 42, 'Open admin port')}
-  ${arrow(208, 69, 342, 116)}${arrow(208, 125, 342, 125)}${arrow(208, 181, 342, 134)}
-  ${box(350, 99, 154, 52, 'Cloud exposure', 'f-x')}
-</svg>`;
+  const label = 'A public bucket, broad permissions and an open admin port combine into cloud exposure.';
+  return pair(`
+<svg class="fig fig--wide fig-cloud-problem" viewBox="0 0 520 214" role="img" aria-label="${label}">
+  <text class="f-t" x="18" y="22">Small decisions</text>
+  ${box(18, 38, 190, 44, 'Public bucket')}
+  ${box(18, 96, 190, 44, 'Broad permissions')}
+  ${box(18, 154, 190, 44, 'Open admin port')}
+  ${arrow(208, 60, 342, 110)}${arrow(208, 118, 342, 118)}${arrow(208, 176, 342, 126)}
+  ${box(350, 92, 154, 52, 'Cloud exposure', 'f-x')}
+</svg>`, `
+<svg class="fig fig--narrow fig-cloud-problem" viewBox="0 0 340 206" role="img" aria-label="${label}">
+  <text class="f-t" x="6" y="20">Small decisions</text>
+  ${box(6, 36, 164, 44, 'Public bucket')}
+  ${box(6, 96, 164, 44, 'Broad permissions')}
+  ${box(6, 156, 164, 44, 'Open admin port')}
+  ${arrow(170, 58, 196, 106)}${arrow(170, 118, 196, 118)}${arrow(170, 178, 196, 130)}
+  ${box(198, 92, 136, 52, 'Cloud exposure', 'f-x')}
+</svg>`);
 }
 
 /* Product concept diagrams. These are schematics of the idea, not screenshots. */
@@ -87,8 +101,9 @@ export const productFigure = {
   threatready: () => {
     const b = (x, y, w, h, label, cls = 'f-l') =>
       `<rect class="${cls}" x="${x}" y="${y}" width="${w}" height="${h}"/><text class="f-t${cls === 'f-s-box' ? ' f-t--inv' : ''}" x="${x + w / 2}" y="${y + h / 2 + 6}" text-anchor="middle">${label}</text>`;
-    return `
-<svg class="fig fig-prod" viewBox="0 0 680 300" role="img" aria-label="Concept diagram: two paths. Interview ready: resume plus job description leads to an AI interview and a skill profile. Skill ready: a role leads to attack reasoning and an enhanced skill. Both outcomes feed ThreatReady.">
+    const label = 'Concept diagram: two paths. Interview ready: resume plus job description leads to an AI interview and a skill profile. Skill ready: a role leads to attack reasoning and an enhanced skill. Both outcomes feed ThreatReady.';
+    return pair(`
+<svg class="fig fig--wide fig-prod" viewBox="0 0 680 300" role="img" aria-label="${label}">
   <text class="f-t fig-prod__k" x="12" y="34">Interview ready</text>
   ${b(12, 46, 136, 56, 'Resume + JD')}
   ${b(196, 46, 148, 56, 'AI interview')}
@@ -102,29 +117,59 @@ export const productFigure = {
   ${b(560, 116, 112, 72, 'ThreatReady', 'f-s-box')}
   ${arrow(528, 74, 558, 128)}${arrow(528, 230, 558, 176)}
   <text class="f-t" x="340" y="292" text-anchor="middle">Role-specific readiness</text>
-</svg>`;
+</svg>`, `
+<svg class="fig fig--narrow fig-prod" viewBox="0 0 340 386" role="img" aria-label="${label}">
+  <text class="f-t fig-prod__k" x="6" y="20">Interview ready</text>
+  ${b(6, 32, 156, 50, 'Resume + JD')}
+  ${b(6, 108, 156, 50, 'AI interview')}
+  ${b(6, 184, 156, 50, 'Skill profile')}
+  ${arrow(84, 82, 84, 106)}${arrow(84, 158, 84, 182)}
+  <text class="f-t fig-prod__k" x="178" y="20">Skill ready</text>
+  ${b(178, 32, 156, 50, 'Role')}
+  ${b(178, 108, 156, 50, 'Attack reasoning')}
+  ${b(178, 184, 156, 50, 'Enhanced skill')}
+  ${arrow(256, 82, 256, 106)}${arrow(256, 158, 256, 182)}
+  ${b(98, 282, 144, 56, 'ThreatReady', 'f-s-box')}
+  ${arrow(84, 234, 126, 280)}${arrow(256, 234, 214, 280)}
+  <text class="f-t" x="170" y="372" text-anchor="middle">Role-specific readiness</text>
+</svg>`);
   },
 };
 
 /* Cloud security: an AWS account drawn as architecture, with the kind of thing a review flags. */
 export function cloudFigure() {
-  const f = (x, y, w, h, label) => `<rect class="f-x" x="${x}" y="${y}" width="${w}" height="${h}"/>${flag(x + w, y)}<text class="f-t" x="${x + w / 2}" y="${y + h / 2 + 4}" text-anchor="middle">${label}</text>`;
-  return `
-<svg class="fig fig-cloud" viewBox="0 0 520 330" role="img" aria-label="Diagram of an AWS account: IAM roles, access keys and a storage bucket beside a VPC with a public and a private subnet. An IAM role, the storage bucket and an admin port are flagged as exposed.">
-  <rect class="f-l" x="6" y="6" width="508" height="318"/><text class="f-t" x="20" y="28">AWS account</text>
-  ${f(22, 56, 112, 40, 'IAM role')}
+  const label = 'Diagram of an AWS account: IAM roles, access keys and a storage bucket beside a VPC with a public and a private subnet. An IAM role, the storage bucket and an admin port are flagged as exposed.';
+  return pair(`
+<svg class="fig fig--wide fig-cloud" viewBox="0 0 520 330" role="img" aria-label="${label}">
+  <rect class="f-l" x="6" y="6" width="508" height="318"/><text class="f-t" x="20" y="29">AWS account</text>
+  ${flagged(22, 56, 112, 40, 'IAM role')}
   ${box(22, 122, 112, 40, 'Access keys')}
-  ${f(22, 188, 112, 40, 'Storage bucket')}
+  ${flagged(22, 188, 112, 40, 'Storage bucket')}
   ${box(22, 254, 112, 40, 'Logs')}
-  <rect class="f-d" x="160" y="56" width="338" height="250"/><text class="f-t" x="172" y="76">VPC</text>
-  <rect class="f-l" x="176" y="92" width="146" height="198"/><text class="f-t" x="188" y="112">Public subnet</text>
-  <rect class="f-l" x="338" y="92" width="146" height="198"/><text class="f-t" x="350" y="112">Private subnet</text>
+  <rect class="f-d" x="160" y="56" width="338" height="250"/><text class="f-t" x="172" y="77">VPC</text>
+  <rect class="f-l" x="176" y="92" width="146" height="198"/><text class="f-t" x="188" y="114">Public subnet</text>
+  <rect class="f-l" x="338" y="92" width="146" height="198"/><text class="f-t" x="350" y="114">Private subnet</text>
   ${box(193, 132, 112, 38, 'Load balancer')}
-  ${f(193, 222, 112, 38, 'Admin port')}
+  ${flagged(193, 222, 112, 38, 'Admin port')}
   ${box(355, 132, 112, 38, 'Application', 'f-s-box')}
   ${box(355, 222, 112, 38, 'Database')}
   ${arrow(305, 151, 354, 151)}${arrow(411, 170, 411, 221)}
-</svg>`;
+</svg>`, `
+<svg class="fig fig--narrow fig-cloud" viewBox="0 0 340 400" role="img" aria-label="${label}">
+  <rect class="f-l" x="4" y="4" width="332" height="392"/><text class="f-t" x="16" y="29">AWS account</text>
+  ${flagged(16, 44, 146, 42, 'IAM role')}
+  ${box(178, 44, 146, 42, 'Access keys')}
+  ${flagged(16, 100, 146, 42, 'Storage bucket')}
+  ${box(178, 100, 146, 42, 'Logs')}
+  <rect class="f-d" x="16" y="160" width="308" height="222"/><text class="f-t" x="28" y="183">VPC</text>
+  <rect class="f-l" x="26" y="196" width="140" height="174"/><text class="f-t" x="36" y="219">Public subnet</text>
+  <rect class="f-l" x="174" y="196" width="140" height="174"/><text class="f-t" x="184" y="219">Private subnet</text>
+  ${box(36, 236, 120, 42, 'Load balancer')}
+  ${flagged(36, 314, 120, 42, 'Admin port')}
+  ${box(184, 236, 120, 42, 'Application', 'f-s-box')}
+  ${box(184, 314, 120, 42, 'Database')}
+  ${arrow(156, 257, 183, 257)}${arrow(244, 278, 244, 313)}
+</svg>`);
 }
 
 /* Managed security: one lane of events per managed service. Deterministic, so builds are reproducible. */

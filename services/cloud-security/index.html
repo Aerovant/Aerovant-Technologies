@@ -81,13 +81,21 @@
 <section class="sec sec--white" aria-labelledby="prob-h">
   <div class="wrap split split--problem">
     <div class="split__h"><h2 class="t-label" id="prob-h">The problem</h2><figure class="problem__fig">
-<svg class="fig fig-cloud-problem" viewBox="0 0 520 230" role="img" aria-label="A public bucket, broad permissions and an open admin port combine into cloud exposure.">
-  <text class="f-t" x="18" y="28">Small decisions</text>
-  <rect class="f-l" x="18" y="48" width="190" height="42"/><text class="f-t" x="113" y="73" text-anchor="middle">Public bucket</text>
-  <rect class="f-l" x="18" y="104" width="190" height="42"/><text class="f-t" x="113" y="129" text-anchor="middle">Broad permissions</text>
-  <rect class="f-l" x="18" y="160" width="190" height="42"/><text class="f-t" x="113" y="185" text-anchor="middle">Open admin port</text>
-  <path class="f-l" d="M208 69L342 116M337.8 111.7L342 116L336.0 116.7"/><path class="f-l" d="M208 125L342 125M336.6 122.4L342 125L336.6 127.6"/><path class="f-l" d="M208 181L342 134M336.0 133.3L342 134L337.8 138.3"/>
-  <rect class="f-x" x="350" y="99" width="154" height="52"/><text class="f-t" x="427" y="129" text-anchor="middle">Cloud exposure</text>
+<svg class="fig fig--wide fig-cloud-problem" viewBox="0 0 520 214" role="img" aria-label="A public bucket, broad permissions and an open admin port combine into cloud exposure.">
+  <text class="f-t" x="18" y="22">Small decisions</text>
+  <rect class="f-l" x="18" y="38" width="190" height="44"/><text class="f-t" x="113" y="65" text-anchor="middle">Public bucket</text>
+  <rect class="f-l" x="18" y="96" width="190" height="44"/><text class="f-t" x="113" y="123" text-anchor="middle">Broad permissions</text>
+  <rect class="f-l" x="18" y="154" width="190" height="44"/><text class="f-t" x="113" y="181" text-anchor="middle">Open admin port</text>
+  <path class="f-l" d="M208 60L342 110M337.9 105.7L342 110L336.0 110.6"/><path class="f-l" d="M208 118L342 118M336.6 115.4L342 118L336.6 120.6"/><path class="f-l" d="M208 176L342 126M336.0 125.4L342 126L337.9 130.3"/>
+  <rect class="f-x" x="350" y="92" width="154" height="52"/><text class="f-t" x="427" y="123" text-anchor="middle">Cloud exposure</text>
+</svg>
+<svg class="fig fig--narrow fig-cloud-problem" viewBox="0 0 340 206" role="img" aria-label="A public bucket, broad permissions and an open admin port combine into cloud exposure.">
+  <text class="f-t" x="6" y="20">Small decisions</text>
+  <rect class="f-l" x="6" y="36" width="164" height="44"/><text class="f-t" x="88" y="63" text-anchor="middle">Public bucket</text>
+  <rect class="f-l" x="6" y="96" width="164" height="44"/><text class="f-t" x="88" y="123" text-anchor="middle">Broad permissions</text>
+  <rect class="f-l" x="6" y="156" width="164" height="44"/><text class="f-t" x="88" y="183" text-anchor="middle">Open admin port</text>
+  <path class="f-l" d="M170 58L196 106M195.7 100.0L196 106L191.1 102.5"/><path class="f-l" d="M170 118L196 118M190.6 115.4L196 118L190.6 120.6"/><path class="f-l" d="M170 178L196 130M191.1 133.5L196 130L195.7 136.0"/>
+  <rect class="f-x" x="198" y="92" width="136" height="52"/><text class="f-t" x="266" y="123" text-anchor="middle">Cloud exposure</text>
 </svg><figcaption class="t-note">Small decisions can add up to meaningful exposure.</figcaption></figure></div>
     <div class="split__b"><p class="statement">Cloud accounts grow one quick decision at a time.</p><p class="prose">A bucket opened for a demo. A role given broad permissions to unblock a release. An admin port left reachable after a late fix. None of these looks like a security decision when it is made.</p><p class="prose">Added together, they are how most cloud exposure is created, and nobody on the team has the full list.</p></div>
   </div>
@@ -100,20 +108,35 @@
       <p class="t-lead">We read your AWS account the way an attacker would: what is reachable, what is over-permitted, and what would be quietly useful to someone who got in.</p>
     </div>
     <figure class="assess__fig">
-<svg class="fig fig-cloud" viewBox="0 0 520 330" role="img" aria-label="Diagram of an AWS account: IAM roles, access keys and a storage bucket beside a VPC with a public and a private subnet. An IAM role, the storage bucket and an admin port are flagged as exposed.">
-  <rect class="f-l" x="6" y="6" width="508" height="318"/><text class="f-t" x="20" y="28">AWS account</text>
-  <rect class="f-x" x="22" y="56" width="112" height="40"/><path class="f-xf" d="M122 56h12v12z"/><text class="f-t" x="78" y="80" text-anchor="middle">IAM role</text>
-  <rect class="f-l" x="22" y="122" width="112" height="40"/><text class="f-t" x="78" y="146" text-anchor="middle">Access keys</text>
-  <rect class="f-x" x="22" y="188" width="112" height="40"/><path class="f-xf" d="M122 188h12v12z"/><text class="f-t" x="78" y="212" text-anchor="middle">Storage bucket</text>
-  <rect class="f-l" x="22" y="254" width="112" height="40"/><text class="f-t" x="78" y="278" text-anchor="middle">Logs</text>
-  <rect class="f-d" x="160" y="56" width="338" height="250"/><text class="f-t" x="172" y="76">VPC</text>
-  <rect class="f-l" x="176" y="92" width="146" height="198"/><text class="f-t" x="188" y="112">Public subnet</text>
-  <rect class="f-l" x="338" y="92" width="146" height="198"/><text class="f-t" x="350" y="112">Private subnet</text>
-  <rect class="f-l" x="193" y="132" width="112" height="38"/><text class="f-t" x="249" y="155" text-anchor="middle">Load balancer</text>
-  <rect class="f-x" x="193" y="222" width="112" height="38"/><path class="f-xf" d="M293 222h12v12z"/><text class="f-t" x="249" y="245" text-anchor="middle">Admin port</text>
-  <rect class="f-s-box" x="355" y="132" width="112" height="38"/><text class="f-t f-t--inv" x="411" y="155" text-anchor="middle">Application</text>
-  <rect class="f-l" x="355" y="222" width="112" height="38"/><text class="f-t" x="411" y="245" text-anchor="middle">Database</text>
+<svg class="fig fig--wide fig-cloud" viewBox="0 0 520 330" role="img" aria-label="Diagram of an AWS account: IAM roles, access keys and a storage bucket beside a VPC with a public and a private subnet. An IAM role, the storage bucket and an admin port are flagged as exposed.">
+  <rect class="f-l" x="6" y="6" width="508" height="318"/><text class="f-t" x="20" y="29">AWS account</text>
+  <rect class="f-x" x="22" y="56" width="112" height="40"/><path class="f-xf" d="M122 56h12v12z"/><text class="f-t" x="78" y="81" text-anchor="middle">IAM role</text>
+  <rect class="f-l" x="22" y="122" width="112" height="40"/><text class="f-t" x="78" y="147" text-anchor="middle">Access keys</text>
+  <rect class="f-x" x="22" y="188" width="112" height="40"/><path class="f-xf" d="M122 188h12v12z"/><text class="f-t" x="78" y="213" text-anchor="middle">Storage bucket</text>
+  <rect class="f-l" x="22" y="254" width="112" height="40"/><text class="f-t" x="78" y="279" text-anchor="middle">Logs</text>
+  <rect class="f-d" x="160" y="56" width="338" height="250"/><text class="f-t" x="172" y="77">VPC</text>
+  <rect class="f-l" x="176" y="92" width="146" height="198"/><text class="f-t" x="188" y="114">Public subnet</text>
+  <rect class="f-l" x="338" y="92" width="146" height="198"/><text class="f-t" x="350" y="114">Private subnet</text>
+  <rect class="f-l" x="193" y="132" width="112" height="38"/><text class="f-t" x="249" y="156" text-anchor="middle">Load balancer</text>
+  <rect class="f-x" x="193" y="222" width="112" height="38"/><path class="f-xf" d="M293 222h12v12z"/><text class="f-t" x="249" y="246" text-anchor="middle">Admin port</text>
+  <rect class="f-s-box" x="355" y="132" width="112" height="38"/><text class="f-t f-t--inv" x="411" y="156" text-anchor="middle">Application</text>
+  <rect class="f-l" x="355" y="222" width="112" height="38"/><text class="f-t" x="411" y="246" text-anchor="middle">Database</text>
   <path class="f-l" d="M305 151L354 151M348.6 148.4L354 151L348.6 153.6"/><path class="f-l" d="M411 170L411 221M413.6 215.6L411 221L408.4 215.6"/>
+</svg>
+<svg class="fig fig--narrow fig-cloud" viewBox="0 0 340 400" role="img" aria-label="Diagram of an AWS account: IAM roles, access keys and a storage bucket beside a VPC with a public and a private subnet. An IAM role, the storage bucket and an admin port are flagged as exposed.">
+  <rect class="f-l" x="4" y="4" width="332" height="392"/><text class="f-t" x="16" y="29">AWS account</text>
+  <rect class="f-x" x="16" y="44" width="146" height="42"/><path class="f-xf" d="M150 44h12v12z"/><text class="f-t" x="89" y="70" text-anchor="middle">IAM role</text>
+  <rect class="f-l" x="178" y="44" width="146" height="42"/><text class="f-t" x="251" y="70" text-anchor="middle">Access keys</text>
+  <rect class="f-x" x="16" y="100" width="146" height="42"/><path class="f-xf" d="M150 100h12v12z"/><text class="f-t" x="89" y="126" text-anchor="middle">Storage bucket</text>
+  <rect class="f-l" x="178" y="100" width="146" height="42"/><text class="f-t" x="251" y="126" text-anchor="middle">Logs</text>
+  <rect class="f-d" x="16" y="160" width="308" height="222"/><text class="f-t" x="28" y="183">VPC</text>
+  <rect class="f-l" x="26" y="196" width="140" height="174"/><text class="f-t" x="36" y="219">Public subnet</text>
+  <rect class="f-l" x="174" y="196" width="140" height="174"/><text class="f-t" x="184" y="219">Private subnet</text>
+  <rect class="f-l" x="36" y="236" width="120" height="42"/><text class="f-t" x="96" y="262" text-anchor="middle">Load balancer</text>
+  <rect class="f-x" x="36" y="314" width="120" height="42"/><path class="f-xf" d="M144 314h12v12z"/><text class="f-t" x="96" y="340" text-anchor="middle">Admin port</text>
+  <rect class="f-s-box" x="184" y="236" width="120" height="42"/><text class="f-t f-t--inv" x="244" y="262" text-anchor="middle">Application</text>
+  <rect class="f-l" x="184" y="314" width="120" height="42"/><text class="f-t" x="244" y="340" text-anchor="middle">Database</text>
+  <path class="f-l" d="M156 257L183 257M177.6 254.4L183 257L177.6 259.6"/><path class="f-l" d="M244 278L244 313M246.6 307.6L244 313L241.4 307.6"/>
 </svg></figure>
     <dl class="ledger ledger--stack assess__list"><div><dt>Identity and access</dt><dd>Who and what can do what. Over-permissive IAM roles, leaked access keys, accounts without MFA.</dd></div><div><dt>Storage and data</dt><dd>What is readable from outside. A storage bucket that is public and should not be.</dd></div><div><dt>Network exposure</dt><dd>What is reachable from the internet. An admin port that was never meant to be.</dd></div></dl>
   </div>
@@ -183,8 +206,8 @@
       <nav aria-label="Resources"><h2>Resources</h2><ul>
         <li><a href="../../insights/">Insights</a></li>
         <li><a href="https://www.aerovantacademy.com" rel="noopener">Aerovant Academy</a></li>
-        <li><a href="../../privacy/">Privacy Policy</a></li>
-        <li><a href="../../terms/">Terms</a></li>
+        <li><a target="_blank" href="../../privacy/">Privacy Policy</a></li>
+        <li><a target="_blank" href="../../terms/">Terms</a></li>
       </ul></nav>
       <div><h2>Contact</h2>
         <address>

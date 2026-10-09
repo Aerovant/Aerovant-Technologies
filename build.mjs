@@ -4,7 +4,7 @@
 //   --bundle   additionally writes preview.html: every page in one self-contained file
 import { mkdir, writeFile, readFile, rm, cp, readdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { site, setCtx } from './src/site.mjs';
 import { doc, header, footer } from './src/layout.mjs';
 
@@ -14,7 +14,8 @@ const args = new Set(process.argv.slice(2));
 const mode = args.has('--file') ? 'file' : 'web';
 
 const pageFiles = (await readdir(join(src, 'pages'))).filter((f) => f.endsWith('.mjs')).sort();
-const pages = (await Promise.all(pageFiles.map((f) => import(join(src, 'pages', f))))).flatMap((m) => m.default);
+// pathToFileURL: on Windows an absolute path like C:\\... is not a valid import specifier.
+const pages = (await Promise.all(pageFiles.map((f) => import(pathToFileURL(join(src, 'pages', f)).href)))).flatMap((m) => m.default);
 
 await rm(out, { recursive: true, force: true });
 await mkdir(out, { recursive: true });
