@@ -15,7 +15,7 @@ export const site = {
   address: ['Rayakkottai Road', 'Krishnagiri, Tamil Nadu 635002', 'India'],
   academyUrl: 'https://www.aerovantacademy.com',
   social: [
-    ['LinkedIn', 'https://www.linkedin.com/in/aerovant-technologies-7a72bb3aa'],
+    ['LinkedIn', 'https://www.linkedin.com/company/aerovant-technologies'],
     ['YouTube', 'https://youtube.com/@aerovanttechnologies'],
     ['X', 'https://x.com/aerovant_tech'],
     ['Instagram', 'https://www.instagram.com/aerovant_technologies'],
