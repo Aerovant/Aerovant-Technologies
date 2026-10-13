@@ -6,7 +6,7 @@ import { mkdir, writeFile, readFile, rm, cp, readdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { site, setCtx } from './src/site.mjs';
-import { doc, header, footer } from './src/layout.mjs';
+import { doc, header, footer, externalize } from './src/layout.mjs';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const src = join(root, 'src'), out = join(root, 'dist');
@@ -73,6 +73,6 @@ ${header('/')}
 ${footer()}
 ${tpl}
 <script>${js}</script><script>${router}</script></body></html>`;
-  await writeFile(join(root, 'preview.html'), html);
+  await writeFile(join(root, 'preview.html'), externalize(html));
   console.log(`bundle → preview.html (${(html.length / 1024).toFixed(0)} kB)`);
 }

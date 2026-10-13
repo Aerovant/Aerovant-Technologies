@@ -153,7 +153,7 @@ const ecosystem = () => `
   <div class="wrap">
     <div class="sec__head"><h2 class="t-h2" id="eco-h">One company, one idea: is security ready?</h2></div>
     <ol class="eco__list">
-      <li><p class="t-label">Train people</p><h3 class="t-h3">Aerovant Academy</h3><p>Hands-on cybersecurity training and internships.</p><p><a class="go" href="${site.academyUrl}" rel="noopener">aerovantacademy.com<span aria-hidden="true">→</span></a></p></li>
+      <li><p class="t-label">Train people</p><h3 class="t-h3">Aerovant Academy</h3><p>Hands-on cybersecurity training and internships.</p><p><a class="go" href="${site.academyUrl}">aerovantacademy.com<span aria-hidden="true">→</span></a></p></li>
       <li><p class="t-label">Prove the skill</p><h3 class="t-h3">ThreatReady</h3><p>Role-based practice and assessment, for individuals and for teams.</p><p>${go('/products/', 'Explore ThreatReady')}</p></li>
       <li><p class="t-label">Secure the systems</p><h3 class="t-h3">Security services</h3><p>Cloud security, penetration testing and managed security.</p><p>${go('/services/', 'Explore services')}</p></li>
     </ol>

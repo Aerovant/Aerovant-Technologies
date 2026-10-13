@@ -7,10 +7,10 @@ export const site = {
   legalName: 'Aerovant Technologies Pvt. Ltd.', // CONFIRM against the certificate of incorporation; ThreatReady uses this form
   url: 'https://aerovanttech.com',
   tagline: 'Where cloud, code and security converge.',
-  email: 'contact@aerovanttech.com',       // sales and security enquiries. CONFIRM the mailbox exists before merging.
+  email: 'admin@aerovanttech.com',         // enquiries, privacy requests and security reports (also in src/static/.well-known/security.txt)
   careersEmail: 'hr@aerovanttech.com',     // job applications only
   replyTime: 'We reply within one business day.',
-  phone: '+91 90426 47714',
+  phone: '+91&nbsp;90426&nbsp;47714', // HTML: non-breaking spaces keep the number on one line
   phoneHref: '+919042647714',
   address: ['Rayakkottai Road', 'Krishnagiri, Tamil Nadu 635002', 'India'],
   academyUrl: 'https://www.aerovantacademy.com',
@@ -45,7 +45,7 @@ export const products = [
     sample: 'https://threatready.io/sample-report.html',
     tracks: 15,
     pillars: [
-      { verb: 'Think', name: 'Attack Reasoning Lab', line: 'Adaptive attack scenarios on a real architecture, mapped to MITRE ATT&CK. Each answer is followed up, question by question.' },
+      { verb: 'Think', name: 'Attack Reasoning Lab', line: 'Adaptive attack scenarios on a real architecture, mapped to MITRE ATT&amp;CK. Each answer is followed up, question by question.' },
       { verb: 'Do', name: 'Lab Simulations', line: 'Step-by-step tasks from the daily work of each role: triage an alert, review a policy, contain a threat, write it up. Levels run Beginner to Expert.', status: 'Rolling out role by role' },
       { verb: 'Prove', name: 'InterviewPrep', line: 'Upload a job description and a resume. Get an interview built for that role, and a report scored on five dimensions.' },
     ],
@@ -82,7 +82,7 @@ export const services = [
   },
   {
     id: 'vapt',
-    name: 'Vulnerability Assessment & Penetration Testing',
+    name: 'Vulnerability Assessment &amp; Penetration Testing',
     nav: 'VAPT',
     outcome: 'Prove what is exploitable.',
     line: 'Testing that shows which weaknesses can actually be used against you, with the evidence.',
@@ -107,7 +107,7 @@ export const services = [
       ['EDR Management', 'Your endpoint detection and response tooling, managed.'],
       ['Firewall Management', 'Your firewall rules and changes, managed.'],
       ['WAF Management', 'Your web application firewall, managed.'],
-      ['Threat Intelligence & Advisories', 'Advisories on the threats that matter to your stack.'],
+      ['Threat Intelligence &amp; Advisories', 'Advisories on the threats that matter to your stack.'],
     ],
   },
 ];
@@ -118,7 +118,7 @@ export const layers = [
   ['Applications', 'An injection flaw or broken access control.'],
   ['APIs', 'An endpoint returning another user’s data.'],
   ['Identity', 'A leaked access key or an account without MFA.'],
-  ['Network & Endpoints', 'An exposed admin port or an unpatched laptop.'],
+  ['Network &amp; Endpoints', 'An exposed admin port or an unpatched laptop.'],
   ['Cloud', 'A public storage bucket or an over-permissive IAM role.'],
 ];
 

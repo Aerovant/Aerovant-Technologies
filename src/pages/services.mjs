@@ -232,7 +232,7 @@ const managedPage = () => [
   faqSec([
     ['What hours do you cover?', `${managed.hours} We agree response times for each service in writing before work starts.`],
     ['Do we have to take all five services?', 'No. Start with the one that covers your biggest gap. If you are not sure which that is, tell us what you run and we will recommend one.'],
-    ['What does “Threat Intelligence & Advisories” mean in practice?', 'Advisories about threats that are relevant to your stack, so you hear about what matters to you rather than everything that happened this week.'],
+    ['What does “Threat Intelligence &amp; Advisories” mean in practice?', 'Advisories about threats that are relevant to your stack, so you hear about what matters to you rather than everything that happened this week.'],
     ['We have not had an assessment or a penetration test. Can we start here?', 'You can. Most teams get more from monitoring once they know what they are protecting, so we may suggest a short assessment first.'],
   ]),
   others(managed.id),

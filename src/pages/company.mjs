@@ -185,7 +185,7 @@ const careers = () => [
     <div class="tracks">
       <div class="track track--build"><h3 class="t-h3">Product engineering</h3><p>Designing and building ThreatReady.</p></div>
       <div class="track"><h3 class="t-h3">Security</h3><p>${services.map((s) => s.nav).join(', ').replace(/, ([^,]*)$/, ' and $1')}.</p></div>
-      <div class="track track--dash"><h3 class="t-h3">Internships and training</h3><p>Run through Aerovant Academy, our training arm.</p><p><a class="go" href="${site.academyUrl}" target="_blank" rel="noopener">Visit Aerovant Academy<span aria-hidden="true">→</span></a></p></div>
+      <div class="track track--dash"><h3 class="t-h3">Internships and training</h3><p>Run through Aerovant Academy, our training arm.</p><p><a class="go" href="${site.academyUrl}">Visit Aerovant Academy<span aria-hidden="true">→</span></a></p></div>
     </div>
   </div>
 </section>`,
@@ -227,7 +227,7 @@ const contact = () => [
       <input type="hidden" name="access_key" value="${site.form.web3formsKey}">
       <input type="hidden" name="subject" value="Website enquiry">
       <input type="hidden" name="from_name" value="aerovanttech.com">
-      <input type="checkbox" name="botcheck" class="form__hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="checkbox" name="botcheck" class="form__hp" tabindex="-1" aria-hidden="true">
       <div class="form__row">
         <p class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></p>
         <p class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" required></p>

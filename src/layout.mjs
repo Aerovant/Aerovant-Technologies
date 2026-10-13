@@ -19,6 +19,27 @@ const csp = [
   'upgrade-insecure-requests',
 ].join('; ');
 
+/* ---------- links ---------- */
+/** True for links that leave this website (another domain). mailto:, tel:, #anchors and our own pages are not external. */
+export function isExternal(href) {
+  const m = /^https?:\/\/([^/?#:]+)/i.exec(href);
+  if (!m) return false;
+  const host = m[1].toLowerCase();
+  const own = new URL(site.url).hostname;
+  return host !== own && host !== 'www.' + own;
+}
+/** Applied to every built page: external links open in a new tab with noopener noreferrer.
+    Internal links stay in the same tab unless marked data-newtab (used for the footer Privacy Policy and Terms). */
+export function externalize(html) {
+  return html.replace(/<a\b([^>]*)>/gi, (tag, attrs) => {
+    const href = (/\shref="([^"]*)"/i.exec(attrs) || [])[1];
+    if (href === undefined) return tag;
+    const newTab = isExternal(href) || /\sdata-newtab\b/i.test(attrs);
+    const clean = attrs.replace(/\s(?:target|rel)="[^"]*"/gi, '').replace(/\sdata-newtab\b(="[^"]*")?/gi, '');
+    return newTab ? `<a${clean} target="_blank" rel="noopener noreferrer">` : `<a${clean}>`;
+  });
+}
+
 /* ---------- small components ---------- */
 export const btn = (href, label, mod = '') =>
   `<a class="btn ${mod}" href="${u(href)}"><span>${label}</span><span class="btn__arrow" aria-hidden="true">→</span></a>`;
@@ -161,9 +182,9 @@ export const footer = () => `
       </ul></nav>
       <nav aria-label="Resources"><h2>Resources</h2><ul>
         <li><a href="${u('/insights/')}">Insights</a></li>
-        <li><a target="_blank" href="${site.academyUrl}" rel="noopener">Aerovant Academy</a></li>
-        <li><a target="_blank" href="${u('/privacy/')}">Privacy Policy</a></li>
-        <li><a target="_blank" href="${u('/terms/')}">Terms</a></li>
+        <li><a href="${site.academyUrl}">Aerovant Academy</a></li>
+        <li><a href="${u('/privacy/')}" data-newtab>Privacy Policy</a></li>
+        <li><a href="${u('/terms/')}" data-newtab>Terms</a></li>
       </ul></nav>
       <div><h2>Contact</h2>
         <address>
@@ -175,13 +196,16 @@ export const footer = () => `
     </div>
     <div class="ftr__base">
       <p>© ${new Date().getFullYear()} ${site.legalName}</p>
-      <ul class="ftr__social">${site.social.map(([n, h]) => `<li><a href="${h}" rel="noopener">${n}</a></li>`).join('')}</ul>
+      <ul class="ftr__social">${site.social.map(([n, h]) => `<li><a href="${h}">${n}</a></li>`).join('')}</ul>
     </div>
   </div>
 </footer>`;
 
 /* ---------- document ---------- */
-export function doc({ path, title, description, body, bodyClass = '', noindex = false }) {
+export function doc(page) {
+  return externalize(page$(page));
+}
+function page$({ path, title, description, body, bodyClass = '', noindex = false }) {
   const full = path === '/' ? `${site.name}: ThreatReady and cybersecurity services` : `${title} | ${site.name}`;
   const canonical = site.url + path;
   return `<!doctype html>

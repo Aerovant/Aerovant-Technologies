@@ -1,3 +1,11 @@
+# Website changes — 13 October 2026 (QA pass)
+
+- **External links:** one rule in `src/layout.mjs` (`externalize`, applied to every built page) gives every link to another domain `target="_blank" rel="noopener noreferrer"` and removes `target` from internal links. Covers ThreatReady, Academy and all five social links (94 link instances). The hand-added `target="_blank"` on the footer Privacy and Terms links, which are internal pages, is removed.
+- **Email:** `contact@aerovanttech.com` → `admin@aerovanttech.com` in `src/site.mjs` and `security.txt`, and in every generated page. `hr@` is kept for careers.
+- **HTML fixes:** raw `&` encoded ("Network &amp; Endpoints", "MITRE ATT&amp;CK"; the latter rendered as a broken character reference); phone number no longer wraps mid-number; invalid `autocomplete` removed from the hidden anti-spam field.
+- **Repo:** deleted `CNAME copy`, `CNAME copy 2` and `.github copy/` (duplicates, not used by the build or deploy).
+- **Tested:** 1,636 automated checks across 17 URLs at 1440 / 820 / 390 px: page loads, console/CSP errors, overflow, images, one h1, duplicate ids, canonicals, all internal links and anchors, external-link attributes, new-tab behaviour with no `window.opener`, desktop dropdown + Escape, phone menu, attack-surface buttons, FAQ by mouse and keyboard, contact-form validation, success, failure, double-submit and topic preselection (form endpoints mocked; nothing was sent).
+
 # Website changes — 12 October 2026
 
 Edit the files in `src/`, then run `node build.mjs`. `dist/` and the root copies are rebuilt output.
@@ -9,7 +17,7 @@ These are in the code now. Change them if they're wrong.
 | Item | Set to | Where |
 |---|---|---|
 | Registered company name | Aerovant Technologies Pvt. Ltd. | `src/site.mjs` → `legalName` |
-| Enquiry email | contact@aerovanttech.com (**create this mailbox first**, or enquiries bounce) | `src/site.mjs` → `email` |
+| Enquiry email | admin@aerovanttech.com (changed from contact@ on 13 Oct 2026) | `src/site.mjs` → `email` |
 | Reply-time promise | "We reply within one business day." | `src/site.mjs` → `replyTime` |
 | Managed security hours | Business hours, IST, Mon–Fri; out-of-hours by arrangement | `src/site.mjs` → `services[2].hours` |
 | Standards named | Cloud: CIS AWS Foundations, AWS Well-Architected Security Pillar. VAPT: OWASP WSTG, OWASP API Top 10, PTES | `src/site.mjs` → `methods` |
@@ -38,7 +46,7 @@ Have a lawyer read the privacy and terms pages. They now name the DPDP Act 2023,
 - On phones and tablets, a "Talk to us" button now sits in the header bar; before, it was only inside the closed menu.
 - Footer links have larger tap targets (about 44 px, up from about 20 px).
 - Company name fixed; the "Pvt. Ltd.." typo in the terms is gone.
-- Enquiries go to contact@. Careers keeps hr@.
+- Enquiries go to admin@. Careers keeps hr@.
 - Content-Security-Policy and referrer policy are set in meta tags. Every page was tested in Chromium with no blocked requests.
 
 **Services**
