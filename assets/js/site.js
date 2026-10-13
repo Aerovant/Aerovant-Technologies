@@ -76,7 +76,15 @@
     var status = form.querySelector('[data-status]'), button = form.querySelector('button[type="submit"]');
     var topic = new URLSearchParams(location.search).get('topic') || (location.hash.split('topic=')[1] || '');
     var select = form.querySelector('select[name="requirement"]');
-    if (topic && select) Array.prototype.forEach.call(select.options, function (o) { if (o.value.toLowerCase().indexOf(decodeURIComponent(topic).toLowerCase()) === 0) select.value = o.value; });
+    if (topic && select) {
+      // Exact topic key first, then the first option whose key or label starts with it. "products" is the old key.
+      var t = decodeURIComponent(topic).toLowerCase();
+      if (t === 'products') t = 'threatready';
+      var opts = Array.prototype.slice.call(select.options).filter(function (o) { return o.value; });
+      var hit = opts.filter(function (o) { return o.dataset.topic === t; })[0] ||
+        opts.filter(function (o) { return (o.dataset.topic || '').indexOf(t) === 0 || o.value.toLowerCase().indexOf(t) === 0; })[0];
+      if (hit) select.value = hit.value;
+    }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();

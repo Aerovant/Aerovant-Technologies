@@ -4,11 +4,14 @@ import { cloudFigure, cloudProblemFigure } from '../figures.mjs';
 import { journeySec, vaptPath, lanes, whyItems } from './home.mjs';
 
 const [cloud, vapt, managed] = services;
+const methods = (s) => (s.methods ? `<p class="methods"><strong>We work to:</strong> ${s.methods.join(', ')}.</p>` : '');
+const hours = (s) => (s.hours ? `<p class="hours">Coverage: ${s.hours}</p>` : '');
 const crumb = (name) => [['Home', '/'], ['Services', '/services/'], [name]];
 const scope = (s) => `
 <div class="scope">
   <p class="t-label">In this practice</p>
   <ul>${s.items.map(([n, d]) => `<li><strong>${n}</strong><span>${d}</span></li>`).join('')}</ul>
+  ${methods(s)}
 </div>`;
 const problem = (h, paras, graphic = '') => `
 <section class="sec sec--white" aria-labelledby="prob-h">
@@ -53,6 +56,7 @@ const overview = () => [
       <h2 class="t-h2" id="svc-cloud-h">${cloud.outcome}</h2>
       <p class="t-lead">${cloud.line}</p>
       ${ledger(cloud.items, 'ledger--stack')}
+      ${methods(cloud)}
       ${go(`/services/${cloud.id}/`, 'Cloud security in detail')}
     </div>
     <figure class="svc__fig">${cloudFigure()}<figcaption class="t-note">Flagged in colour: the kind of exposure a configuration review is there to find.</figcaption></figure>
@@ -64,6 +68,7 @@ const overview = () => [
       <p class="t-label">${vapt.name}</p>
       <h2 class="t-h2" id="svc-vapt-h">${vapt.outcome}</h2>
       <p class="t-lead">${vapt.line}</p>
+      ${methods(vapt)}
     </div>
     ${vaptPath()}
     <p>${go(`/services/${vapt.id}/`, 'VAPT in detail')}</p>
@@ -75,9 +80,10 @@ const overview = () => [
       <p class="t-label">${managed.name}</p>
       <h2 class="t-h2" id="svc-managed-h">${managed.outcome}</h2>
       <p class="t-lead">${managed.line}</p>
+      ${hours(managed)}
       ${go(`/services/${managed.id}/`, 'Managed security in detail')}
     </div>
-    <figure class="svc__fig">${lanes(true)}</figure>
+    <figure class="svc__fig">${lanes(true)}<figcaption class="t-note">Schematic, not live data. One lane per managed service.</figcaption></figure>
   </div>
 </section>`,
   journeySec(),
@@ -198,7 +204,8 @@ const managedPage = () => [
 <section class="ops" aria-labelledby="ops-h">
   <div class="wrap">
     <h2 class="t-label" id="ops-h">What we run for you</h2>
-    <figure>${lanes(true)}<figcaption class="t-note">Schematic. One lane per managed service. A raised mark is an event that needs a person.</figcaption></figure>
+    <figure>${lanes(true)}<figcaption class="t-note">Schematic, not live data. One lane per managed service. A raised mark is an event that needs a person.</figcaption></figure>
+    ${hours(managed)}
   </div>
 </section>`,
   problem('Security work has a short shelf life.', [
@@ -223,6 +230,7 @@ const managedPage = () => [
     'Your engineers spend their time on the product.',
   ]),
   faqSec([
+    ['What hours do you cover?', `${managed.hours} We agree response times for each service in writing before work starts.`],
     ['Do we have to take all five services?', 'No. Start with the one that covers your biggest gap. If you are not sure which that is, tell us what you run and we will recommend one.'],
     ['What does “Threat Intelligence & Advisories” mean in practice?', 'Advisories about threats that are relevant to your stack, so you hear about what matters to you rather than everything that happened this week.'],
     ['We have not had an assessment or a penetration test. Can we start here?', 'You can. Most teams get more from monitoring once they know what they are protecting, so we may suggest a short assessment first.'],

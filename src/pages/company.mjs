@@ -16,7 +16,7 @@ const about = () => [
     <div class="story__cols">
       <div>
         <h3 class="t-h3">What we do</h3>
-        <p>On the product side we design, engineer and own ThreatReady, a cybersecurity job-readiness platform. On the services side we run three practices: cloud security, vulnerability assessment and penetration testing, and managed security.</p>
+        <p>On the product side we design, engineer and own ThreatReady, a platform to train, test and hire security engineers. On the services side we run three practices: cloud security, vulnerability assessment and penetration testing, and managed security.</p>
         <p>${go('/products/', 'Product')} &nbsp; ${go('/services/', 'Services')}</p>
       </div>
       <div>
@@ -95,7 +95,7 @@ const industries = () => [
   pageHead({
     crumb: [['Home', '/'], ['Industries']],
     title: 'Who we work with.',
-    lead: 'We don’t publish a sector list. We work with a kind of organization: one that builds or runs technology and needs security that keeps pace with it.',
+    lead: 'Four kinds of organization we work with: SaaS companies, startups, SMEs and teams building on AWS. What they share is technology that changes quickly, and security that has to keep pace with it.',
   }),
   `
 <section class="sec sec--white" aria-label="Kinds of organization">
@@ -197,19 +197,28 @@ const careers = () => [
       ${openings.length ? `<ul class="jobs">${openings.map((j) => `<li><a href="${j.href}"><strong>${j.title}</strong><span>${j.location} / ${j.type}</span></a></li>`).join('')}</ul>` : `
       <p class="statement">No positions are listed right now.</p>
       <p class="prose">If you think you should be here anyway, write to us with something you have built or broken, and what you learned from it.</p>
-      <p><a class="go" href="mailto:${site.email}?subject=Working%20at%20Aerovant">${site.email}<span aria-hidden="true">→</span></a></p>`}
+      <p><a class="go" href="mailto:${site.careersEmail}?subject=Working%20at%20Aerovant">${site.careersEmail}<span aria-hidden="true">→</span></a></p>`}
     </div>
   </div>
 </section>`,
 ].join('\n');
 
 /* ---------- /contact/ ---------- */
-const reqs = ['Product', 'Cloud Security', 'VAPT', 'Managed Security Services', 'Not sure yet'];
+// [label sent with the form, topic key used by /contact/?topic=…]
+const reqs = [
+  ['ThreatReady: hiring pilot', 'threatready-hiring'],
+  ['ThreatReady: team training', 'threatready-teams'],
+  ['ThreatReady: college cohort', 'threatready-colleges'],
+  ['Cloud Security', 'cloud'],
+  ['VAPT', 'vapt'],
+  ['Managed Security Services', 'managed'],
+  ['Not sure yet', 'other'],
+];
 const contact = () => [
   pageHead({
     crumb: [['Home', '/'], ['Contact']],
     title: 'Talk to an expert.',
-    lead: 'Tell us what you are building or protecting. A few lines is enough to start.',
+    lead: `Tell us what you are building or protecting, or who you are hiring. A few lines is enough to start. ${site.replyTime}`,
   }),
   `
 <section class="sec sec--white contact" aria-label="Contact">
@@ -225,7 +234,7 @@ const contact = () => [
       </div>
       <div class="form__row">
         <p class="field"><label for="f-company">Company</label><input id="f-company" name="company" type="text" autocomplete="organization" required></p>
-        <p class="field"><label for="f-req">Requirement</label><select id="f-req" name="requirement" required><option value="" selected disabled hidden>Choose one</option>${reqs.map((r) => `<option value="${r}">${r}</option>`).join('')}</select></p>
+        <p class="field"><label for="f-req">Requirement</label><select id="f-req" name="requirement" required><option value="" selected disabled hidden>Choose one</option>${reqs.map(([r, t]) => `<option value="${r}" data-topic="${t}">${r}</option>`).join('')}</select></p>
       </div>
       <p class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="6" required aria-describedby="f-msg-h"></textarea><span class="field__hint" id="f-msg-h">What you run, and what you are worried about. Please leave out passwords, keys and other secrets.</span></p>
       <p class="form__foot">
@@ -241,6 +250,7 @@ const contact = () => [
         <div><dt>Office</dt><dd>${site.address.join('<br>')}</dd></div>
       </dl>
       <h2 class="t-label">What happens next</h2>
+      <p class="contact__reply">${site.replyTime}</p>
       ${steps(startSteps.map(([t]) => [t, '']), 'steps--col steps--sm')}
     </aside>
   </div>
@@ -253,7 +263,7 @@ const legal = (title, updated, body) => [
   `<section class="sec sec--white"><div class="wrap legal"><p class="t-note">Last updated ${updated}</p>${body}</div></section>`,
 ].join('\n');
 
-const privacy = () => legal('Privacy Policy', '6 October 2026', `
+const privacy = () => legal('Privacy Policy', '12 October 2026', `
 <h2>What this covers</h2>
 <p>This policy explains what ${site.legalName} (“Aerovant”, “we”) collects through ${site.url.replace('https://', '')} and what we do with it.</p>
 <h2>What we collect</h2>
@@ -263,28 +273,32 @@ const privacy = () => legal('Privacy Policy', '6 October 2026', `
 <p>We use what you send only to reply to you and to discuss the work you asked about. We do not sell it or use it for advertising.</p>
 <h2>Who processes it</h2>
 <p>Form submissions are delivered to us by email through Web3Forms, and a copy is recorded in a Google Sheets spreadsheet that we control. Both providers process the data on our behalf.</p>
+<h2>Why we can use it</h2>
+<p>We process what you send because you gave it to us to get a reply, under India’s Digital Personal Data Protection Act, 2023. You can withdraw that consent at any time by writing to us; we will then stop using it and delete it.</p>
 <h2>How long we keep it</h2>
-<p>We keep enquiries for as long as we need them to respond and to maintain a record of our dealings with you. You can ask us to delete yours at any time.</p>
-<h2>Your choices</h2>
-<p>To see, correct or delete what we hold about you, write to <a href="mailto:${site.email}">${site.email}</a>.</p>
+<p>We keep an enquiry for up to 24 months after our last exchange with you, unless it becomes part of a contract, in which case we keep it for as long as the law requires us to keep business records. You can ask us to delete yours sooner at any time.</p>
+<h2>Your rights</h2>
+<p>You can ask to see what we hold about you, have it corrected or completed, have it deleted, and nominate someone to exercise these rights for you. Write to <a href="mailto:${site.email}">${site.email}</a>. We reply within 30 days.</p>
+<h2>Grievance officer</h2>
+<p>For a complaint about how we handle your personal data, contact our grievance officer at <a href="mailto:${site.email}?subject=Data%20protection%20grievance">${site.email}</a> with the subject line “Data protection grievance”. If you are not satisfied with our response, you can complain to the Data Protection Board of India.</p>
 <h2>Contact</h2>
 <p>${site.legalName}, ${site.address.join(', ')}.</p>`);
 
-const terms = () => legal('Terms', '6 October 2026', `
+const terms = () => legal('Terms', '12 October 2026', `
 <h2>Using this website</h2>
-<p>This website is published by ${site.legalName}. You may read it and share links to it. Please do not copy its content or design for commercial use without asking us first.</p>
+<p>This website is published by ${site.legalName} You may read it and share links to it. Please do not copy its content or design for commercial use without asking us first.</p>
 <h2>Information on this site</h2>
 <p>The content describes our product and services in general terms. It is not a quotation, a security assessment or professional advice about your systems. Any work we do for you is governed by the written agreement for that work, not by these pages.</p>
 <h2>Product and services</h2>
 <p>Product names, descriptions and service offerings may change. Nothing on this site is a commitment to provide a product or service until it is agreed in writing.</p>
 <h2>Security testing</h2>
-<p>We carry out security testing only against systems whose owner has authorized it in writing. Do not test this website or our systems without our written permission.</p>
+<p>We carry out security testing only against systems whose owner has authorized it in writing. Do not test this website or our systems without our written permission. To report a vulnerability, see our <a href="/.well-known/security.txt">security.txt</a>.</p>
 <h2>Links</h2>
 <p>Where we link to other websites, we are not responsible for what they contain.</p>
 <h2>Liability</h2>
 <p>We take care to keep this site accurate, but we provide it as it is and, to the extent the law allows, accept no liability for loss arising from relying on it.</p>
 <h2>Governing law</h2>
-<p>These terms are governed by the laws of India.</p>
+<p>These terms are governed by the laws of India. The courts at Krishnagiri, Tamil Nadu, have exclusive jurisdiction over any dispute arising from them.</p>
 <h2>Contact</h2>
 <p>Questions about these terms: <a href="mailto:${site.email}">${site.email}</a>.</p>`);
 

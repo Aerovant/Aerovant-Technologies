@@ -1,4 +1,23 @@
+import { createHash } from 'node:crypto';
 import { site, products, services, startSteps, u, a, esc } from './site.mjs';
+
+/* Content Security Policy, set in a meta tag because GitHub Pages cannot send headers.
+   It covers what this site loads: its own files, one inline script (allowed by hash) and the two form endpoints.
+   frame-ancestors, X-Content-Type-Options and HSTS cannot be set this way; they need a proxy such as Cloudflare. */
+const jsFlag = "document.documentElement.classList.add('js')";
+const jsHash = createHash('sha256').update(jsFlag).digest('base64');
+const csp = [
+  "default-src 'self'",
+  `script-src 'self' 'sha256-${jsHash}'`,
+  "style-src 'self' 'unsafe-inline'", // inline style attributes carry layout variables (--n, --s, --i)
+  "img-src 'self' data:",
+  "font-src 'self'",
+  `connect-src 'self' https://api.web3forms.com https://script.google.com https://script.googleusercontent.com`,
+  "form-action 'self' https://api.web3forms.com",
+  "base-uri 'self'",
+  "object-src 'none'",
+  'upgrade-insecure-requests',
+].join('; ');
 
 /* ---------- small components ---------- */
 export const btn = (href, label, mod = '') =>
@@ -51,8 +70,8 @@ export const closing = () => `
 <section class="close" aria-label="Next steps">
   <div class="close__half close__half--build">
     <div class="close__in">
-      <h2 class="t-h2">What are you building?</h2>
-      <p>See the SaaS platform we design, build and own.</p>
+      <h2 class="t-h2">Hiring or training security engineers?</h2>
+      <p>See ThreatReady, the platform we design, build and own.</p>
       ${btn('/products/', 'Explore ThreatReady', 'btn--light')}
     </div>
   </div>
@@ -112,6 +131,7 @@ export const header = (current) => `
 <header class="hdr">
   <div class="wrap hdr__in">
     <a class="hdr__logo" href="${u('/')}" aria-label="${site.name}, home"><img src="${a('img/logo.svg')}" width="154" height="50" alt=""></a>
+    <a class="btn btn--sm hdr__cta" href="${u('/contact/')}"><span>Talk to us</span></a>
     <button class="hdr__toggle" type="button" aria-expanded="false" aria-controls="nav"><span class="hdr__bars" aria-hidden="true"></span><span class="hdr__label">Menu</span></button>
     ${nav(current)}
   </div>
@@ -141,9 +161,9 @@ export const footer = () => `
       </ul></nav>
       <nav aria-label="Resources"><h2>Resources</h2><ul>
         <li><a href="${u('/insights/')}">Insights</a></li>
-        <li><a href="${site.academyUrl}" rel="noopener">Aerovant Academy</a></li>
-        <li><a href="${u('/privacy/')}">Privacy Policy</a></li>
-        <li><a href="${u('/terms/')}">Terms</a></li>
+        <li><a target="_blank" href="${site.academyUrl}" rel="noopener">Aerovant Academy</a></li>
+        <li><a target="_blank" href="${u('/privacy/')}">Privacy Policy</a></li>
+        <li><a target="_blank" href="${u('/terms/')}">Terms</a></li>
       </ul></nav>
       <div><h2>Contact</h2>
         <address>
@@ -169,6 +189,8 @@ export function doc({ path, title, description, body, bodyClass = '', noindex = 
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="${csp}">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>${esc(full)}</title>
 <meta name="description" content="${esc(description)}">
 ${noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${canonical}">`}
@@ -184,7 +206,7 @@ ${noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" hr
 <link rel="apple-touch-icon" href="${a('img/apple-touch-icon.png')}">
 <link rel="preload" href="${a('fonts/archivo-var.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${a('css/site.css')}">
-<script>document.documentElement.classList.add('js')</script>
+<script>${jsFlag}</script>
 </head>
 <body class="${bodyClass}">
 ${header(path)}

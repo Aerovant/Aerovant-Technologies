@@ -1,6 +1,6 @@
-import { products, services, layers, journey, u } from '../site.mjs';
+import { site, products, services, layers, journey, u } from '../site.mjs';
 import { btn, go, startHere, closing } from '../layout.mjs';
-import { markFigure, stackFigure, plateGlyph, productFigure, cloudFigure, laneTicks, AS } from '../figures.mjs';
+import { markFigure, stackFigure, plateGlyph, productFigure, laneTicks, AS } from '../figures.mjs';
 
 const hero = () => `
 <section class="hero" aria-labelledby="hero-h">
@@ -18,9 +18,9 @@ const hero = () => `
   <div class="wrap">
     <dl class="tblock">
       <div><dt>Who we are</dt><dd>A technology and cybersecurity company based in Krishnagiri, Tamil Nadu.</dd></div>
-      <div><dt>What we build</dt><dd>SaaS product: ${products.map((p) => p.name).join(', ')}.</dd></div>
+      <div><dt>What we build</dt><dd>ThreatReady, a platform to train, test and hire security engineers.</dd></div>
       <div><dt>What we secure</dt><dd>AWS cloud environments, web applications, APIs and networks.</dd></div>
-      <div><dt>Who we help</dt><dd>Founders, CTOs and engineering heads at startups, SaaS companies and SMEs.</dd></div>
+      <div><dt>Who we help</dt><dd>Founders, CTOs, engineering heads and hiring teams at startups, SaaS companies and SMEs.</dd></div>
     </dl>
   </div>
 </section>`;
@@ -31,7 +31,7 @@ const pillars = () => `
     <div class="pillars__in">
       <p class="t-label">SaaS product</p>
       <h2 class="t-h2">Technology we build.</h2>
-      <p>One security product, designed, engineered and owned by Aerovant.</p>
+      <p>One security product, designed, engineered and owned by Aerovant. It checks whether your people are ready, the way our services check your systems.</p>
       <ul class="pillars__list${products.length === 1 ? ' pillars__list--solo' : ''}">
         ${products.map((p) => `<li><a href="${u(`/products/#${p.id}`)}"><strong>${p.name}</strong><span>${p.kind}</span>${products.length === 1 ? `<span class="pillars__desc">${p.line}</span>` : ''}</a></li>`).join('')}
       </ul>
@@ -98,7 +98,8 @@ const productText = (p) => `
           <p class="t-label">${p.kind}</p>
           <h3 class="hp__name">${p.name}</h3>
           <p class="hp__line">${p.line}</p>
-          ${go(`/products/#${p.id}`, `Explore ${p.name.replace(' Platform', '')}`)}`;
+          ${p.pillars ? `<ul class="hp__parts">${p.pillars.map((x) => `<li><strong>${x.verb}</strong> ${x.name}</li>`).join('')}</ul>` : ''}
+          <p class="hp__go">${go(`/products/#${p.id}`, `Explore ${p.name}`)}${p.url ? go(p.url, 'Visit threatready.io') : ''}</p>`;
 
 // One product: its text sits under the section heading and the diagram takes the wide column.
 // Several products: each gets a row of its own in the wide column.
@@ -107,7 +108,7 @@ const productsSec = () => (products.length === 1 ? `
   <div class="wrap hp__grid hp__grid--solo">
     <div class="hp__head">
       <h2 class="t-h2" id="hp-h">The product we build.</h2>
-      <p class="t-lead">Our own SaaS platform. We design it, engineer it and own it. Nothing here is resold or relabelled.</p>
+      <p class="t-lead">Our own SaaS platform, for individuals and for the teams that hire and train them. We design it, engineer it and own it. Nothing here is resold or relabelled.</p>
     </div>
     <div class="hp__fig">${productFigure[products[0].id]()}</div>
     <article class="hp__text">${productText(products[0])}
@@ -146,43 +147,17 @@ export const lanes = (withText = false) => `
         ${managed.items.map(([n, d], i) => `<li class="lane"><span class="lane__n">${n}${withText ? `<small>${d}</small>` : ''}</span>${laneTicks(i + 3)}</li>`).join('')}
       </ul>`;
 
-const capabilities = () => `
-<section class="sec caps" aria-labelledby="caps-h">
-  <div class="wrap caps__head">
-    <h2 class="t-h2" id="caps-h">Cybersecurity capabilities.</h2>
-    <p class="t-lead">Three practices. Take one, or run them in sequence.</p>
+/* How the three parts of Aerovant connect. The Academy has its own site and audience, so it gets a strip, not a pillar. */
+const ecosystem = () => `
+<section class="sec sec--white eco" aria-labelledby="eco-h">
+  <div class="wrap">
+    <div class="sec__head"><h2 class="t-h2" id="eco-h">One company, one idea: is security ready?</h2></div>
+    <ol class="eco__list">
+      <li><p class="t-label">Train people</p><h3 class="t-h3">Aerovant Academy</h3><p>Hands-on cybersecurity training and internships.</p><p><a class="go" href="${site.academyUrl}" rel="noopener">aerovantacademy.com<span aria-hidden="true">→</span></a></p></li>
+      <li><p class="t-label">Prove the skill</p><h3 class="t-h3">ThreatReady</h3><p>Role-based practice and assessment, for individuals and for teams.</p><p>${go('/products/', 'Explore ThreatReady')}</p></li>
+      <li><p class="t-label">Secure the systems</p><h3 class="t-h3">Security services</h3><p>Cloud security, penetration testing and managed security.</p><p>${go('/services/', 'Explore services')}</p></li>
+    </ol>
   </div>
-
-  <article class="cap cap--cloud"><div class="wrap cap__in">
-    <div class="cap__text">
-      <h3 class="cap__name">${cloud.name}</h3>
-      <p class="cap__out">${cloud.line}</p>
-      <ul class="cap__items">${cloud.items.map(([n]) => `<li>${n}</li>`).join('')}</ul>
-      ${go(`/services/${cloud.id}/`, 'Cloud security in detail')}
-    </div>
-    <figure class="cap__fig">${cloudFigure()}<figcaption class="t-note">Flagged in colour: the kind of exposure a configuration review is there to find.</figcaption></figure>
-  </div></article>
-
-  <article class="cap cap--vapt"><div class="wrap cap__in">
-    <div class="cap__text">
-      <h3 class="cap__name">VAPT</h3>
-      <p class="cap__out">${vapt.line}</p>
-    </div>
-    ${vaptPath()}
-    <p class="cap__more">${go(`/services/${vapt.id}/`, 'VAPT in detail')}</p>
-  </div></article>
-
-  <article class="cap cap--managed"><div class="wrap cap__in">
-    <figure class="cap__fig">
-      ${lanes()}
-      <figcaption class="t-note">Schematic. One lane per managed service. A raised mark is an event that needs a person.</figcaption>
-    </figure>
-    <div class="cap__text">
-      <h3 class="cap__name">Managed Security</h3>
-      <p class="cap__out">${managed.line}</p>
-      ${go(`/services/${managed.id}/`, 'Managed security in detail')}
-    </div>
-  </div></article>
 </section>`;
 
 export const whyItems = [
@@ -212,7 +187,7 @@ const why = () => `
 export default [{
   path: '/',
   title: 'Home',
-  description: 'Aerovant Technologies builds ThreatReady, a cybersecurity job-readiness platform, and delivers cloud security, VAPT and managed security services to startups, SaaS companies and SMEs.',
+  description: 'Aerovant Technologies builds ThreatReady, a platform to train, test and hire security engineers, and delivers cloud security, VAPT and managed security services to startups, SaaS companies and SMEs.',
   bodyClass: 'home',
-  render: () => [hero(), pillars(), attackSurface(), journeySec(), productsSec(), capabilities(), why(), startHere(), closing()].join('\n'),
+  render: () => [hero(), pillars(), attackSurface(), journeySec(), productsSec(), why(), ecosystem(), startHere(), closing()].join('\n'),
 }];

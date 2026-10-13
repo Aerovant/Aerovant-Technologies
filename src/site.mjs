@@ -4,10 +4,12 @@
 
 export const site = {
   name: 'Aerovant Technologies',
-  legalName: 'Aerovant Technology Pvt. Ltd.', // as written in the previous site footer
+  legalName: 'Aerovant Technologies Pvt. Ltd.', // CONFIRM against the certificate of incorporation; ThreatReady uses this form
   url: 'https://aerovanttech.com',
   tagline: 'Where cloud, code and security converge.',
-  email: 'hr@aerovanttech.com',
+  email: 'contact@aerovanttech.com',       // sales and security enquiries. CONFIRM the mailbox exists before merging.
+  careersEmail: 'hr@aerovanttech.com',     // job applications only
+  replyTime: 'We reply within one business day.',
   phone: '+91 90426 47714',
   phoneHref: '+919042647714',
   address: ['Rayakkottai Road', 'Krishnagiri, Tamil Nadu 635002', 'India'],
@@ -26,16 +28,39 @@ export const site = {
   },
 };
 
-// Product details supplied for ThreatReady.
+// ThreatReady, matching the product's own landing page (Think / Do / Prove, 15 role tracks, one published rubric).
+// Only links that work on threatready.io today are used: the home page, the demo anchor and the sample report.
+// Pilots and team enquiries come through this site's contact form until threatready.io carries its own pilot page.
 export const products = [
   {
     id: 'threatready',
     name: 'ThreatReady',
-    kind: 'Cybersecurity job-readiness platform',
-    line: 'Find out whether you can do the security job before the interview does.',
-    problem: 'A certificate shows what someone studied, not what they can do when an alert fires. Most candidates only discover the gap in the interview room, and most employers after the hire.',
-    does: 'A cybersecurity readiness platform that runs AI interviews built from a candidate’s resume and the target job description, puts them through role-specific attack simulations and scores both against one skill profile.',
-    value: 'Candidates walk in knowing where they stand for the role and what to fix first.',
+    kind: 'Cybersecurity skills platform',
+    line: 'Train, test and hire security engineers on real work, not on certificates.',
+    problem: 'A certificate shows what someone studied, not what they can do when an alert fires. Most candidates find the gap in the interview room, and most employers find it after the hire.',
+    does: 'Role-based practice and assessment across 15 security role tracks, from Beginner to Expert. People reason through attacks, do the daily work of the role and sit an interview built from a real job description. Every answer is scored on one published rubric.',
+    value: 'One report a candidate, a manager or a hiring team can read the same way: what this person can do, and what to fix first.',
+    url: 'https://threatready.io/',
+    demo: 'https://threatready.io/#trydemo',
+    sample: 'https://threatready.io/sample-report.html',
+    tracks: 15,
+    pillars: [
+      { verb: 'Think', name: 'Attack Reasoning Lab', line: 'Adaptive attack scenarios on a real architecture, mapped to MITRE ATT&CK. Each answer is followed up, question by question.' },
+      { verb: 'Do', name: 'Lab Simulations', line: 'Step-by-step tasks from the daily work of each role: triage an alert, review a policy, contain a threat, write it up. Levels run Beginner to Expert.', status: 'Rolling out role by role' },
+      { verb: 'Prove', name: 'InterviewPrep', line: 'Upload a job description and a resume. Get an interview built for that role, and a report scored on five dimensions.' },
+    ],
+    audiences: [
+      { id: 'hiring', name: 'Hiring teams', line: 'A structured first-round screen. Each candidate gets the same rubric and a report your team can review, so engineers interview only the shortlist.', topic: 'threatready-hiring', cta: 'Request a hiring pilot' },
+      { id: 'teams', name: 'Engineering teams', line: 'Role tracks for the security, cloud and DevSecOps engineers you already have, with progress you can see by role and level.', topic: 'threatready-teams', cta: 'Discuss team training' },
+      { id: 'colleges', name: 'Colleges and bootcamps', line: 'Real task experience for final-year cohorts before placements, starting at Beginner.', topic: 'threatready-colleges', cta: 'Ask about cohorts' },
+      { id: 'people', name: 'Individuals', line: 'Students, freshers and working engineers. The free plan covers Beginner on any role.', href: 'https://threatready.io/', cta: 'Start on threatready.io' },
+    ],
+    trust: [
+      ['Published rubric', 'Five dimensions, each with written score bands. Anyone can read how an answer is judged.'],
+      ['Three scoring passes', 'An evaluator, a challenger and a reconciler. Where they disagree, the score carries a confidence flag.'],
+      ['Integrity controls', 'Paste disabled, forward-only sessions and a new architecture on every retake.'],
+      ['Right to challenge', 'Any score can be disputed within 14 days and is reviewed by a security engineer.'],
+    ],
   },
 ];
 
@@ -47,6 +72,8 @@ export const services = [
     nav: 'Cloud Security',
     outcome: 'Know what is exposed.',
     line: 'A clear picture of how your AWS environment is exposed, and what to change first.',
+    // CONFIRM: the references the team actually works to.
+    methods: ['CIS AWS Foundations Benchmark', 'AWS Well-Architected Framework, Security Pillar'],
     items: [
       ['AWS Cloud Security', 'Protecting the applications, data and infrastructure you run on AWS.'],
       ['Cloud Security Assessment', 'A structured look at your cloud environment to find what is exposed and what that puts at risk.'],
@@ -59,6 +86,8 @@ export const services = [
     nav: 'VAPT',
     outcome: 'Prove what is exploitable.',
     line: 'Testing that shows which weaknesses can actually be used against you, with the evidence.',
+    // CONFIRM: the references the team actually works to.
+    methods: ['OWASP Web Security Testing Guide', 'OWASP API Security Top 10', 'PTES (Penetration Testing Execution Standard)'],
     items: [
       ['Web Application VAPT', 'Your web application tested the way an attacker would approach it.'],
       ['API Security Testing', 'Your APIs tested for what they return, and to whom.'],
@@ -71,6 +100,8 @@ export const services = [
     nav: 'Managed Security Services',
     outcome: 'Know if it happens again.',
     line: 'Security operations run for you, so someone is watching after the test is over.',
+    // CONFIRM before merging: this is what the site now promises.
+    hours: 'Business hours, IST (Monday to Friday). Out-of-hours cover by arrangement.',
     items: [
       ['SOC-as-a-Service', 'Security monitoring and response run as a service.'],
       ['EDR Management', 'Your endpoint detection and response tooling, managed.'],
@@ -119,6 +150,7 @@ export const setCtx = (c) => { ctx = { ...ctx, ...c }; };
 
 /** Internal link. Write paths root-absolute ("/services/vapt/"); output adapts to the build mode. */
 export function u(path) {
+  if (/^[a-z][a-z0-9+.-]*:/i.test(path)) return path; // external (https:, mailto:) links pass through untouched
   if (ctx.mode === 'bundle') return '#' + path;
   if (ctx.abs) return path;
   const [, p, query = '', hash = ''] = path.match(/^([^?#]*)(\?[^#]*)?(#.*)?$/);

@@ -101,41 +101,31 @@ export const productFigure = {
   threatready: () => {
     const b = (x, y, w, h, label, cls = 'f-l') =>
       `<rect class="${cls}" x="${x}" y="${y}" width="${w}" height="${h}"/><text class="f-t${cls === 'f-s-box' ? ' f-t--inv' : ''}" x="${x + w / 2}" y="${y + h / 2 + 6}" text-anchor="middle">${label}</text>`;
-    const label = 'Concept diagram: ThreatReady starts two paths. Interview ready: resume plus job description, then an AI interview, then a skill profile. Skill ready: a role, then attack reasoning, then an enhanced skill, giving role-specific readiness.';
-    // Wide: ThreatReady on the left, a trunk splitting into two left-to-right branches.
-    // Narrow: ThreatReady on top, the same trunk splitting into two top-to-bottom columns.
+    const label = 'Concept diagram: ThreatReady has three parts. Think, the Attack Reasoning Lab. Do, Lab Simulations. Prove, InterviewPrep. All three are scored on one published rubric with three scoring passes, and produce one assessment report.';
+    // Wide: the three pillars side by side, each feeding the shared rubric, which produces the report.
+    // Narrow: the pillars stacked, joined by a spine that feeds the rubric.
     return pair(`
-<svg class="fig fig--wide fig-prod" viewBox="0 0 680 278" role="img" aria-label="${label}">
-  ${b(8, 101, 120, 72, 'ThreatReady', 'f-s-box')}
-  <path class="f-l" d="M128 137H150M150 64V210"/>
-  ${arrow(150, 64, 170, 64)}${arrow(150, 210, 170, 210)}
-  <text class="f-t fig-prod__k" x="172" y="24">Interview ready</text>
-  ${b(172, 36, 134, 56, 'Resume + JD')}
-  ${b(345, 36, 148, 56, 'AI interview')}
-  ${b(532, 36, 140, 56, 'Skill profile')}
-  ${arrow(306, 64, 343, 64)}${arrow(493, 64, 530, 64)}
-  <text class="f-t fig-prod__k" x="172" y="170">Skill ready</text>
-  ${b(172, 182, 134, 56, 'Role')}
-  ${b(345, 182, 148, 56, 'Attack reasoning')}
-  ${b(532, 182, 140, 56, 'Enhanced skill')}
-  ${arrow(306, 210, 343, 210)}${arrow(493, 210, 530, 210)}
-  <text class="f-t" x="422" y="268" text-anchor="middle">Role-specific readiness</text>
+<svg class="fig fig--wide fig-prod" viewBox="0 0 680 300" role="img" aria-label="${label}">
+  <text class="f-t fig-prod__k" x="8" y="20">Think</text>
+  <text class="f-t fig-prod__k" x="240" y="20">Do</text>
+  <text class="f-t fig-prod__k" x="472" y="20">Prove</text>
+  ${b(8, 30, 200, 70, 'Attack Reasoning Lab')}
+  ${b(240, 30, 200, 70, 'Lab Simulations')}
+  ${b(472, 30, 200, 70, 'InterviewPrep')}
+  ${arrow(108, 100, 108, 146)}${arrow(340, 100, 340, 146)}${arrow(572, 100, 572, 146)}
+  ${b(8, 148, 664, 52, 'One published rubric · three scoring passes')}
+  ${arrow(340, 200, 340, 236)}
+  ${b(220, 238, 240, 54, 'Assessment report', 'f-s-box')}
 </svg>`, `
-<svg class="fig fig--narrow fig-prod" viewBox="0 0 340 356" role="img" aria-label="${label}">
-  ${b(98, 4, 144, 52, 'ThreatReady', 'f-s-box')}
-  <path class="f-l" d="M170 56V98M84 98H256"/>
-  ${arrow(84, 98, 84, 116)}${arrow(256, 98, 256, 116)}
-  <text class="f-t fig-prod__k" x="6" y="88">Interview ready</text>
-  ${b(6, 118, 156, 50, 'Resume + JD')}
-  ${b(6, 194, 156, 50, 'AI interview')}
-  ${b(6, 270, 156, 50, 'Skill profile')}
-  ${arrow(84, 168, 84, 192)}${arrow(84, 244, 84, 268)}
-  <text class="f-t fig-prod__k" x="334" y="88" text-anchor="end">Skill ready</text>
-  ${b(178, 118, 156, 50, 'Role')}
-  ${b(178, 194, 156, 50, 'Attack reasoning')}
-  ${b(178, 270, 156, 50, 'Enhanced skill')}
-  ${arrow(256, 168, 256, 192)}${arrow(256, 244, 256, 268)}
-  <text class="f-t" x="334" y="346" text-anchor="end">Role-specific readiness</text>
+<svg class="fig fig--narrow fig-prod" viewBox="0 0 340 330" role="img" aria-label="${label}">
+  ${b(6, 6, 300, 48, 'Think · Attack Reasoning Lab')}
+  ${b(6, 64, 300, 48, 'Do · Lab Simulations')}
+  ${b(6, 122, 300, 48, 'Prove · InterviewPrep')}
+  <path class="f-l" d="M306 30H322M306 88H322M306 146H322M322 30V176"/>
+  ${arrow(322, 176, 322, 194)}
+  ${b(6, 196, 328, 52, 'One rubric · three scoring passes')}
+  ${arrow(170, 248, 170, 272)}
+  ${b(60, 274, 220, 50, 'Assessment report', 'f-s-box')}
 </svg>`);
   },
 };

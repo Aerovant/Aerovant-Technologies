@@ -1,74 +1,113 @@
 import { products, u } from '../site.mjs';
-import { pageHead, ctaBand, ledger, go } from '../layout.mjs';
+import { pageHead, ctaBand, ledger, go, btn } from '../layout.mjs';
 import { productFigure } from '../figures.mjs';
 
-const index = `
-<nav class="pindex" aria-label="Product on this page">
-  <ul>${products.map((p) => `<li><a href="#${p.id}"><strong>${p.name}</strong><span>${p.kind}</span></a></li>`).join('')}</ul>
+const tr = products[0];
+const contactFor = (topic) => `/contact/?topic=${topic}`;
+
+/* Header aside: the three things a visitor can do right now on the product's own site. */
+const actions = `
+<nav class="pact" aria-label="ThreatReady links">
+  <ul>
+    <li><a href="${tr.url}"><strong>Visit threatready.io</strong><span>Start free on any role</span></a></li>
+    <li><a href="${tr.demo}"><strong>Try one question</strong><span>Live demo, no sign-up, about two minutes</span></a></li>
+    <li><a href="${tr.sample}"><strong>See a sample report</strong><span>The format every session produces</span></a></li>
+  </ul>
 </nav>`;
 
-const philosophy = () => `
-<section class="sec sec--white" aria-labelledby="phil-h">
-  <div class="wrap split">
-    <div class="split__h">
-      <h2 class="t-h2" id="phil-h">How we build.</h2>
-      <p>The same rules we give clients, applied to our own code.</p>
+const showcase = () => `
+<article class="prod sec--ink" id="${tr.id}" aria-labelledby="${tr.id}-h">
+  <div class="wrap prod__in">
+    <header class="prod__head">
+      <p class="t-label">${tr.kind}</p>
+      <h2 class="prod__name" id="${tr.id}-h">${tr.name}</h2>
+      <p class="t-lead">${tr.does}</p>
+    </header>
+    <figure class="prod__fig">${productFigure[tr.id]()}<figcaption class="t-note">How the parts fit together. Concept diagram, not a screenshot.</figcaption></figure>
+    <div class="prod__body">
+      ${ledger([['The problem', tr.problem], ['What you get', tr.value]], 'ledger--stack')}
+      <p class="prod__go">${btn(tr.url, 'Visit threatready.io', 'btn--light')}</p>
     </div>
-    <div class="split__b">
-      ${ledger([
-        ['One problem, addressed fully', 'ThreatReady helps candidates understand their readiness for a cybersecurity role before the interview.'],
-        ['Secure by construction', 'Cloud-native architecture, with security built into the delivery pipeline rather than added once the release is done.'],
-        ['Owned end to end', 'We design ThreatReady, engineer it and decide where it goes next.'],
-      ])}
+  </div>
+</article>`;
+
+const pillars = () => `
+<section class="sec sec--white" aria-labelledby="tr-parts-h">
+  <div class="wrap">
+    <div class="sec__head">
+      <h2 class="t-h2" id="tr-parts-h">Think, do, prove.</h2>
+      <p class="t-lead">Three parts of one journey, across ${tr.tracks} role tracks: SOC, cloud, application security, DevSecOps, GRC, red team, AI/LLM security and more.</p>
     </div>
+    <ol class="tparts">
+      ${tr.pillars.map((p) => `
+      <li class="tpart">
+        <p class="tpart__verb">${p.verb}</p>
+        <h3 class="tpart__name">${p.name}</h3>
+        <p>${p.line}</p>
+        ${p.status ? `<p class="tpart__status">${p.status}</p>` : ''}
+      </li>`).join('')}
+    </ol>
   </div>
 </section>`;
 
-const showcase = () => products.map((p, i) => `
-<article class="prod ${i % 2 ? '' : 'sec--ink'}" id="${p.id}" aria-labelledby="${p.id}-h">
-  <div class="wrap prod__in">
-    <header class="prod__head">
-      <p class="t-label">${p.kind}</p>
-      <h2 class="prod__name" id="${p.id}-h">${p.name}</h2>
-      <p class="t-lead">${p.line}</p>
-    </header>
-    <figure class="prod__fig">${productFigure[p.id]()}<figcaption class="t-note">Concept diagram, not a screenshot.</figcaption></figure>
-    <div class="prod__body">
-      ${ledger([['The problem', p.problem], ['What it does', p.does], ['Why it matters', p.value]], 'ledger--stack')}
-      <p class="prod__go">${go(`/contact/?topic=products`, `Ask about ${p.name.replace(' Platform', '')}`)}</p>
-    </div>
-  </div>
-</article>`).join('\n');
-
-const value = () => `
-<section class="sec sec--white" aria-labelledby="val-h">
+const audiences = () => `
+<section class="sec" id="organisations" aria-labelledby="tr-who-h">
   <div class="wrap">
-    <h2 class="t-h2" id="val-h">What ThreatReady changes.</h2>
-    <div class="tbl-wrap" tabindex="0" role="region" aria-labelledby="val-h">
-      <table class="tbl">
-        <thead><tr><th scope="col">Product</th><th scope="col">Without it</th><th scope="col">With it</th></tr></thead>
-        <tbody>
-          ${products.map((p) => `<tr><th scope="row"><a href="#${p.id}">${p.name}</a></th><td data-label="Without it">${p.problem}</td><td data-label="With it">${p.value}</td></tr>`).join('')}
-        </tbody>
-      </table>
+    <div class="sec__head">
+      <h2 class="t-h2" id="tr-who-h">Built for the people who hire and train security engineers.</h2>
+      <p class="t-lead">The same rubric reads the same way for a candidate, a manager and a hiring team.</p>
+    </div>
+    <ul class="aud">
+      ${tr.audiences.map((a) => `
+      <li class="aud__i" id="for-${a.id}">
+        <h3 class="t-h3">${a.name}</h3>
+        <p>${a.line}</p>
+        <p class="aud__go">${go(a.href || contactFor(a.topic), a.cta)}</p>
+      </li>`).join('')}
+    </ul>
+  </div>
+</section>`;
+
+const trust = () => `
+<section class="sec sec--white" aria-labelledby="tr-trust-h">
+  <div class="wrap split">
+    <div class="split__h">
+      <h2 class="t-h2" id="tr-trust-h">Every score is explainable.</h2>
+      <p>A company trusting a score to shortlist candidates needs to know how it was reached. This is how.</p>
+      <p>${go(tr.sample, 'See a sample report')}</p>
+    </div>
+    <div class="split__b">${ledger(tr.trust)}</div>
+  </div>
+</section>`;
+
+const bridge = () => `
+<section class="sec" aria-labelledby="tr-bridge-h">
+  <div class="wrap split">
+    <div class="split__h"><h2 class="t-h2" id="tr-bridge-h">Written by people who test real systems.</h2></div>
+    <div class="split__b">
+      <p class="statement">The scenarios in ThreatReady are written by the same team that runs our cloud security reviews and penetration tests.</p>
+      <p class="prose">What a candidate reasons through in the lab is what we find in client environments. And when we test a client’s systems, training their engineers on what we found is the natural next step.</p>
+      <p>${go('/services/', 'Our security services')}</p>
     </div>
   </div>
 </section>`;
 
 export default [{
   path: '/products/',
-  title: 'Product',
-  description: 'ThreatReady is Aerovant Technologies’ cybersecurity job-readiness platform, combining AI interviews and role-specific attack simulations.',
+  title: 'ThreatReady',
+  description: 'ThreatReady, by Aerovant Technologies: role-based cybersecurity training and assessment. Attack Reasoning Lab, Lab Simulations and InterviewPrep, scored on one published rubric, for hiring teams, engineering teams, colleges and individuals.',
   render: () => [
     pageHead({
       crumb: [['Home', '/'], ['Product']],
       title: 'Meet ThreatReady.',
-      lead: 'A cybersecurity job-readiness platform that helps candidates find out where they stand before the interview.',
-      aside: index,
+      lead: tr.line,
+      aside: actions,
     }),
     showcase(),
-    philosophy(),
-    value(),
-    ctaBand({ title: 'Want a closer look?', text: 'Tell us about the role you are preparing for.', label: 'Ask about ThreatReady', href: '/contact/?topic=products', alt: ['Or explore our security services', '/services/'] }),
+    pillars(),
+    audiences(),
+    trust(),
+    bridge(),
+    ctaBand({ title: 'Run a pilot with your team.', text: 'Tell us whether you are hiring, training engineers or running a cohort, and roughly how many people.', label: 'Talk to us about a pilot', href: contactFor('threatready-hiring'), alt: ['Or start free on threatready.io', tr.url] }),
   ].join('\n'),
 }];

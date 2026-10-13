@@ -1,0 +1,7 @@
+# Aerovant Technologies — security contact
+# Please report vulnerabilities in aerovanttech.com or our products here.
+# We only test systems with their owner's written permission; we ask the same of you.
+Contact: mailto:contact@aerovanttech.com
+Expires: 2027-10-12T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://aerovanttech.com/.well-known/security.txt

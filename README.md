@@ -59,4 +59,7 @@ preselect the requirement.
 - Confirm product status and copy in `src/site.mjs` (written from the one-line descriptions on the old site).
 - Confirm process steps, FAQs and outcomes on the three service pages.
 - Have Privacy and Terms reviewed. The privacy page says the site sets no analytics cookies; update it if you add analytics.
-- Replace `hr@aerovanttech.com` if a different address should receive security enquiries.
+- Create the `contact@aerovanttech.com` mailbox (enquiries, security.txt, privacy requests). `hr@` is now used only for job applications.
+- Confirm the lines marked `CONFIRM` in `src/site.mjs`: legal name, service methods, managed-security hours.
+- Security headers: the Content-Security-Policy and referrer policy are set in a meta tag (`src/layout.mjs`). `frame-ancestors`, `X-Content-Type-Options` and HSTS need a proxy such as Cloudflare in front of GitHub Pages.
+- The repo root mirrors `dist/`. If Pages deploys through Actions (recommended), the root copies are not used and can be deleted.
