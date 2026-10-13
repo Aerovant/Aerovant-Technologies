@@ -1,0 +1,10 @@
+{
+  "name": "aerovant-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:file": "node build.mjs --file",
+    "preview": "node build.mjs --bundle"
+  }
+}
