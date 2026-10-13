@@ -1,3 +1,9 @@
+# Website changes — 13 October 2026 (social links)
+
+- LinkedIn now points to `https://www.linkedin.com/company/aerovant-technologies` (was a `/in/` personal-profile URL).
+- YouTube removed from the footer social links on every page. Remaining: LinkedIn, X, Instagram, Facebook.
+- Both changes are in `src/site.mjs` → `site.social`; the footer is built from that list.
+
 # Website changes — 13 October 2026 (QA pass)
 
 - **External links:** one rule in `src/layout.mjs` (`externalize`, applied to every built page) gives every link to another domain `target="_blank" rel="noopener noreferrer"` and removes `target` from internal links. Covers ThreatReady, Academy and all five social links (94 link instances). The hand-added `target="_blank"` on the footer Privacy and Terms links, which are internal pages, is removed.
@@ -68,7 +74,7 @@ Have a lawyer read the privacy and terms pages. They now name the DPDP Act 2023,
 ## Still needs you (I couldn't do these from code)
 
 - **Cloudflare (or similar) in front of GitHub Pages.** `frame-ancestors`, `X-Content-Type-Options` and HSTS can only be sent as real headers, not meta tags.
-- **LinkedIn.** The link is still a `/in/` personal-profile URL, and it differs from the one on ThreatReady. Create a company page and update `site.social`.
+- **LinkedIn.** Done 13 Oct 2026: now the company page `https://www.linkedin.com/company/aerovant-technologies`. Update ThreatReady's footer to the same URL.
 - **Screenshots** of the ThreatReady app for the product page. It still uses a concept diagram.
 - **A redacted sample VAPT report** and typical engagement timelines for the service pages.
 - **Team or founder section** with certifications.

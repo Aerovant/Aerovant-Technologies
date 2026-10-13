@@ -16,7 +16,6 @@ export const site = {
   academyUrl: 'https://www.aerovantacademy.com',
   social: [
     ['LinkedIn', 'https://www.linkedin.com/company/aerovant-technologies'],
-    ['YouTube', 'https://youtube.com/@aerovanttechnologies'],
     ['X', 'https://x.com/aerovant_tech'],
     ['Instagram', 'https://www.instagram.com/aerovant_technologies'],
     ['Facebook', 'https://www.facebook.com/profile.php?id=61587139213075'],
