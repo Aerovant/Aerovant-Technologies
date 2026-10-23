@@ -1,3 +1,9 @@
+# Website changes — 23 October 2026 (Insights fact-check)
+
+- **php2shell:** Amazon's finding restated: attempts from 17 Oct onward, but Amazon says it is unclear whether any would have worked (was "broadly exploited"). TL;DR exploitation line matches. "Dates back to PHP 5.4.0" → "at least PHP 5" (and the version table row → "5.x to 7.3"). Timeline notes PHP brought the release forward a day. Sources add Amazon's MadPot post and Bitsight, and link Rapid7.
+- **Next.js on Node.js:** sources now link the Next.js security post, the three Next.js advisories and the Node.js release notes. CVE-2026-96889 and GHSA-2464-fhr4-w9xw are labelled as one bug with two IDs.
+- Not yet checked: php2shell's "early reports of 10.0 were incorrect".
+
 # Website changes — 23 October 2026 (Insights articles)
 
 - **Insights is now a real article list.** `/insights/` shows each article as a card (thumbnail, date, category, title, summary, "Read the article"), newest first. Each article has its own page at `/insights/<slug>/` with breadcrumb, byline, header image, TL;DR box, tables, code blocks and a contact panel.

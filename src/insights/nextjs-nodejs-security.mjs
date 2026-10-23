@@ -36,7 +36,7 @@ export default {
 <p>This is not one incident but a run of them. Each hit a different layer, and each was fixed upstream, outside the code most teams review.</p>
 ${table(['Date', 'Event'], [
   ['21 Oct 2026', 'Node.js fixes 10 CVEs across 26.x, 24.x and 22.x, including a Brotli decoder out-of-bounds write that permits remote code execution (CVE-2026-111497)'],
-  ['14 Oct 2026', 'Next.js 16.4.1 and 15.5.28 fix two critical RCEs (SVG image processing, CVE-2026-96889; <code>use cache</code> typed arrays) and a Server Actions DoS'],
+  ['14 Oct 2026', 'Next.js 16.4.1 and 15.5.28 fix two critical RCEs (SVG image processing, CVE-2026-96889, also tracked as GHSA-2464-fhr4-w9xw; <code>use cache</code> typed arrays, GHSA-673q-mjm6-r5xr) and a Server Actions DoS'],
   ['Sep 2026', 'A <code>next/og</code> flaw lets attacker-controlled text change the SVG it generates (reported by The Hacker News)'],
   ['Aug 2026', 'A libheif bug, reached through sharp, allows code execution via crafted AVIF images (reported by The Hacker News)'],
   ['7 May 2026', 'Next.js 16.2.6 and 15.5.18 ship 13 advisories: middleware and proxy bypass, SSRF, cache poisoning, XSS and DoS'],
@@ -85,7 +85,7 @@ ${table(['Layer', 'What it does', 'Where outside data gets in'], [
 <p>A fresh <code>create-next-app</code> project was exposed by default. Datadog saw payloads that downloaded shell scripts, stole environment files and dropped binaries.</p>
 
 <h3>Poisoned images: native library bugs</h3>
-<p>In CVE-2026-96889, a memory bug in librsvg, which Next.js reaches through sharp, can lead to code execution on glibc-based Linux:</p>
+<p>In CVE-2026-96889 (GitHub advisory GHSA-2464-fhr4-w9xw: one bug, two IDs), a memory bug in librsvg, which Next.js reaches through sharp, can lead to code execution on glibc-based Linux:</p>
 <ol>
   <li>The attacker gets a crafted SVG in front of the image pipeline, for example as an uploaded avatar.</li>
   <li>Next.js hands it to sharp, which calls librsvg to render it.</li>
@@ -277,10 +277,11 @@ module.exports = {
 
 <h2>Sources</h2>
 <ul class="art__sources">
-  <li>Next.js: Security Update for Upstream Vulnerabilities (14 Oct 2026)</li>
-  <li>GitHub advisory GHSA-2464-fhr4-w9xw / CVE-2026-96889</li>
-  <li>GitHub advisory GHSA-673q-mjm6-r5xr</li>
-  <li>Node.js: October 2026 security releases</li>
+  <li><a href="https://nextjs.org/blog/nextjs-security-update-october-14-2026">Next.js: Security Update for Upstream Vulnerabilities (14 Oct 2026)</a></li>
+  <li><a href="https://github.com/vercel/next.js/security/advisories/GHSA-2464-fhr4-w9xw">Next.js advisory GHSA-2464-fhr4-w9xw (CVE-2026-96889, image optimisation RCE)</a></li>
+  <li><a href="https://github.com/vercel/next.js/security/advisories/GHSA-673q-mjm6-r5xr">Next.js advisory GHSA-673q-mjm6-r5xr (<code>use cache</code> RCE)</a></li>
+  <li><a href="https://github.com/vercel/next.js/security/advisories/GHSA-p3m5-59mp-jv5r">Next.js advisory GHSA-p3m5-59mp-jv5r (Server Actions denial of service)</a></li>
+  <li><a href="https://nodejs.org/en/blog/vulnerability/october-2026-security-releases">Node.js: October 2026 security releases</a></li>
   <li>Vercel: Next.js May 2026 security release</li>
   <li>Fastly: CVE-2025-29927 authorization bypass in Next.js</li>
   <li>Invicti: React2Shell (CVE-2025-55182 / CVE-2025-66478)</li>

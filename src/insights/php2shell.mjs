@@ -24,7 +24,7 @@ export default {
     <div><dt>Who</dt><dd>Any server running PHP to serve web requests: PHP-FPM, Apache mod_php, php-cgi, FrankenPHP, LiteSpeed</dd></div>
     <div><dt>Worst case</dt><dd>Apache with mod_php, where exploitation can happen before application code runs</dd></div>
     <div><dt>Fixed in</dt><dd>PHP 8.2.35, 8.3.36, 8.4.27, 8.5.12</dd></div>
-    <div><dt>Exploitation</dt><dd>Attempts confirmed by several vendors; at least one says it is broadly exploited</dd></div>
+    <div><dt>Exploitation</dt><dd>Attempts confirmed by several vendors, including Amazon; none has confirmed that an attempt succeeded</dd></div>
     <div><dt>Do today</dt><dd>Find every PHP server, patch it, restart every PHP worker</dd></div>
   </dl>
 </aside>
@@ -32,11 +32,11 @@ export default {
 <p>If you run WordPress, Laravel, Magento, Drupal or any custom PHP application, read on.</p>
 
 <h2>What happened</h2>
-<p>The bugs were found by researchers at Calif and reported to PHP for coordinated disclosure. The plan was a quiet release on 22 October. It did not go to plan: attackers were probing before the patch existed, and details leaked a day early.</p>
+<p>The bugs were found by researchers at Calif and reported to PHP for coordinated disclosure. The plan was a quiet release on 22 October. It did not go to plan: attackers were probing before the patch existed, details leaked, and PHP brought the release forward by a day.</p>
 ${table(['Date (2026)', 'Event'], [
   ['22 Oct', 'Vendors update advisories. Neither CVE is yet in CISA’s Known Exploited Vulnerabilities catalog'],
   ['21 Oct', 'PHP releases 8.5.12, 8.4.27, 8.3.36 and 8.2.35 (14:00 UTC). Honeypots record exploitation attempts the same day'],
-  ['20 Oct', 'Details leak on social media. PHP announces an emergency release. watchTowr publicly confirms the bugs are real'],
+  ['20 Oct', 'Details leak on social media. PHP announces an emergency release, a day earlier than planned. watchTowr publicly confirms the bugs are real'],
   ['17 Oct', 'Amazon’s MadPot honeypot records an attempt, four days before disclosure'],
   ['Earlier', 'Linux distributions and LTS vendors receive patches in advance'],
 ])}
@@ -69,14 +69,14 @@ ${table(['Date (2026)', 'Event'], [
 <p>Code execution with the privileges of the web server user (often <code>www-data</code>, <code>apache</code> or <code>nginx</code>). From there they can read the application’s configuration, including database passwords and API keys, plant a web shell, and move deeper into the network.</p>
 
 <h2>Who is affected</h2>
-<p>Every PHP installation that serves web requests is in scope. The vulnerable code path dates back to PHP 5.4.0, so age is no protection.</p>
+<p>Every PHP installation that serves web requests is in scope. The vulnerable code path dates back to at least PHP 5, so age is no protection.</p>
 ${table(['PHP branch', 'Status', 'Action'], [
   ['8.5', 'Affected below 8.5.12', 'Upgrade to 8.5.12'],
   ['8.4', 'Affected below 8.4.27', 'Upgrade to 8.4.27'],
   ['8.3', 'Affected below 8.3.36', 'Upgrade to 8.3.36'],
   ['8.2', 'Affected below 8.2.35', 'Upgrade to 8.2.35'],
   ['7.4, 8.0, 8.1', 'All versions affected; no official release', 'Distribution or LTS vendor package, or PHP’s source backports. Plan a move to 8.2+'],
-  ['5.4 to 7.3', 'Affected, no fix at all', 'Upgrade to a supported branch, or isolate the server'],
+  ['5.x to 7.3', 'Affected, no fix at all', 'Upgrade to a supported branch, or isolate the server'],
 ])}
 <p><strong>How PHP runs matters.</strong> PHP-FPM, php-cgi, FrankenPHP and LiteSpeed are all affected. Apache with mod_php is the highest-risk setup, because PHP parses the malicious request inside the web server before any application code, WAF logic in your app, or authentication check gets a chance to run.</p>
 <p><strong>A distribution caveat.</strong> Ubuntu, Debian, RHEL and similar distributions often backport security fixes without changing the version number. A server that reports 8.1.2 may be patched; one that reports a newer number may not be. Check your distribution’s advisory or package changelog for the CVE IDs rather than trusting the version string alone.</p>
@@ -84,7 +84,7 @@ ${table(['PHP branch', 'Status', 'Action'], [
 <h2>Is it being exploited?</h2>
 <p>Attackers are trying. Whether they are succeeding at scale is where vendors disagree.</p>
 ${table(['Source', 'What they report'], [
-  ['Amazon Threat Intelligence', 'First attempt on 17 Oct; says the flaws are now broadly exploited in the wild'],
+  ['Amazon Threat Intelligence', 'First attempt on 17 Oct, four days before disclosure; more attempts from several sources on 21 Oct. Amazon says it is unclear whether any of them would have worked'],
   ['watchTowr, Cloudflare', 'Exploitation attempts observed on their sensor networks'],
   ['Rapid7', 'Many attempts, but no confirmed in-the-wild exploitation; public proofs of concept work only on specific OS, PHP version and web server combinations'],
   ['PHP Foundation', 'Found no functional public exploits at release'],
@@ -214,7 +214,9 @@ fatal_error_backtraces = 0`)}
 
 <h2>Sources</h2>
 <ul class="art__sources">
-  <li>Rapid7: CVE-2026-109618 and CVE-2026-109619, critical unauthenticated RCE in PHP</li>
+  <li><a href="https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/">Amazon Threat Intelligence: PHP2Shell exploitation identified in MadPot prior to public disclosure</a></li>
+  <li><a href="https://www.bitsight.com/blog/critical-vulnerability-alert-cve-2026-109618-and-cve-2026-109619-php2shell">Bitsight: CVE-2026-109618 and CVE-2026-109619 (PHP2Shell)</a></li>
+  <li><a href="https://www.rapid7.com/blog/post/etr-cve-2026-109618-and-cve-2026-109619-critical-unauthenticated-remote-code-execution-in-php/">Rapid7: CVE-2026-109618 and CVE-2026-109619, critical unauthenticated RCE in PHP</a></li>
   <li>Tenable: php2shell frequently asked questions</li>
   <li>watchTowr: PHP2Shell FAQ</li>
   <li>Codeable: What WordPress site owners need to do</li>
