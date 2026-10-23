@@ -96,8 +96,8 @@ const bridge = () => `
 export default [{
   path: '/products/',
   title: 'ThreatReady',
-  seo: 'ThreatReady: Cybersecurity Skills Platform | Aerovant',
-  description: 'ThreatReady by Aerovant: train, test and hire security engineers on real work. Attack Reasoning Lab, Lab Simulations and InterviewPrep across 15 role tracks.',
+  seo: 'ThreatReady: Cybersecurity Interview Prep & Skill Assessment',
+  description: 'ThreatReady: cybersecurity interview preparation, hands-on labs and skills assessment across 15 roles, including SOC analyst. Train, test and hire engineers.',
   ld: () => products.map(productLd),
   render: () => [
     pageHead({

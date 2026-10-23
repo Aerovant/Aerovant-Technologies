@@ -17,6 +17,7 @@
     nav.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', String(open));
     toggle.querySelector('.hdr__label').textContent = open ? 'Close' : 'Menu';
+    d.documentElement.classList.toggle('menu-open', open); // the page behind the panel does not scroll
   }
   if (toggle && nav) {
     toggle.addEventListener('click', function () { setMenu(!nav.classList.contains('is-open')); });
@@ -30,6 +31,9 @@
       } else if (e.target.closest('a')) { setMenu(false); closeSubs(); }
     });
     d.addEventListener('click', function (e) { if (!e.target.closest('.nav__has')) closeSubs(); });
+    // Leaving the phone layout (rotation, resize) closes the panel so the desktop bar is never stuck open.
+    var desktop = window.matchMedia('(min-width: 73.76rem)');
+    (desktop.addEventListener ? desktop.addEventListener.bind(desktop, 'change') : desktop.addListener.bind(desktop))(function (m) { if (m.matches) setMenu(false); });
     d.addEventListener('keydown', function (e) {
       if (e.key !== 'Escape') return;
       var openSub = d.querySelector('.nav__has.is-open');

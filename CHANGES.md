@@ -1,3 +1,13 @@
+# Website changes — 23 October 2026 (mobile header, keywords)
+
+**Mobile navigation (fixed).** Between 320 and ~380 px wide the menu button wrapped onto a second line under the logo, making the sticky bar two rows tall. The bar is now one 64 px row at every width: logo, "Talk to us" (moves into the menu below 380 px) and a 44×44 px menu button. The menu opens as a full-height panel under the bar, the page behind it no longer scrolls, sub-items are stacked consistently, and "Talk to an expert" sits at the bottom of the panel. Rotating or widening to desktop closes the panel. Desktop is unchanged.
+
+**Touch targets.** Attack-surface layer buttons are 44 px tall on phones; inline "→" links get a taller tap area on touch screens without changing the layout. Checked at 320, 360, 390, 414, 768, 1024 and 1400 px: no horizontal scroll on any page.
+
+**Keywords.** Titles and meta descriptions retuned from Google India autocomplete (what people actually type): "VAPT services in India", "VAPT audit", "penetration testing services in India", "AWS security audit", "cloud security assessment", "SOC as a Service", "managed security services", "cybersecurity interview preparation", "cybersecurity skills assessment", "PHP vulnerability", "eMudhra certificate incident", "Next.js vulnerability 2026". The same phrases go into structured data (`alternateName`, `keywords`, `knowsAbout`) and llms.txt via `searchTerms` in `src/seo.mjs`. Visible page copy is unchanged.
+
+Searches that came up but we did **not** target, because they would need a claim we can't make: city names (Bangalore, Chennai, Coimbatore, Pune), "CERT-In empanelled", "VAPT certificate", and "VAPT cost". Add them only if they're true for Aerovant.
+
 # Website changes — 23 October 2026 (SEO and AI-search readiness)
 
 **Search titles and descriptions.** Every indexable page now has a search title under 60 characters and a meta description under 160, built around what people search for: "VAPT services", "AWS cloud security assessment", "managed security services & SOC", "cybersecurity services for startups & SMEs", the CVE numbers on articles. Set with `seo:` and `description:` on each page; article cards keep the longer `summary`.

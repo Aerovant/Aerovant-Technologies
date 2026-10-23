@@ -317,11 +317,11 @@ const notFound = () => `
 </div></section>`;
 
 export default [
-  { path: '/about/', title: 'About', seo: 'About Aerovant: Cybersecurity Company in Tamil Nadu', description: 'Aerovant Technologies is a cybersecurity and software company in Krishnagiri, Tamil Nadu. We build ThreatReady and secure systems for startups and SMEs.', render: about },
+  { path: '/about/', title: 'About', seo: 'About Aerovant: Cybersecurity Company in Tamil Nadu, India', description: 'Aerovant Technologies is a cybersecurity and software company in Krishnagiri, Tamil Nadu. We build ThreatReady and secure systems for startups and SMEs.', render: about },
   { path: '/industries/', title: 'Who we work with', seo: 'Who We Work With | Aerovant Technologies', description: 'Aerovant works with SaaS companies, startups, SMEs and teams building on AWS that need practical cybersecurity support.', render: industries },
-  { path: '/insights/', title: 'Insights', seo: 'Cybersecurity Insights & Threat Briefs | Aerovant', ld: (c) => [articleListLd(c)], description: 'Notes on cybersecurity, cloud security, VAPT and engineering from Aerovant Technologies.', render: insightsPage },
-  { path: '/careers/', title: 'Careers', seo: 'Cybersecurity Careers | Aerovant Technologies', description: 'Work at Aerovant Technologies: product engineering and security roles, and internships through Aerovant Academy.', render: careers },
-  { path: '/contact/', title: 'Contact', seo: 'Contact Aerovant: Talk to a Security Expert', description: 'Talk to an expert at Aerovant Technologies about ThreatReady or cybersecurity services.', render: contact },
+  { path: '/insights/', title: 'Insights', seo: 'Cybersecurity News & Vulnerability Briefs | Aerovant', ld: (c) => [articleListLd(c)], description: 'Cybersecurity news and vulnerability briefs for Indian startups and SMEs: what happened, who is affected, and how to check and fix it.', render: insightsPage },
+  { path: '/careers/', title: 'Careers', seo: 'Cybersecurity Jobs & Internships | Aerovant Technologies', description: 'Cybersecurity jobs at Aerovant Technologies: product engineering and security roles, and internships through Aerovant Academy.', render: careers },
+  { path: '/contact/', title: 'Contact', seo: 'Contact Aerovant: Talk to a Cybersecurity Expert', description: 'Talk to a cybersecurity expert at Aerovant about VAPT, AWS cloud security, managed security (SOC) or ThreatReady. We reply within one business day.', render: contact },
   { path: '/privacy/', title: 'Privacy Policy', description: 'How Aerovant Technologies handles information sent through this website.', render: privacy },
   { path: '/terms/', title: 'Terms', description: 'Terms of use for the Aerovant Technologies website.', render: terms },
   { path: '/404/', file: '404.html', title: 'Page not found', description: 'This page could not be found.', noindex: true, render: notFound },

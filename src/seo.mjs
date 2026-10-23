@@ -3,6 +3,15 @@
 import { site, products, services, insights } from './site.mjs';
 
 const ORG = `${site.url}/#org`;
+
+// The phrases people in India search for each offering (Google India autocomplete, October 2026).
+// Used as alternateName / keywords in structured data and in llms.txt, never as visible copy.
+export const searchTerms = {
+  'cloud-security': ['AWS security audit', 'AWS security assessment', 'cloud security assessment services', 'AWS cloud security services'],
+  vapt: ['VAPT services in India', 'VAPT audit', 'penetration testing services', 'web application penetration testing', 'API security testing', 'network penetration testing'],
+  'managed-security': ['managed security services provider (MSSP)', 'SOC as a Service', 'managed SOC services', 'managed EDR', 'WAF management'],
+  threatready: ['cybersecurity interview preparation', 'cyber security mock interview', 'SOC analyst interview preparation', 'cybersecurity skills assessment', 'cybersecurity hands-on labs'],
+};
 const WEBSITE = `${site.url}/#website`;
 
 /** HTML fragment → plain text for metadata (tags stripped, entities decoded). */
@@ -36,7 +45,7 @@ export const organization = () => ({
   telephone: site.phoneHref,
   address: { '@type': 'PostalAddress', streetAddress: street, addressLocality: city, addressRegion: region, postalCode: postcode, addressCountry: country === 'India' ? 'IN' : country },
   sameAs: site.social.map(([, href]) => href),
-  knowsAbout: ['Cybersecurity', 'Cloud security', 'AWS security', 'Vulnerability assessment and penetration testing (VAPT)', 'API security testing', 'Managed security services', 'Security operations (SOC)'],
+  knowsAbout: ['Cybersecurity', 'Cloud security', 'AWS security audit', 'Vulnerability assessment and penetration testing (VAPT)', 'Web application penetration testing', 'API security testing', 'Network penetration testing', 'Managed security services', 'SOC as a Service', 'Cybersecurity skills assessment'],
   makesOffer: services.map((s) => ({ '@type': 'Offer', itemOffered: { '@id': `${site.url}/services/${s.id}/#service` } })),
   brand: products.map((p) => ({ '@type': 'Brand', name: p.name, url: p.url })),
 });
@@ -59,6 +68,8 @@ export const serviceLd = (s) => ({
   '@id': `${site.url}/services/${s.id}/#service`,
   name: plain(s.name),
   serviceType: plain(s.name),
+  alternateName: searchTerms[s.id],
+  areaServed: { '@type': 'Country', name: 'India' },
   description: plain(s.line),
   url: `${site.url}/services/${s.id}/`,
   provider: { '@id': ORG },
@@ -74,6 +85,7 @@ export const productLd = (p) => ({
   '@id': `${site.url}/products/#${p.id}`,
   name: p.name,
   applicationCategory: 'EducationalApplication',
+  keywords: (searchTerms[p.id] || []).join(', '),
   operatingSystem: 'Web',
   url: p.url,
   description: plain(`${p.line} ${p.does}`),
@@ -89,6 +101,7 @@ export const articleLd = (p, canonical) => ({
   datePublished: p.date,
   dateModified: p.updated ?? p.date,
   articleSection: p.category,
+  ...(p.keywords ? { keywords: p.keywords.join(', ') } : {}),
   inLanguage: 'en',
   author: { '@type': 'Organization', name: p.author, url: site.url + '/' },
   publisher: { '@id': ORG },
@@ -159,7 +172,8 @@ Key facts:
 - What we build: ${products.map((p) => `${p.name} (${p.kind.toLowerCase()}, ${p.url})`).join('; ')}.
 - What we secure: AWS cloud environments, web applications, APIs and networks.
 - Who we help: founders, CTOs and engineering heads at startups, SaaS companies and SMEs.
-- Services: ${services.map((s) => plain(s.name)).join('; ')}.
+- Services: ${services.map((s) => `${plain(s.name)} (also: ${searchTerms[s.id].join(', ')})`).join('; ')}.
+- ThreatReady covers: ${searchTerms.threatready.join(', ')}.
 
 ## Services
 ${line('/services/', 'Cybersecurity services')}
