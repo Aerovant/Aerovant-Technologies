@@ -6,8 +6,6 @@
 
 **Keywords.** Titles and meta descriptions retuned from Google India autocomplete (what people actually type): "VAPT services in India", "VAPT audit", "penetration testing services in India", "AWS security audit", "cloud security assessment", "SOC as a Service", "managed security services", "cybersecurity interview preparation", "cybersecurity skills assessment", "PHP vulnerability", "eMudhra certificate incident", "Next.js vulnerability 2026". The same phrases go into structured data (`alternateName`, `keywords`, `knowsAbout`) and llms.txt via `searchTerms` in `src/seo.mjs`. Visible page copy is unchanged.
 
-Searches that came up but we did **not** target, because they would need a claim we can't make: city names (Bangalore, Chennai, Coimbatore, Pune), "CERT-In empanelled", "VAPT certificate", and "VAPT cost". Add them only if they're true for Aerovant.
-
 # Website changes — 23 October 2026 (SEO and AI-search readiness)
 
 **Search titles and descriptions.** Every indexable page now has a search title under 60 characters and a meta description under 160, built around what people search for: "VAPT services", "AWS cloud security assessment", "managed security services & SOC", "cybersecurity services for startups & SMEs", the CVE numbers on articles. Set with `seo:` and `description:` on each page; article cards keep the longer `summary`.
