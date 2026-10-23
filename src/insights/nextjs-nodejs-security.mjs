@@ -282,11 +282,11 @@ module.exports = {
   <li><a href="https://github.com/vercel/next.js/security/advisories/GHSA-673q-mjm6-r5xr">Next.js advisory GHSA-673q-mjm6-r5xr (<code>use cache</code> RCE)</a></li>
   <li><a href="https://github.com/vercel/next.js/security/advisories/GHSA-p3m5-59mp-jv5r">Next.js advisory GHSA-p3m5-59mp-jv5r (Server Actions denial of service)</a></li>
   <li><a href="https://nodejs.org/en/blog/vulnerability/october-2026-security-releases">Node.js: October 2026 security releases</a></li>
-  <li>Vercel: Next.js May 2026 security release</li>
-  <li>Fastly: CVE-2025-29927 authorization bypass in Next.js</li>
-  <li>Invicti: React2Shell (CVE-2025-55182 / CVE-2025-66478)</li>
-  <li>Datadog Security Labs: React2Shell exploitation</li>
-  <li>The Hacker News: Next.js out-of-band patch for caching and SVG RCEs</li>
-  <li>SecurityOnline: Node.js security release, October 2026</li>
+  <li><a href="https://vercel.com/changelog/next-js-may-2026-security-release">Vercel: Next.js May 2026 security release</a></li>
+  <li><a href="https://fastly.com/blog/cve-2025-29927-authorization-bypass-in-next-js">Fastly: CVE-2025-29927 authorization bypass in Next.js</a></li>
+  <li><a href="https://invicti.com/blog/web-security/react2shell-critical-rce-in-react-rsc-next-js-cve-2025-55182-cve-2025-66478">Invicti: React2Shell (CVE-2025-55182 / CVE-2025-66478)</a></li>
+  <li><a href="https://securitylabs.datadoghq.com/articles/cve-2025-55182-react2shell-remote-code-execution-react-server-components/">Datadog Security Labs: React2Shell exploitation</a></li>
+  <li><a href="https://thehackernews.com/2026/10/nextjs-ships-out-of-band-patch-for-two.html">The Hacker News: Next.js out-of-band patch for caching and SVG RCEs</a></li>
+  <li><a href="https://securityonline.info/nodejs-security-release-october-2026/">SecurityOnline: Node.js security release, October 2026</a></li>
 </ul>`,
 };
