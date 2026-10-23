@@ -1,3 +1,13 @@
+# Website changes — 23 October 2026 (Insights articles)
+
+- **Insights is now a real article list.** `/insights/` shows each article as a card (thumbnail, date, category, title, summary, "Read the article"), newest first. Each article has its own page at `/insights/<slug>/` with breadcrumb, byline, header image, TL;DR box, tables, code blocks and a contact panel.
+- **Three articles published:**
+  - `/insights/nextjs-nodejs-security/`: Next.js on Node.js: Four Layers, Four Ways In
+  - `/insights/emudhra-certificate-incident/`: eMudhra certificate incident (Chrome root removal 27 Oct)
+  - `/insights/php2shell/`: php2shell, CVE-2026-109618 / CVE-2026-109619
+- **Social previews:** article pages set `og:type=article` and use the article image as `og:image`.
+- **Adding an article:** copy a file in `src/insights/`, edit it, add it to `insights` in `src/site.mjs`, run `node build.mjs`. Tables and code blocks come from `src/insights/kit.mjs`; paste code as-is (it is escaped for you).
+
 # Website changes — 13 October 2026 (social links)
 
 - LinkedIn now points to `https://www.linkedin.com/company/aerovant-technologies` (was a `/in/` personal-profile URL).

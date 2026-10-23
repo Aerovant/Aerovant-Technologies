@@ -205,7 +205,7 @@ export const footer = () => `
 export function doc(page) {
   return externalize(page$(page));
 }
-function page$({ path, title, description, body, bodyClass = '', noindex = false }) {
+function page$({ path, title, description, body, bodyClass = '', noindex = false, image = 'img/og.png', ogType = 'website' }) {
   const full = path === '/' ? `${site.name}: ThreatReady and cybersecurity services` : `${title} | ${site.name}`;
   const canonical = site.url + path;
   return `<!doctype html>
@@ -218,12 +218,12 @@ function page$({ path, title, description, body, bodyClass = '', noindex = false
 <title>${esc(full)}</title>
 <meta name="description" content="${esc(description)}">
 ${noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${canonical}">`}
-<meta property="og:type" content="website">
+<meta property="og:type" content="${ogType}">
 <meta property="og:site_name" content="${site.name}">
 <meta property="og:title" content="${esc(full)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${canonical}">
-<meta property="og:image" content="${site.url}/assets/img/og.png">
+<meta property="og:image" content="${site.url}/assets/${image}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1A1648">
 <link rel="icon" href="${a('img/favicon.svg')}" type="image/svg+xml">

@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.web3forms.com https://script.google.com https://script.googleusercontent.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Next.js on Node.js: Four Layers, Four Ways In | Aerovant Technologies</title>
+<meta name="description" content="The most serious Next.js vulnerabilities of the past year were not in application code but in the layers underneath: the framework, React Server Components, Node.js and image libraries. What was fixed in October 2026, who is affected, and how to check and patch your apps.">
+<link rel="canonical" href="https://aerovanttech.com/insights/nextjs-nodejs-security/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Aerovant Technologies">
+<meta property="og:title" content="Next.js on Node.js: Four Layers, Four Ways In | Aerovant Technologies">
+<meta property="og:description" content="The most serious Next.js vulnerabilities of the past year were not in application code but in the layers underneath: the framework, React Server Components, Node.js and image libraries. What was fixed in October 2026, who is affected, and how to check and patch your apps.">
+<meta property="og:url" content="https://aerovanttech.com/insights/nextjs-nodejs-security/">
+<meta property="og:image" content="https://aerovanttech.com/assets/img/insights/nextjs-nodejs-security.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1A1648">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="">
+
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="hdr__logo" href="../../" aria-label="Aerovant Technologies, home"><img src="../../assets/img/logo.svg" width="154" height="50" alt=""></a>
+    <a class="btn btn--sm hdr__cta" href="../../contact/"><span>Talk to us</span></a>
+    <button class="hdr__toggle" type="button" aria-expanded="false" aria-controls="nav"><span class="hdr__bars" aria-hidden="true"></span><span class="hdr__label">Menu</span></button>
+    
+  <nav id="nav" class="nav" aria-label="Primary">
+    <ul class="nav__list">
+      <li><a class="nav__a" href="../../about/">About</a></li>
+      
+    <li class="nav__has">
+      <a class="nav__a" href="../../products/">Product</a>
+      <button class="nav__more" type="button" aria-expanded="false" aria-controls="sub-products" aria-label="Show product menu"><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <div class="nav__sub" id="sub-products">
+        <ul>
+          <li><a href="../../products/#threatready"><strong>ThreatReady</strong><span>Cybersecurity skills platform</span></a></li>
+        </ul>
+        
+      </div>
+    </li>
+      
+    <li class="nav__has">
+      <a class="nav__a" href="../../services/">Services</a>
+      <button class="nav__more" type="button" aria-expanded="false" aria-controls="sub-services" aria-label="Show services menu"><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <div class="nav__sub" id="sub-services">
+        <ul>
+          <li><a href="../../services/cloud-security/"><strong>Cloud Security</strong><span>Know what is exposed.</span></a></li><li><a href="../../services/vapt/"><strong>VAPT</strong><span>Prove what is exploitable.</span></a></li><li><a href="../../services/managed-security/"><strong>Managed Security Services</strong><span>Know if it happens again.</span></a></li>
+        </ul>
+        <a class="nav__all" href="../../services/">All services <span aria-hidden="true">→</span></a>
+      </div>
+    </li>
+      <li><a class="nav__a" href="../../industries/">Industries</a></li>
+      <li><a class="nav__a" href="../../insights/" aria-current="page">Insights</a></li>
+      <li><a class="nav__a" href="../../careers/">Careers</a></li>
+    </ul>
+    <a class="btn btn--sm nav__cta" href="../../contact/"><span>Talk to an expert</span></a>
+  </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+
+<article class="art" aria-labelledby="art-h">
+  <header class="art__head">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../../insights/">Insights</a></li><li><span aria-current="page">Cybersecurity</span></li></ol></nav>
+      <p class="t-label art__meta"><span>Cybersecurity</span> <time datetime="2026-10-23">23 October 2026</time></p>
+      <h1 class="art__t" id="art-h">Next.js on Node.js: Four Layers, Four Ways In</h1>
+      <p class="art__by">Aerovant Technologies Security Team</p>
+    </div>
+  </header>
+  <figure class="wrap art__fig"><img src="../../assets/img/insights/nextjs-nodejs-security.jpg" alt="A terminal running next build beside Next.js and Node.js logos and a red warning triangle, with the words Security Alert." width="1600" height="900"></figure>
+  <div class="wrap"><div class="art__body">
+<p class="art__lede">When teams think about Next.js security, they think about their own code: an API route without an auth check, a form that trusts its input. Those bugs are real. But over the past year, the most serious Next.js vulnerabilities were not in anyone’s application code.</p>
+<p>They were in the layers underneath: the Next.js framework, React Server Components, the Node.js runtime and the C libraries that process images. One of them scored a perfect CVSS 10.0 and was exploited within hours of disclosure. Two more critical flaws were patched in Next.js on 14 October 2026, and the Node.js runtime fixed its own remote code execution bug a week later.</p>
+
+<aside class="art__tldr" aria-labelledby="tldr-h">
+  <h2 id="tldr-h">TL;DR</h2>
+  <dl>
+    <div><dt>What</dt><dd>Critical and high-severity bugs in every layer under a Next.js app: the framework, React Server Components, Node.js and image libraries</dd></div>
+    <div><dt>Severity</dt><dd>Up to CVSS 10.0 (React2Shell, December 2025). The October 2026 Next.js RCEs are CVSS v4 9.5; the Node.js Brotli RCE is rated High</dd></div>
+    <div><dt>Who</dt><dd>Any team running Next.js on Node.js, especially self-hosted App Router apps</dd></div>
+    <div><dt>Worst case</dt><dd>Unauthenticated code execution on the server, with access to every secret in its environment</dd></div>
+    <div><dt>Fixed in</dt><dd>Next.js 16.4.1 or 15.5.28, with sharp 0.35.5 or later. Node.js 26.12.1, 24.22.1 or 22.23.4</dd></div>
+    <div><dt>Exploitation</dt><dd>React2Shell was mass-exploited within hours. No public reports of exploitation for the October 2026 Next.js or Node.js flaws at release</dd></div>
+    <div><dt>Do today</dt><dd>Check Next.js, sharp and Node.js versions on every app; upgrade, rebuild, redeploy and restart</dd></div>
+  </dl>
+</aside>
+
+<p>If you run a Next.js product, marketing site or internal tool on your own servers or containers, read on.</p>
+
+<h2>What happened</h2>
+<p>This is not one incident but a run of them. Each hit a different layer, and each was fixed upstream, outside the code most teams review.</p>
+
+<div class="art__tbl"><table class="tbl">
+  <thead><tr><th scope="col">Date</th><th scope="col">Event</th></tr></thead>
+  <tbody><tr><th scope="row">21 Oct 2026</th><td>Node.js fixes 10 CVEs across 26.x, 24.x and 22.x, including a Brotli decoder out-of-bounds write that permits remote code execution (CVE-2026-111497)</td></tr><tr><th scope="row">14 Oct 2026</th><td>Next.js 16.4.1 and 15.5.28 fix two critical RCEs (SVG image processing, CVE-2026-96889; <code>use cache</code> typed arrays) and a Server Actions DoS</td></tr><tr><th scope="row">Sep 2026</th><td>A <code>next/og</code> flaw lets attacker-controlled text change the SVG it generates (reported by The Hacker News)</td></tr><tr><th scope="row">Aug 2026</th><td>A libheif bug, reached through sharp, allows code execution via crafted AVIF images (reported by The Hacker News)</td></tr><tr><th scope="row">7 May 2026</th><td>Next.js 16.2.6 and 15.5.18 ship 13 advisories: middleware and proxy bypass, SSRF, cache poisoning, XSS and DoS</td></tr><tr><th scope="row">30 Apr 2026</th><td>Node.js 20 reaches end of life; it receives no further upstream security fixes</td></tr><tr><th scope="row">3–5 Dec 2025</th><td>React2Shell (CVE-2025-55182, CVSS 10.0) is disclosed on 3 Dec; Datadog records scanning that evening and 800+ attacking IPs by 5 Dec</td></tr><tr><th scope="row">21 Mar 2025</th><td>Next.js middleware bypass (CVE-2025-29927) is disclosed</td></tr></tbody>
+</table></div>
+<p>The pattern is the detail that matters. Image processing alone produced three code execution flaws in three months, and none of them was in Next.js’s own code.</p>
+
+<h2>How Next.js and Node.js fit together</h2>
+<p>Next.js is not a server on its own. It is a framework that runs inside a Node.js process, and Node.js in turn calls native C and C++ libraries for compression, TLS and image processing. Every request travels down through these layers and back up.</p>
+<p>A simple way to picture it is a restaurant. The browser is the customer and the CDN is the front door. Node.js is the building and its utilities. Next.js is the kitchen layout and order system, React Server Components are the recipes, and the native libraries are the specialist machines at the back. A fire in any room closes the restaurant, however good the recipes are.</p>
+<p>What each layer does, and where untrusted data enters it:</p>
+
+<div class="art__tbl"><table class="tbl">
+  <thead><tr><th scope="col">Layer</th><th scope="col">What it does</th><th scope="col">Where outside data gets in</th></tr></thead>
+  <tbody><tr><th scope="row">Next.js framework</th><td>Middleware (now also called proxy), routing, Route Handlers, the image optimiser at <code>/_next/image</code></td><td>Every request; middleware runs first, and many teams put authentication there</td></tr><tr><th scope="row">React Server Components</th><td>Renders on the server and streams to the browser in React’s Flight format; Server Actions and <code>use cache</code> use the same format</td><td>Server Action arguments, which arrive from the browser as Flight data</td></tr><tr><th scope="row">Node.js runtime</th><td>HTTP parsing, TLS, DNS, zlib/Brotli decompression, outbound <code>fetch()</code> (Undici)</td><td>Request bodies, compressed responses from servers you fetch, hostnames you resolve</td></tr><tr><th scope="row">Native libraries</th><td>sharp → libvips → librsvg (SVG), libheif (AVIF); OpenSSL for TLS</td><td>Uploaded or remote images, certificates</td></tr></tbody>
+</table></div>
+<p>Two misconceptions cause most of the trouble:</p>
+<ul>
+  <li><strong>“Server code is private.”</strong> Every exported Server Action is a public HTTP endpoint that anyone can call with any arguments, whether or not your UI shows a button for it.</li>
+  <li><strong>“Middleware protects my routes.”</strong> Middleware is a convenience layer. If it can be skipped, every route behind it opens.</li>
+</ul>
+<p>Some routes can run on the lighter Edge runtime instead of full Node.js. It has no native addons, so sharp-based image bugs do not apply there, but it still parses untrusted input. Know which runtime each route uses.</p>
+
+<h2>How the attacks work</h2>
+<p>Five attack paths cover the incidents above. Each one hits a different layer.</p>
+
+<h3>Middleware bypass: skipping the bouncer</h3>
+<p>Next.js used an internal header, <code>x-middleware-subrequest</code>, to avoid running middleware twice. In CVE-2025-29927:</p>
+<ol>
+  <li>The attacker adds <code>x-middleware-subrequest</code> to a request, with the value Next.js expects for that version.</li>
+  <li>Next.js treats the request as an internal subrequest and skips middleware.</li>
+  <li>Any page whose only authentication check lived in middleware is served to the attacker.</li>
+</ol>
+<p>Fixed in 15.2.3, 14.2.25, 13.5.9 and 12.3.5. The May 2026 release fixed four more High-severity middleware and proxy bypasses.</p>
+
+<h3>React2Shell: hostile serialised data</h3>
+<p>CVE-2025-55182 was an unsafe deserialisation flaw in React’s Flight decoder:</p>
+<ol>
+  <li>The attacker sends a crafted request to a React Server Components endpoint.</li>
+  <li>The server-side decoder accepts values that should only ever come from React itself.</li>
+  <li>Those values steer execution, and the attacker runs code on the server.</li>
+</ol>
+<p>A fresh <code>create-next-app</code> project was exposed by default. Datadog saw payloads that downloaded shell scripts, stole environment files and dropped binaries.</p>
+
+<h3>Poisoned images: native library bugs</h3>
+<p>In CVE-2026-96889, a memory bug in librsvg, which Next.js reaches through sharp, can lead to code execution on glibc-based Linux:</p>
+<ol>
+  <li>The attacker gets a crafted SVG in front of the image pipeline, for example as an uploaded avatar.</li>
+  <li>Next.js hands it to sharp, which calls librsvg to render it.</li>
+  <li>librsvg mishandles memory while parsing the crafted shapes.</li>
+  <li>The attacker’s code runs inside the Node.js server process.</li>
+</ol>
+<p>Next.js does not optimise SVGs by default. According to The Hacker News, exposure needs <code>images.dangerouslyAllowSVG</code> turned on or <code>next/og</code> running on the Node.js runtime; the official advisory states only the glibc Linux condition.</p>
+
+<h3>Runtime bugs: compressed data that writes back</h3>
+<p>In Node.js CVE-2026-111497, the bundled Brotli decoder has an out-of-bounds write that permits remote code execution. Node’s built-in <code>fetch()</code> decompresses Brotli responses automatically, so a feature that fetches user-supplied URLs (link previews, webhooks, importers) can be enough:</p>
+<ol>
+  <li>The attacker submits a URL that points to a server they control.</li>
+  <li>Your Next.js Route Handler or Server Action calls <code>fetch()</code> on it.</li>
+  <li>Their server replies with <code>Content-Encoding: br</code> and a crafted body.</li>
+  <li>The vulnerable decoder writes out of bounds while decompressing it.</li>
+</ol>
+<p>The same release fixed a <code>dns.resolve()</code> bug that truncated hostnames at a NUL byte, so the name an SSRF filter checked could differ from the one resolved, plus two TLS hostname verification bypasses.</p>
+
+<h3>Unprotected Server Actions: the forgotten endpoint</h3>
+<p>This one is in your code, and it is the most common. Every exported Server Action is reachable by HTTP POST.</p>
+<figure class="art__code"><figcaption>TypeScript · vulnerable</figcaption><pre><code>// Vulnerable: any logged-in user can delete any invoice
+'use server';
+export async function deleteInvoice(invoiceId: string) {
+  await db.invoice.delete({ where: { id: invoiceId } });
+}</code></pre></figure>
+<figure class="art__code"><figcaption>TypeScript · fixed</figcaption><pre><code>// Fixed: authenticate, validate input, scope the query to the owner
+'use server';
+import { z } from 'zod';
+import { requireUser } from '@/lib/dal';
+
+const Input = z.object({ invoiceId: z.string().uuid() });
+
+export async function deleteInvoice(raw: unknown) {
+  const user = await requireUser();
+  const { invoiceId } = Input.parse(raw);
+  await db.invoice.deleteMany({ where: { id: invoiceId, ownerId: user.userId } });
+}</code></pre></figure>
+
+<h3>What an attacker gets</h3>
+<p>Code execution as the user running the Node.js process. In most Next.js deployments that means everything in <code>process.env</code>: database URLs, auth signing secrets such as <code>NEXTAUTH_SECRET</code>, payment and AI API keys, and often cloud credentials. With a session signing secret, an attacker can forge logins for any user. With cloud credentials, they can move from the web tier into storage and databases.</p>
+
+<h2>Who is affected</h2>
+
+<div class="art__tbl"><table class="tbl">
+  <thead><tr><th scope="col">Component</th><th scope="col">Status</th><th scope="col">Action</th></tr></thead>
+  <tbody><tr><th scope="row">Next.js 16.x</th><td>Affected through 16.4.0 (SVG RCE, <code>use cache</code> RCE, Server Actions DoS)</td><td>Upgrade to 16.4.1</td></tr><tr><th scope="row">Next.js 15.x</th><td>Affected through 15.5.27 (SVG RCE, Server Actions DoS)</td><td>Upgrade to 15.5.28 and make sure sharp is 0.35.5+</td></tr><tr><th scope="row">Next.js 10.x–14.x</th><td>SVG RCE affects 10.0.0 onwards; no patch on these lines</td><td>Upgrade to 15.5.28 or 16.4.1</td></tr><tr><th scope="row">react-server-dom-*</th><td>19.0.0–19.3.0 affected by the <code>use cache</code> issue upstream</td><td>Upgrade through the patched Next.js release</td></tr><tr><th scope="row">Node.js 26.x / 24.x / 22.x</th><td>Affected below 26.12.1 / 24.22.1 / 22.23.4</td><td>Upgrade and restart</td></tr><tr><th scope="row">Node.js 20.x and older</th><td>End of life, affected, no upstream fix</td><td>Move to 22 or 24</td></tr></tbody>
+</table></div>
+<p><strong>The sharp caveat.</strong> Next.js 15.5.28 still accepts the vulnerable sharp 0.34.x, and an upgrade over an existing install can leave it in place. Version 16.4.1 requires 0.35.5. On 15.x, always check <code>npm ls sharp</code>.</p>
+<p><strong>The scanner caveat.</strong> At release, the <code>use cache</code> and Server Actions advisories had no CVE and were missing from the feed <code>npm audit</code> uses. A clean audit is not proof you are patched.</p>
+
+<h2>Is it being exploited?</h2>
+
+<div class="art__tbl"><table class="tbl">
+  <thead><tr><th scope="col">Source</th><th scope="col">What they report</th></tr></thead>
+  <tbody><tr><th scope="row">Datadog Security Labs</th><td>React2Shell: scanning from about 22:00 UTC on 3 Dec 2025; 800+ attacking IPs by 5 Dec; weaponised payloads observed</td></tr><tr><th scope="row">The Hacker News</th><td>October 2026 Next.js flaws: no public reports of exploitation as of 15 Oct</td></tr><tr><th scope="row">SecurityOnline</th><td>October 2026 Node.js flaws: the Node.js team reports no exploitation in the wild and no confirmed public proof of concept</td></tr></tbody>
+</table></div>
+<p>React2Shell is the warning. It went from disclosure to mass scanning in hours. The October flaws sit in the same layers, so treat “no attacks yet” as a head start, not a reason to wait.</p>
+
+<h2>Why this hits Indian startups and SMEs hard</h2>
+<p>Next.js has become a default choice for Indian SaaS startups, D2C brands and agency-built products. Three patterns make these bugs especially risky here.</p>
+<ul>
+  <li><strong>The agency-built app nobody owns.</strong> An agency delivered the product, the contract ended, and nobody upgrades its dependencies. It may still be on Next.js 13 or 14, or on Node.js 18 or 20, which get no fix.</li>
+  <li><strong>Self-hosted containers on a VPS or EC2.</strong> A Next.js app in Docker on EC2, Lightsail, DigitalOcean or Hetzner is patched by nobody unless you rebuild the image. Managed platforms patch their runtime; a self-hosted container keeps the old one.</li>
+  <li><strong>One <code>.env</code> holding everything.</strong> The same app often carries production database credentials, payment keys and broad cloud access keys in environment variables. Code execution in the Node process is enough to take them all.</li>
+</ul>
+<p>If your answer to “which Next.js and Node.js versions is our app on?” is “I’d have to ask someone”, start with the next section.</p>
+
+<h2>Check your exposure in 10 minutes</h2>
+<p><strong>On Vercel, Netlify or another managed platform,</strong> check the Node.js version in your project settings and confirm the platform has applied the October runtime patches. Projects on Node.js 20 must move to 22 or 24.</p>
+<p><strong>For a self-hosted app,</strong> run these from the project root and inside the deployed image:</p>
+<figure class="art__code"><figcaption>bash</figcaption><pre><code># 1. Framework, React and image library versions actually installed
+npm ls next react react-dom sharp
+
+# 2. Node.js runtime version
+node --version
+
+# 3. Is SVG optimisation switched on?
+grep -rn "dangerouslyAllowSVG" next.config.*
+
+# 4. Cache Components and Server Actions in use?
+grep -rn "cacheComponents" next.config.*
+grep -rln "'use cache'\|'use server'" app/ src/ 2&gt;/dev/null
+
+# 5. Containers: which Node.js and Next.js are inside each running image?
+docker ps -q | xargs -I{} docker exec {} node --version</code></pre></figure>
+<p><strong>Watch out for:</strong></p>
+<ul>
+  <li><strong>The lockfile is not the server.</strong> A patched <code>package.json</code> on a laptop means nothing until a new build is running in production. Check inside the deployed image.</li>
+  <li><strong>More than one app.</strong> Monorepos, admin panels and marketing sites often carry their own <code>next</code> dependency. Check each one.</li>
+  <li><strong>Old base images.</strong> A <code>node:20</code> or unpinned <code>node:lts</code> image built months ago still contains the old runtime. Rebuild from a fresh, pinned base image.</li>
+</ul>
+
+<h2>Fix it</h2>
+<p>Patching is the only complete fix. Everything else only buys time.</p>
+
+<h3>1. Patch, rebuild, redeploy, restart</h3>
+<figure class="art__code"><figcaption>bash</figcaption><pre><code># Next.js 16
+npm install next@16.4.1
+
+# Next.js 15.5 — also pin sharp, because 15.5.28 still accepts sharp 0.34.x
+npm install next@15.5.28 sharp@^0.35.5
+
+# Confirm
+npm ls next sharp</code></pre></figure>
+<p>Force a fixed sharp even when another package pulls an older one:</p>
+<figure class="art__code"><figcaption>package.json</figcaption><pre><code>{
+  "overrides": { "sharp": "^0.35.5" }
+}</code></pre></figure>
+<p>Then upgrade Node.js to 26.12.1, 24.22.1 or 22.23.4, rebuild the container with <code>npm ci</code>, redeploy, and restart every Node process. A running process keeps the old code in memory.</p>
+<p>On Next.js 13 or 14, or Node.js 20 or older, there is no patch on your line. Upgrade, or take the app off the internet until you can.</p>
+<p>Internet-facing apps come first, and among those, apps that accept uploads or fetch user-supplied URLs.</p>
+
+<h3>2. If you cannot patch today</h3>
+<p>These settings reduce exposure but do not make an app safe.</p>
+<figure class="art__code"><figcaption>next.config.js</figcaption><pre><code>// next.config.js
+module.exports = {
+  images: {
+    dangerouslyAllowSVG: false, // the default: keep SVGs out of the optimiser
+    remotePatterns: [{ protocol: 'https', hostname: 'cdn.example.com' }],
+  },
+};</code></pre></figure>
+<p>Also:</p>
+<ul>
+  <li>Strip internal headers at the edge, such as <code>x-middleware-subrequest</code>, which a browser should never send.</li>
+  <li>Reject <code>Content-Encoding: br</code> on inbound requests at your proxy if you do not need it.</li>
+  <li>Validate every URL your server fetches: HTTPS only, an allowlist of hosts, no control characters in the hostname, and no private or link-local IPs.</li>
+  <li>Rate-limit POST requests to Server Action routes and alert on sustained high CPU in Node processes.</li>
+  <li>Put a WAF in front, and make sure the origin accepts traffic only from it.</li>
+</ul>
+<p>The <code>use cache</code> RCE and the Server Actions DoS have no workaround. Only the upgrade closes them.</p>
+
+<h3>3. What not to do</h3>
+<ul>
+  <li><strong>Don’t rely on middleware alone for authorisation.</strong> Check the user again where data is read or changed.</li>
+  <li><strong>Don’t treat a clean <code>npm audit</code> as proof.</strong> Two of the October advisories were missing from its feed at release.</li>
+  <li><strong>Don’t update <code>package.json</code> and stop.</strong> Without a rebuild and redeploy, production still runs the old code.</li>
+  <li><strong>Don’t assume your platform or agency has patched.</strong> Ask, and get a yes in writing.</li>
+</ul>
+
+<h2>Detect and verify</h2>
+<p>There are no published indicators of compromise for the October 2026 flaws. Hunt for the side effects that code execution in Node.js usually leaves. Treat these as leads, not proof.</p>
+<p><strong>Signs worth investigating:</strong></p>
+<ul>
+  <li>Node.js processes spawning shells or tools such as <code>sh</code>, <code>bash</code>, <code>curl</code>, <code>wget</code> or <code>nc</code>.</li>
+  <li>Crashes and restarts, such as segmentation faults or repeated container restarts, in services that process images or fetch external URLs.</li>
+  <li>Unusual requests to <code>/_next/image</code> for SVG sources, or bursts of POST requests carrying a <code>Next-Action</code> header.</li>
+  <li>Outbound connections from the app to unfamiliar IPs.</li>
+  <li>New or changed files in writable directories such as <code>.next/cache</code> or upload folders.</li>
+</ul>
+<p><strong>After patching, verify:</strong></p>
+<ul class="art__checks">
+  <li><code>npm ls next sharp</code> and <code>node --version</code> show fixed versions inside every deployed image.</li>
+  <li>Every Node process was restarted after the update.</li>
+  <li>If you found any of the signs above, rotate every secret the app holds: database credentials, session signing secrets, payment and API keys, and cloud credentials. A patched app can still have an attacker inside.</li>
+</ul>
+
+<h2>The lesson beyond these CVEs</h2>
+<p>These advisories will be patched and forgotten. The conditions that make them dangerous will not.</p>
+<ul>
+  <li><strong>Your app is the top of a tall stack.</strong> Next.js, React, Node.js and sharp each need watching and patching, not just your own code.</li>
+  <li><strong>You cannot patch what you don’t know you run.</strong> Keep an inventory of every app, its Next.js, Node.js and sharp versions, and who owns it.</li>
+  <li><strong>End-of-life software is a standing liability.</strong> Next.js 13 and 14 and Node.js 20 got no fix this time, and will get none next time.</li>
+  <li><strong>Defence in depth still matters.</strong> Authorise next to the data, keep secrets out of the browser, give the app least-privilege credentials, and restrict its outbound traffic.</li>
+  <li><strong>Someone has to be watching.</strong> React2Shell went from disclosure to mass scanning in hours. Only monitoring catches an attack that lands before your patch does.</li>
+</ul>
+
+<section class="art__help" aria-labelledby="help-h">
+  <h2 id="help-h">How Aerovant can help</h2>
+  <p>If you are unsure which Next.js and Node.js versions run in your environment, or whether last week’s traffic was more than noise, our team can help:</p>
+  <ul>
+    <li><strong>Exposure check:</strong> identify internet-facing Next.js and Node.js apps, their versions and how they are deployed.</li>
+    <li><strong>Patch and hardening support</strong> for self-managed servers, cloud VMs and containers on AWS.</li>
+    <li><strong>Compromise assessment:</strong> log review and secret-rotation planning for apps that were exposed.</li>
+    <li><strong>VAPT and Managed SOC</strong> to find the next weak point before an attacker does, and to watch for it after hours.</li>
+  </ul>
+  <p>Write to <a href="mailto:admin@aerovanttech.com">admin@aerovanttech.com</a> or <a href="../../contact/">get in touch</a>.</p>
+</section>
+
+<p class="t-note art__disclaimer">This article reflects public information as of 23 October 2026. Details may change as vendors publish further analysis; always follow the official Next.js, React and Node.js advisories.</p>
+
+<h2>Sources</h2>
+<ul class="art__sources">
+  <li>Next.js: Security Update for Upstream Vulnerabilities (14 Oct 2026)</li>
+  <li>GitHub advisory GHSA-2464-fhr4-w9xw / CVE-2026-96889</li>
+  <li>GitHub advisory GHSA-673q-mjm6-r5xr</li>
+  <li>Node.js: October 2026 security releases</li>
+  <li>Vercel: Next.js May 2026 security release</li>
+  <li>Fastly: CVE-2025-29927 authorization bypass in Next.js</li>
+  <li>Invicti: React2Shell (CVE-2025-55182 / CVE-2025-66478)</li>
+  <li>Datadog Security Labs: React2Shell exploitation</li>
+  <li>The Hacker News: Next.js out-of-band patch for caching and SVG RCEs</li>
+  <li>SecurityOnline: Node.js security release, October 2026</li>
+</ul>
+    <p class="art__back"><a class="go " href="../../insights/">All insights<span aria-hidden="true">→</span></a></p>
+  </div></div>
+</article>
+
+<section class="cta sec--ink" aria-label="Next step">
+  <div class="wrap cta__in">
+    <div><h2 class="t-h2">Worried about your own exposure?</h2><p class="t-lead">Tell us what you run. We will tell you plainly what to check first.</p></div>
+    <div class="cta__act"><a class="btn btn--light" href="../../contact/"><span>Talk to an expert</span><span class="btn__arrow" aria-hidden="true">→</span></a></div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <a class="ftr__logo" href="../../" aria-label="Aerovant Technologies, home"><img src="../../assets/img/logo-white.svg" width="172" height="56" alt=""></a>
+      <p class="ftr__tag">Where cloud, code and security converge.</p>
+    </div>
+    <div class="ftr__cols">
+      <nav aria-label="Company"><h2>Company</h2><ul>
+        <li><a href="../../about/">About</a></li>
+        <li><a href="../../industries/">Industries</a></li>
+        <li><a href="../../careers/">Careers</a></li>
+        <li><a href="../../contact/">Contact</a></li>
+      </ul></nav>
+      <nav aria-label="Product"><h2>Product</h2><ul>
+        <li><a href="../../products/#threatready">ThreatReady</a></li>
+      </ul></nav>
+      <nav aria-label="Services"><h2>Services</h2><ul>
+        <li><a href="../../services/cloud-security/">Cloud Security</a></li><li><a href="../../services/vapt/">VAPT</a></li><li><a href="../../services/managed-security/">Managed Security Services</a></li>
+        <li><a href="../../services/">All services</a></li>
+      </ul></nav>
+      <nav aria-label="Resources"><h2>Resources</h2><ul>
+        <li><a href="../../insights/">Insights</a></li>
+        <li><a href="https://www.aerovantacademy.com" target="_blank" rel="noopener noreferrer">Aerovant Academy</a></li>
+        <li><a href="../../privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+        <li><a href="../../terms/" target="_blank" rel="noopener noreferrer">Terms</a></li>
+      </ul></nav>
+      <div><h2>Contact</h2>
+        <address>
+          <a href="mailto:admin@aerovanttech.com">admin@aerovanttech.com</a><br>
+          <a href="tel:+919042647714">+91&nbsp;90426&nbsp;47714</a><br>
+          Rayakkottai Road<br>Krishnagiri, Tamil Nadu 635002<br>India
+        </address>
+      </div>
+    </div>
+    <div class="ftr__base">
+      <p>© 2026 Aerovant Technologies Pvt. Ltd.</p>
+      <ul class="ftr__social"><li><a href="https://www.linkedin.com/company/aerovant-technologies" target="_blank" rel="noopener noreferrer">LinkedIn</a></li><li><a href="https://x.com/aerovant_tech" target="_blank" rel="noopener noreferrer">X</a></li><li><a href="https://www.instagram.com/aerovant_technologies" target="_blank" rel="noopener noreferrer">Instagram</a></li><li><a href="https://www.facebook.com/profile.php?id=61587139213075" target="_blank" rel="noopener noreferrer">Facebook</a></li></ul>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/js/site.js" defer></script>
+</body>
+</html>

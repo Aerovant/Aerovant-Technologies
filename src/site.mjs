@@ -1,3 +1,6 @@
+import php2shell from './insights/php2shell.mjs';
+import emudhra from './insights/emudhra.mjs';
+import nextjs from './insights/nextjs-nodejs-security.mjs';
 // Single source of truth for company facts, products, services and navigation.
 // Everything here was taken from the previous website repo or the redesign brief.
 // Nothing on the site should state a fact that is not in this file.
@@ -137,8 +140,9 @@ export const startSteps = [
 
 export const insightCategories = ['Cybersecurity', 'Cloud Security', 'VAPT', 'Technology', 'SaaS', 'Threat Intelligence'];
 
-// Add published articles here: { title, date: 'YYYY-MM-DD', category, summary, href }
-export const insights = [];
+// Published articles. Each lives in src/insights/<slug>.mjs and gets its own page at /insights/<slug>/.
+// Newest first is applied automatically; same-day articles keep the order listed here.
+export const insights = [nextjs, emudhra, php2shell].sort((x, y) => y.date.localeCompare(x.date));
 
 // Add open roles here: { title, location, type, href }
 export const openings = [];

@@ -1,4 +1,4 @@
-import { site, services, insights, insightCategories, openings, startSteps, u } from '../site.mjs';
+import { site, services, insights, insightCategories, openings, startSteps, u, a } from '../site.mjs';
 import { pageHead, ctaBand, ledger, go, steps, btn } from '../layout.mjs';
 
 /* ---------- /about/ ---------- */
@@ -127,7 +127,7 @@ const industries = () => [
 ].join('\n');
 
 /* ---------- /insights/ ---------- */
-const fmt = (d) => new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+export const fmt = (d) => new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const insightsPage = () => [
   pageHead({
     crumb: [['Home', '/'], ['Insights']],
@@ -143,10 +143,14 @@ const insightsPage = () => [
     </aside>
     <div class="ins__list">
       ${insights.length ? insights.map((p) => `
-      <article class="post">
-        <p class="t-label"><time datetime="${p.date}">${fmt(p.date)}</time> <span>${p.category}</span></p>
-        <h2 class="post__t"><a href="${p.href}">${p.title}</a></h2>
-        <p>${p.summary}</p>
+      <article class="post${p.image ? ' post--img' : ''}">
+        ${p.image ? `<a class="post__img" href="${u(`/insights/${p.slug}/`)}" tabindex="-1" aria-hidden="true"><img src="${a(p.image)}" alt="" width="${p.imageW ?? 1600}" height="${p.imageH ?? 840}" loading="lazy"></a>` : ''}
+        <div class="post__text">
+          <p class="t-label"><time datetime="${p.date}">${fmt(p.date)}</time> <span>${p.category}</span></p>
+          <h2 class="post__t"><a href="${u(`/insights/${p.slug}/`)}">${p.title}</a></h2>
+          <p>${p.summary}</p>
+          <p>${go(`/insights/${p.slug}/`, 'Read the article')}</p>
+        </div>
       </article>`).join('') : `
       <div class="empty">
         <h2 class="t-h2">Nothing published yet.</h2>
