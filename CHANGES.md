@@ -1,3 +1,25 @@
+# Website changes — 23 October 2026 (SEO and AI-search readiness)
+
+**Search titles and descriptions.** Every indexable page now has a search title under 60 characters and a meta description under 160, built around what people search for: "VAPT services", "AWS cloud security assessment", "managed security services & SOC", "cybersecurity services for startups & SMEs", the CVE numbers on articles. Set with `seo:` and `description:` on each page; article cards keep the longer `summary`.
+
+**Structured data (JSON-LD), generated for every page from `src/site.mjs`** (`src/seo.mjs`):
+- Organization (name, legal name, address, phone, email, social profiles, services offered) and WebSite on every page.
+- BreadcrumbList from each page's breadcrumb; About/Contact/Collection page types.
+- Service on each service page, and all three on `/services/`. FAQPage from the FAQ blocks on the three service pages (10 questions).
+- SoftwareApplication for ThreatReady. BlogPosting for each article (published/modified dates, image, author, publisher). ItemList of articles on `/insights/`.
+
+**AI crawlers.** `robots.txt` now names GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, Claude-User, PerplexityBot, Perplexity-User, Google-Extended, Applebot-Extended, Bingbot and DuckAssistBot and allows them. New `/llms.txt` gives AI systems the company summary, key facts and every important page, generated from the same data. A single positioning statement, `site.summary`, feeds both, so the company is described the same way everywhere.
+
+**Sitemap.** `<lastmod>` for articles and the Insights index (only where the date is real).
+
+**Social previews.** `og:image:width/height`, `og:image:alt`, `article:published_time` / `modified_time` on articles.
+
+**Speed.** Article images are served as WebP at 800 and 1600 px (32–97 KB, was 190–220 KB JPEG) with `srcset`, the JPEG kept as fallback and og:image. The article header image loads with `fetchpriority="high"`; list thumbnails are lazy. To add WebP for a new article image, save `<name>-800.webp` and `<name>-1600.webp` next to the JPEG; without them the JPEG is used.
+
+**Freshness.** Articles can carry `updated: 'YYYY-MM-DD'`; when it differs from the publish date the page shows "Last updated" and the structured data and sitemap use it.
+
+**Not code, still to do:** verify the domain in Google Search Console and Bing Webmaster Tools and submit `https://aerovanttech.com/sitemap.xml` in both; turn on "Enforce HTTPS" in the repo's Pages settings if it is not already on (http:// already redirects).
+
 # Website changes — 23 October 2026 (Insights fact-check)
 
 - **php2shell:** Amazon's finding restated: attempts from 17 Oct onward, but Amazon says it is unclear whether any would have worked (was "broadly exploited"). TL;DR exploitation line matches. "Dates back to PHP 5.4.0" → "at least PHP 5" (and the version table row → "5.x to 7.3"). Timeline notes PHP brought the release forward a day. Sources add Amazon's MadPot post and Bitsight, and link Rapid7.

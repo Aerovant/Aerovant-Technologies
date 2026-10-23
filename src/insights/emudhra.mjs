@@ -9,6 +9,8 @@ export default {
   slug: 'emudhra-certificate-incident',
   title: 'eMudhra: The Certificate Scare That Ended in a Day, and the Deadline That Didn’t',
   date: '2026-10-23',
+  seo: 'eMudhra Certificate Incident: Act Before 27 Oct | Aerovant',
+  description: 'Chrome drops eMudhra’s emSign ECC Root CA - G3 on 27 October. Who is affected, why GST and MCA DSCs are safe, and a 10-minute check for your domains.',
   category: 'Cybersecurity',
   author: 'Aerovant Technologies Security Team',
   summary: 'A flaw in eMudhra’s key ceremony left eight certificate authority keys weak. Browsers shut it down within hours and nobody appears to have been harmed, but Chrome drops an eMudhra root on 27 October. Who is affected, why your DSC is safe, and the 10-minute check to run now.',

@@ -1,0 +1,37 @@
+# Aerovant Technologies
+
+> Aerovant Technologies is a cybersecurity and software company based in Krishnagiri, Tamil Nadu, India. We build ThreatReady, a platform to train, test and hire security engineers, and deliver cloud security (AWS), VAPT and managed security services to startups, SaaS companies and SMEs.
+
+Based in Rayakkottai Road, Krishnagiri, Tamil Nadu 635002, India. Contact: admin@aerovanttech.com, +91 90426 47714. We reply within one business day.
+
+Key facts:
+- What we build: ThreatReady (cybersecurity skills platform, https://threatready.io/).
+- What we secure: AWS cloud environments, web applications, APIs and networks.
+- Who we help: founders, CTOs and engineering heads at startups, SaaS companies and SMEs.
+- Services: Cloud Security; Vulnerability Assessment & Penetration Testing; Managed Security Services.
+
+## Services
+- [Cybersecurity services](https://aerovanttech.com/services/): Cloud security, VAPT and managed security services from Aerovant Technologies, for startups, SaaS companies and SMEs.
+- [Cloud Security](https://aerovanttech.com/services/cloud-security/): AWS cloud security assessment and configuration review for startups and SMEs. Know what is exposed in your AWS environment and what to change first.
+- [VAPT: Vulnerability Assessment & Penetration Testing](https://aerovanttech.com/services/vapt/): Web application VAPT, API security testing and network penetration testing. Find out which weaknesses can actually be exploited, with evidence.
+- [Managed Security Services](https://aerovanttech.com/services/managed-security/): Managed security services: SOC-as-a-Service, EDR, firewall and WAF management, and threat intelligence advisories from Aerovant Technologies.
+
+## Product
+- [ThreatReady](https://aerovanttech.com/products/): ThreatReady by Aerovant: train, test and hire security engineers on real work. Attack Reasoning Lab, Lab Simulations and InterviewPrep across 15 role tracks.
+- [ThreatReady website](https://threatready.io/): Train, test and hire security engineers on real work, not on certificates.
+
+## Insights
+- [Insights](https://aerovanttech.com/insights/): Notes on cybersecurity, cloud security, VAPT and engineering from Aerovant Technologies.
+- [Next.js on Node.js: Four Layers, Four Ways In](https://aerovanttech.com/insights/nextjs-nodejs-security/): Critical Next.js, React Server Components and Node.js flaws fixed in October 2026: affected versions, a 10-minute check and how to patch self-hosted apps. (Cybersecurity, 2026-10-23)
+- [eMudhra: The Certificate Scare That Ended in a Day, and the Deadline That Didn’t](https://aerovanttech.com/insights/emudhra-certificate-incident/): Chrome drops eMudhra’s emSign ECC Root CA - G3 on 27 October. Who is affected, why GST and MCA DSCs are safe, and a 10-minute check for your domains. (Cybersecurity, 2026-10-23)
+- [php2shell: The PHP Bug That Fires Before Your Code Runs](https://aerovanttech.com/insights/php2shell/): php2shell (CVE-2026-109618, CVE-2026-109619) is unauthenticated RCE in PHP core. Who is affected, a 10-minute exposure check, and how to patch. (Threat Intelligence, 2026-10-23)
+
+## Company
+- [About](https://aerovanttech.com/about/): Aerovant Technologies is a cybersecurity and software company in Krishnagiri, Tamil Nadu. We build ThreatReady and secure systems for startups and SMEs.
+- [Who we work with](https://aerovanttech.com/industries/): Aerovant works with SaaS companies, startups, SMEs and teams building on AWS that need practical cybersecurity support.
+- [Careers](https://aerovanttech.com/careers/): Work at Aerovant Technologies: product engineering and security roles, and internships through Aerovant Academy.
+- [Contact](https://aerovanttech.com/contact/): Talk to an expert at Aerovant Technologies about ThreatReady or cybersecurity services.
+
+## Optional
+- [Privacy Policy](https://aerovanttech.com/privacy/): How Aerovant Technologies handles information sent through this website.
+- [Terms](https://aerovanttech.com/terms/): Terms of use for the Aerovant Technologies website.

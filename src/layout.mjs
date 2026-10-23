@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import { site, products, services, startSteps, u, a, esc } from './site.mjs';
+import { jsonLd, collectCrumb, collectFaq } from './seo.mjs';
 
 /* Content Security Policy, set in a meta tag because GitHub Pages cannot send headers.
    It covers what this site loads: its own files, one inline script (allowed by hash) and the two form endpoints.
@@ -48,7 +49,7 @@ export const go = (href, label, mod = '') =>
   `<a class="go ${mod}" href="${u(href)}">${label}<span aria-hidden="true">→</span></a>`;
 
 /** Page header used by every inner page. `aside` is optional HTML placed beside the title. */
-export const pageHead = ({ crumb, title, lead, aside = '', mod = '' }) => `
+export const pageHead = ({ crumb, title, lead, aside = '', mod = '' }) => (crumb && collectCrumb(crumb), `
 <header class="phead ${mod}">
   <div class="wrap phead__in">
     <div class="phead__text">
@@ -58,7 +59,7 @@ export const pageHead = ({ crumb, title, lead, aside = '', mod = '' }) => `
     </div>
     ${aside ? `<div class="phead__aside">${aside}</div>` : ''}
   </div>
-</header>`;
+</header>`);
 
 /** Numbered steps. Only used for real sequences. mod: "steps--stair" | "steps--row" | "steps--col" */
 export const steps = (items, mod = 'steps--row') => `
@@ -66,10 +67,10 @@ export const steps = (items, mod = 'steps--row') => `
   ${items.map(([t, d], i) => `<li class="steps__i" style="--n:${i}"><span class="steps__n" aria-hidden="true">${i + 1}</span><h3 class="steps__t">${t}</h3>${d ? `<p>${d}</p>` : ''}</li>`).join('')}
 </ol>`;
 
-export const faq = (items) => `
+export const faq = (items) => (collectFaq(items), `
 <div class="faq">
   ${items.map(([q, ans]) => `<details class="faq__i"><summary><span>${q}</span><span class="faq__mark" aria-hidden="true"></span></summary><div class="faq__a"><p>${ans}</p></div></details>`).join('')}
-</div>`;
+</div>`);
 
 /** "Not sure where to start?" block, shared by home and services pages. */
 export const startHere = () => `
@@ -205,8 +206,11 @@ export const footer = () => `
 export function doc(page) {
   return externalize(page$(page));
 }
-function page$({ path, title, description, body, bodyClass = '', noindex = false, image = 'img/og.png', ogType = 'website' }) {
-  const full = path === '/' ? `${site.name}: ThreatReady and cybersecurity services` : `${title} | ${site.name}`;
+/* `seo` is the full <title> when the page name alone is a weak search title; keep it under 60 characters.
+   `description` is the meta description; keep it under 160. `ld` adds page-specific structured data. */
+function page$({ path, title, seo, description, body, bodyClass = '', noindex = false, image = 'img/og.png', imageW = 1200, imageH = 630, imageAlt, ogType = 'website', published, modified, ld }) {
+  const full = seo ?? `${title} | ${site.name}`;
+  const ldTag = jsonLd({ path, title: full, description, ld }); // always called: it also clears what this page's render collected
   const canonical = site.url + path;
   return `<!doctype html>
 <html lang="en">
@@ -224,13 +228,17 @@ ${noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" hr
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${canonical}">
 <meta property="og:image" content="${site.url}/assets/${image}">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image:width" content="${imageW}">
+<meta property="og:image:height" content="${imageH}">
+${imageAlt ? `<meta property="og:image:alt" content="${esc(imageAlt)}">\n` : ''}${published ? `<meta property="article:published_time" content="${published}">\n<meta property="article:modified_time" content="${modified ?? published}">\n` : ''}<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1A1648">
 <link rel="icon" href="${a('img/favicon.svg')}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="${a('img/apple-touch-icon.png')}">
 <link rel="preload" href="${a('fonts/archivo-var.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${a('css/site.css')}">
+<link rel="alternate" type="text/plain" href="${site.url}/llms.txt" title="llms.txt">
 <script>${jsFlag}</script>
+${noindex ? '' : ldTag}
 </head>
 <body class="${bodyClass}">
 ${header(path)}

@@ -5,22 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.web3forms.com https://script.google.com https://script.googleusercontent.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>php2shell: The PHP Bug That Fires Before Your Code Runs | Aerovant Technologies</title>
-<meta name="description" content="Two critical PHP core flaws, CVE-2026-109618 and CVE-2026-109619, allow unauthenticated remote code execution. Here is who is affected, how to check your exposure in ten minutes, and how to fix it.">
+<title>php2shell: PHP RCE CVE-2026-109618 Explained | Aerovant</title>
+<meta name="description" content="php2shell (CVE-2026-109618, CVE-2026-109619) is unauthenticated RCE in PHP core. Who is affected, a 10-minute exposure check, and how to patch.">
 <link rel="canonical" href="https://aerovanttech.com/insights/php2shell/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Aerovant Technologies">
-<meta property="og:title" content="php2shell: The PHP Bug That Fires Before Your Code Runs | Aerovant Technologies">
-<meta property="og:description" content="Two critical PHP core flaws, CVE-2026-109618 and CVE-2026-109619, allow unauthenticated remote code execution. Here is who is affected, how to check your exposure in ten minutes, and how to fix it.">
+<meta property="og:title" content="php2shell: PHP RCE CVE-2026-109618 Explained | Aerovant">
+<meta property="og:description" content="php2shell (CVE-2026-109618, CVE-2026-109619) is unauthenticated RCE in PHP core. Who is affected, a 10-minute exposure check, and how to patch.">
 <meta property="og:url" content="https://aerovanttech.com/insights/php2shell/">
 <meta property="og:image" content="https://aerovanttech.com/assets/img/insights/php2shell.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A laptop showing a crafted multipart POST request beside a cracked PHP logo, with the title php2shell, CVE-2026-109618, CVE-2026-109619, CVSS 9.2.">
+<meta property="article:published_time" content="2026-10-23">
+<meta property="article:modified_time" content="2026-10-23">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1A1648">
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
 <link rel="preload" href="../../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="alternate" type="text/plain" href="https://aerovanttech.com/llms.txt" title="llms.txt">
 <script>document.documentElement.classList.add('js')</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://aerovanttech.com/#org","name":"Aerovant Technologies","legalName":"Aerovant Technologies Pvt. Ltd.","url":"https://aerovanttech.com/","logo":"https://aerovanttech.com/assets/img/apple-touch-icon.png","image":"https://aerovanttech.com/assets/img/og.png","description":"Aerovant Technologies is a cybersecurity and software company based in Krishnagiri, Tamil Nadu, India. We build ThreatReady, a platform to train, test and hire security engineers, and deliver cloud security (AWS), VAPT and managed security services to startups, SaaS companies and SMEs.","slogan":"Where cloud, code and security converge.","email":"admin@aerovanttech.com","telephone":"+919042647714","address":{"@type":"PostalAddress","streetAddress":"Rayakkottai Road","addressLocality":"Krishnagiri","addressRegion":"Tamil Nadu","postalCode":"635002","addressCountry":"IN"},"sameAs":["https://www.linkedin.com/company/aerovant-technologies","https://x.com/aerovant_tech","https://www.instagram.com/aerovant_technologies","https://www.facebook.com/profile.php?id=61587139213075"],"knowsAbout":["Cybersecurity","Cloud security","AWS security","Vulnerability assessment and penetration testing (VAPT)","API security testing","Managed security services","Security operations (SOC)"],"makesOffer":[{"@type":"Offer","itemOffered":{"@id":"https://aerovanttech.com/services/cloud-security/#service"}},{"@type":"Offer","itemOffered":{"@id":"https://aerovanttech.com/services/vapt/#service"}},{"@type":"Offer","itemOffered":{"@id":"https://aerovanttech.com/services/managed-security/#service"}}],"brand":[{"@type":"Brand","name":"ThreatReady","url":"https://threatready.io/"}]},{"@type":"WebSite","@id":"https://aerovanttech.com/#website","url":"https://aerovanttech.com/","name":"Aerovant Technologies","publisher":{"@id":"https://aerovanttech.com/#org"},"inLanguage":"en"},{"@type":"WebPage","@id":"https://aerovanttech.com/insights/php2shell/#webpage","url":"https://aerovanttech.com/insights/php2shell/","name":"php2shell: PHP RCE CVE-2026-109618 Explained | Aerovant","description":"php2shell (CVE-2026-109618, CVE-2026-109619) is unauthenticated RCE in PHP core. Who is affected, a 10-minute exposure check, and how to patch.","isPartOf":{"@id":"https://aerovanttech.com/#website"},"about":{"@id":"https://aerovanttech.com/#org"},"inLanguage":"en","breadcrumb":{"@id":"https://aerovanttech.com/insights/php2shell/#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://aerovanttech.com/insights/php2shell/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://aerovanttech.com/"},{"@type":"ListItem","position":2,"name":"Insights","item":"https://aerovanttech.com/insights/"},{"@type":"ListItem","position":3,"name":"php2shell: The PHP Bug That Fires Before Your Code Runs","item":"https://aerovanttech.com/insights/php2shell/"}]},{"@type":"BlogPosting","@id":"https://aerovanttech.com/insights/php2shell/#article","headline":"php2shell: The PHP Bug That Fires Before Your Code Runs","description":"php2shell (CVE-2026-109618, CVE-2026-109619) is unauthenticated RCE in PHP core. Who is affected, a 10-minute exposure check, and how to patch.","image":["https://aerovanttech.com/assets/img/insights/php2shell.jpg"],"datePublished":"2026-10-23","dateModified":"2026-10-23","articleSection":"Threat Intelligence","inLanguage":"en","author":{"@type":"Organization","name":"Aerovant Technologies Security Team","url":"https://aerovanttech.com/"},"publisher":{"@id":"https://aerovanttech.com/#org"},"mainEntityOfPage":{"@id":"https://aerovanttech.com/insights/php2shell/"},"isAccessibleForFree":true}]}</script>
 </head>
 <body class="">
 
@@ -75,7 +82,7 @@
       <p class="art__by">Aerovant Technologies Security Team</p>
     </div>
   </header>
-  <figure class="wrap art__fig"><img src="../../assets/img/insights/php2shell.jpg" alt="A laptop showing a crafted multipart POST request beside a cracked PHP logo, with the title php2shell, CVE-2026-109618, CVE-2026-109619, CVSS 9.2." width="1600" height="840"></figure>
+  <figure class="wrap art__fig"><picture><source type="image/webp" srcset="../../assets/img/insights/php2shell-800.webp 800w, ../../assets/img/insights/php2shell-1600.webp 1600w" sizes="(min-width: 82.5rem) 1210px, calc(100vw - 2.5rem)"><img src="../../assets/img/insights/php2shell.jpg" alt="A laptop showing a crafted multipart POST request beside a cracked PHP logo, with the title php2shell, CVE-2026-109618, CVE-2026-109619, CVSS 9.2." width="1600" height="840" fetchpriority="high"></picture></figure>
   <div class="wrap"><div class="art__body">
 <p class="art__lede">Most web vulnerabilities live in your code: a forgotten input check, a bad plugin, a weak password. php2shell is different. It lives in PHP itself, and on some servers it fires before a single line of your application runs.</p>
 <p>On 21 October 2026, the PHP project shipped emergency fixes for two critical flaws, CVE-2026-109618 and CVE-2026-109619, nicknamed php2shell. An unauthenticated attacker on the internet can send crafted requests and potentially run code on your web server. No login, no user click, no vulnerable plugin required.</p>

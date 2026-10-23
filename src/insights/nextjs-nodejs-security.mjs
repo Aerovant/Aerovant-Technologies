@@ -6,6 +6,8 @@ export default {
   slug: 'nextjs-nodejs-security',
   title: 'Next.js on Node.js: Four Layers, Four Ways In',
   date: '2026-10-23',
+  seo: 'Next.js & Node.js Security Fixes, October 2026 | Aerovant',
+  description: 'Critical Next.js, React Server Components and Node.js flaws fixed in October 2026: affected versions, a 10-minute check and how to patch self-hosted apps.',
   category: 'Cybersecurity',
   author: 'Aerovant Technologies Security Team',
   summary: 'The most serious Next.js vulnerabilities of the past year were not in application code but in the layers underneath: the framework, React Server Components, Node.js and image libraries. What was fixed in October 2026, who is affected, and how to check and patch your apps.',

@@ -662,6 +662,8 @@ main:focus { outline: none; }
 /* ---------- article ---------- */
 .art__head { padding-block: var(--sec-sm) 2.5rem; }
 .art__meta span { margin-right: 1rem; color: var(--indigo); font-weight: 620; }
+.art__meta .art__upd { margin: 0 0 0 1rem; color: var(--muted); font-weight: 560; }
+.art__fig picture, .post__img picture { display: block; }
 .art__t { max-width: 22em; margin-top: 0.75rem; font-size: clamp(2rem, 1.3rem + 2.6vw, 3.5rem); line-height: 1.06; font-weight: 640; font-stretch: 116%; letter-spacing: -0.024em; text-wrap: balance; }
 .art__by { margin-top: 1.25rem; font-weight: 560; color: var(--muted); }
 .art__fig img { display: block; width: 100%; height: auto; }

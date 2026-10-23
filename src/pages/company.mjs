@@ -1,5 +1,7 @@
 import { site, services, insights, insightCategories, openings, startSteps, u, a } from '../site.mjs';
 import { pageHead, ctaBand, ledger, go, steps, btn } from '../layout.mjs';
+import { articleListLd } from '../seo.mjs';
+import { picture } from '../insights/kit.mjs';
 
 /* ---------- /about/ ---------- */
 const about = () => [
@@ -144,7 +146,7 @@ const insightsPage = () => [
     <div class="ins__list">
       ${insights.length ? insights.map((p) => `
       <article class="post${p.image ? ' post--img' : ''}">
-        ${p.image ? `<a class="post__img" href="${u(`/insights/${p.slug}/`)}" tabindex="-1" aria-hidden="true"><img src="${a(p.image)}" alt="" width="${p.imageW ?? 1600}" height="${p.imageH ?? 840}" loading="lazy"></a>` : ''}
+        ${p.image ? `<a class="post__img" href="${u(`/insights/${p.slug}/`)}" tabindex="-1" aria-hidden="true">${picture(p, { sizes: '(min-width: 68rem) 360px, (min-width: 40rem) 40vw, calc(100vw - 2.5rem)', attrs: 'loading="lazy" decoding="async"' })}</a>` : ''}
         <div class="post__text">
           <p class="t-label"><time datetime="${p.date}">${fmt(p.date)}</time> <span>${p.category}</span></p>
           <h2 class="post__t"><a href="${u(`/insights/${p.slug}/`)}">${p.title}</a></h2>
@@ -315,11 +317,11 @@ const notFound = () => `
 </div></section>`;
 
 export default [
-  { path: '/about/', title: 'About', description: 'Aerovant Technologies is a technology and cybersecurity company based in Krishnagiri, Tamil Nadu. We build ThreatReady and secure the systems other companies depend on.', render: about },
-  { path: '/industries/', title: 'Who we work with', description: 'Aerovant works with SaaS companies, startups, SMEs and teams building on AWS that need practical cybersecurity support.', render: industries },
-  { path: '/insights/', title: 'Insights', description: 'Notes on cybersecurity, cloud security, VAPT and engineering from Aerovant Technologies.', render: insightsPage },
-  { path: '/careers/', title: 'Careers', description: 'Work at Aerovant Technologies: product engineering and security roles, and internships through Aerovant Academy.', render: careers },
-  { path: '/contact/', title: 'Contact', description: 'Talk to an expert at Aerovant Technologies about ThreatReady or cybersecurity services.', render: contact },
+  { path: '/about/', title: 'About', seo: 'About Aerovant: Cybersecurity Company in Tamil Nadu', description: 'Aerovant Technologies is a cybersecurity and software company in Krishnagiri, Tamil Nadu. We build ThreatReady and secure systems for startups and SMEs.', render: about },
+  { path: '/industries/', title: 'Who we work with', seo: 'Who We Work With | Aerovant Technologies', description: 'Aerovant works with SaaS companies, startups, SMEs and teams building on AWS that need practical cybersecurity support.', render: industries },
+  { path: '/insights/', title: 'Insights', seo: 'Cybersecurity Insights & Threat Briefs | Aerovant', ld: (c) => [articleListLd(c)], description: 'Notes on cybersecurity, cloud security, VAPT and engineering from Aerovant Technologies.', render: insightsPage },
+  { path: '/careers/', title: 'Careers', seo: 'Cybersecurity Careers | Aerovant Technologies', description: 'Work at Aerovant Technologies: product engineering and security roles, and internships through Aerovant Academy.', render: careers },
+  { path: '/contact/', title: 'Contact', seo: 'Contact Aerovant: Talk to a Security Expert', description: 'Talk to an expert at Aerovant Technologies about ThreatReady or cybersecurity services.', render: contact },
   { path: '/privacy/', title: 'Privacy Policy', description: 'How Aerovant Technologies handles information sent through this website.', render: privacy },
   { path: '/terms/', title: 'Terms', description: 'Terms of use for the Aerovant Technologies website.', render: terms },
   { path: '/404/', file: '404.html', title: 'Page not found', description: 'This page could not be found.', noindex: true, render: notFound },

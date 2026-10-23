@@ -7,6 +7,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { site, setCtx } from './src/site.mjs';
 import { doc, header, footer, externalize } from './src/layout.mjs';
+import { robotsTxt, llmsTxt } from './src/seo.mjs';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const src = join(root, 'src'), out = join(root, 'dist');
@@ -37,8 +38,12 @@ for (const [from, to] of Object.entries(redirects)) {
 }
 
 const indexable = pages.filter((p) => !p.noindex && !p.file);
-await writeFile(join(out, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map((p) => `  <url><loc>${site.url}${p.path}</loc></url>`).join('\n')}\n</urlset>\n`);
-await writeFile(join(out, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${site.url}/sitemap.xml\n`);
+// lastmod only where the date is real: articles carry their own, and the Insights index changes with its newest article.
+const newest = indexable.map((p) => p.modified).filter(Boolean).sort().pop();
+const lastmod = (p) => p.modified ?? (p.path === '/insights/' ? newest : null);
+await writeFile(join(out, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map((p) => `  <url><loc>${site.url}${p.path}</loc>${lastmod(p) ? `<lastmod>${lastmod(p)}</lastmod>` : ''}</url>`).join('\n')}\n</urlset>\n`);
+await writeFile(join(out, 'robots.txt'), robotsTxt());
+await writeFile(join(out, 'llms.txt'), llmsTxt(indexable));
 console.log(`built ${pages.length} pages → dist/ (${mode})`);
 
 if (args.has('--bundle')) {

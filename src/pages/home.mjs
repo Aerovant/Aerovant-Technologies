@@ -187,7 +187,8 @@ const why = () => `
 export default [{
   path: '/',
   title: 'Home',
-  description: 'Aerovant Technologies builds ThreatReady, a platform to train, test and hire security engineers, and delivers cloud security, VAPT and managed security services to startups, SaaS companies and SMEs.',
+  seo: 'Aerovant Technologies: VAPT & Cloud Security in India',
+  description: 'Aerovant Technologies delivers VAPT, AWS cloud security and managed security for startups, SaaS companies and SMEs, and builds the ThreatReady platform.',
   bodyClass: 'home',
   render: () => [hero(), pillars(), attackSurface(), journeySec(), productsSec(), why(), ecosystem(), startHere(), closing()].join('\n'),
 }];

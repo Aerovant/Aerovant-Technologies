@@ -7,6 +7,8 @@ export default {
   slug: 'php2shell',
   title: 'php2shell: The PHP Bug That Fires Before Your Code Runs',
   date: '2026-10-23',
+  seo: 'php2shell: PHP RCE CVE-2026-109618 Explained | Aerovant',
+  description: 'php2shell (CVE-2026-109618, CVE-2026-109619) is unauthenticated RCE in PHP core. Who is affected, a 10-minute exposure check, and how to patch.',
   category: 'Threat Intelligence',
   author: 'Aerovant Technologies Security Team',
   summary: 'Two critical PHP core flaws, CVE-2026-109618 and CVE-2026-109619, allow unauthenticated remote code execution. Here is who is affected, how to check your exposure in ten minutes, and how to fix it.',

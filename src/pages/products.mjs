@@ -1,6 +1,7 @@
 import { products, u } from '../site.mjs';
 import { pageHead, ctaBand, ledger, go, btn } from '../layout.mjs';
 import { productFigure } from '../figures.mjs';
+import { productLd } from '../seo.mjs';
 
 const tr = products[0];
 const contactFor = (topic) => `/contact/?topic=${topic}`;
@@ -95,7 +96,9 @@ const bridge = () => `
 export default [{
   path: '/products/',
   title: 'ThreatReady',
-  description: 'ThreatReady, by Aerovant Technologies: role-based cybersecurity training and assessment. Attack Reasoning Lab, Lab Simulations and InterviewPrep, scored on one published rubric, for hiring teams, engineering teams, colleges and individuals.',
+  seo: 'ThreatReady: Cybersecurity Skills Platform | Aerovant',
+  description: 'ThreatReady by Aerovant: train, test and hire security engineers on real work. Attack Reasoning Lab, Lab Simulations and InterviewPrep across 15 role tracks.',
+  ld: () => products.map(productLd),
   render: () => [
     pageHead({
       crumb: [['Home', '/'], ['Product']],

@@ -1,5 +1,6 @@
 import { services, u } from '../site.mjs';
 import { pageHead, ctaBand, ledger, go, steps, faq, startHere } from '../layout.mjs';
+import { serviceLd } from '../seo.mjs';
 import { cloudFigure, cloudProblemFigure } from '../figures.mjs';
 import { journeySec, vaptPath, lanes, whyItems } from './home.mjs';
 
@@ -240,8 +241,8 @@ const managedPage = () => [
 ].join('\n');
 
 export default [
-  { path: '/services/', title: 'Cybersecurity services', description: 'Cloud security, VAPT and managed security services from Aerovant Technologies, for startups, SaaS companies and SMEs.', render: overview },
-  { path: '/services/cloud-security/', title: 'Cloud Security', description: 'AWS cloud security, cloud security assessment and AWS security configuration review. Know what is exposed in your AWS environment and what to change first.', render: cloudPage },
-  { path: '/services/vapt/', title: 'VAPT: Vulnerability Assessment & Penetration Testing', description: 'Web application VAPT, API security testing and network security testing. Find out which weaknesses can actually be exploited.', render: vaptPage },
-  { path: '/services/managed-security/', title: 'Managed Security Services', description: 'SOC-as-a-Service, EDR, firewall and WAF management, and threat intelligence advisories from Aerovant Technologies.', render: managedPage },
+  { path: '/services/', title: 'Cybersecurity services', seo: 'Cybersecurity Services for Startups & SMEs | Aerovant', ld: () => services.map(serviceLd), description: 'Cloud security, VAPT and managed security services from Aerovant Technologies, for startups, SaaS companies and SMEs.', render: overview },
+  { path: '/services/cloud-security/', title: 'Cloud Security', seo: 'AWS Cloud Security Assessment & Review | Aerovant', ld: () => [serviceLd(cloud)], description: 'AWS cloud security assessment and configuration review for startups and SMEs. Know what is exposed in your AWS environment and what to change first.', render: cloudPage },
+  { path: '/services/vapt/', title: 'VAPT: Vulnerability Assessment & Penetration Testing', seo: 'VAPT Services: Web App, API & Network Testing | Aerovant', ld: () => [serviceLd(vapt)], description: 'Web application VAPT, API security testing and network penetration testing. Find out which weaknesses can actually be exploited, with evidence.', render: vaptPage },
+  { path: '/services/managed-security/', title: 'Managed Security Services', seo: 'Managed Security Services & SOC | Aerovant', ld: () => [serviceLd(managed)], description: 'Managed security services: SOC-as-a-Service, EDR, firewall and WAF management, and threat intelligence advisories from Aerovant Technologies.', render: managedPage },
 ];

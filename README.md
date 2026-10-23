@@ -32,6 +32,9 @@ Old URLs (`abt.html`, `pd.html`, `serv.html`) redirect to the new pages.
 | List a job                                   | `src/site.mjs` → `openings`  |
 | Header, footer, shared components            | `src/layout.mjs`             |
 | Diagrams                                     | `src/figures.mjs`            |
+| Search titles, meta descriptions            | `seo:` / `description:` on each page in `src/pages/*.mjs` |
+| Structured data, robots.txt, llms.txt        | `src/seo.mjs`                |
+| Articles                                     | `src/insights/*.mjs`, listed in `src/site.mjs` → `insights` |
 | Page content                                 | `src/pages/*.mjs`            |
 | All styling                                  | `src/assets/css/site.css`    |
 | All behaviour                                | `src/assets/js/site.js`      |

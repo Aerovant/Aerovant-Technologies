@@ -10,6 +10,8 @@ export const site = {
   legalName: 'Aerovant Technologies Pvt. Ltd.', // CONFIRM against the certificate of incorporation; ThreatReady uses this form
   url: 'https://aerovanttech.com',
   tagline: 'Where cloud, code and security converge.',
+  // The one-paragraph positioning statement. Used in structured data, llms.txt and anywhere a summary of the company is needed.
+  summary: 'Aerovant Technologies is a cybersecurity and software company based in Krishnagiri, Tamil Nadu, India. We build ThreatReady, a platform to train, test and hire security engineers, and deliver cloud security (AWS), VAPT and managed security services to startups, SaaS companies and SMEs.',
   email: 'admin@aerovanttech.com',         // enquiries, privacy requests and security reports (also in src/static/.well-known/security.txt)
   careersEmail: 'hr@aerovanttech.com',     // job applications only
   replyTime: 'We reply within one business day.',
