@@ -23,7 +23,6 @@ Key facts:
 
 ## Insights
 - [Insights](https://aerovanttech.com/insights/): Cybersecurity news and vulnerability briefs for Indian startups and SMEs: what happened, who is affected, and how to check and fix it.
-- [One Laptop, $6 Billion: What the Binance Heist Teaches Every Business](https://aerovanttech.com/insights/binance-hack-2026/): The Binance hack explained: how one compromised engineer laptop led to a US$6B theft, what is confirmed, and the 10-minute check every business should run. (Threat Intelligence, 2026-11-03)
 - [Next.js on Node.js: Four Layers, Four Ways In](https://aerovanttech.com/insights/nextjs-nodejs-security/): Next.js vulnerability 2026: critical Next.js, React Server Components and Node.js flaws fixed in October. Affected versions, a 10-minute check and the fix. (Cybersecurity, 2026-10-23)
 - [eMudhra: The Certificate Scare That Ended in a Day, and the Deadline That Didn’t](https://aerovanttech.com/insights/emudhra-certificate-incident/): The eMudhra certificate incident: Chrome drops emSign ECC Root CA - G3 on 27 Oct. Who is affected, why GST and MCA DSCs are safe, and a 10-minute check. (Cybersecurity, 2026-10-23)
 - [php2shell: The PHP Bug That Fires Before Your Code Runs](https://aerovanttech.com/insights/php2shell/): php2shell (CVE-2026-109618, CVE-2026-109619): the latest PHP vulnerability allows unauthenticated RCE. Who is affected, a 10-minute check, and the fix. (Threat Intelligence, 2026-10-23)

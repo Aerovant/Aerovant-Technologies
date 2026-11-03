@@ -1,3 +1,8 @@
+# Website changes — 3 November 2026 (Binance article withdrawn)
+
+- Removed the article `/insights/binance-hack-2026/` ("One Laptop, $6 Billion"), its images, and its entries in the Insights list, sitemap, llms.txt and structured data. The URL now returns the site's 404 page.
+- Kept from the same release: the fix for article tables on phones (all articles) and portrait-image support.
+
 # Website changes — 3 November 2026 (Binance article)
 
 - **New article:** `/insights/binance-hack-2026/`, "One Laptop, $6 Billion: What the Binance Heist Teaches Every Business" (Threat Intelligence). Search title "Binance Hack 2026 Explained: One Laptop, $6 Billion", from Google India autocomplete ("binance hack", "binance hack 2026", "binance hack explained").
