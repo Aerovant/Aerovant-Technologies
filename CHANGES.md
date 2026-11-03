@@ -1,3 +1,7 @@
+# Website changes — 3 November 2026 (Binance article republished)
+
+- `/insights/binance-hack-2026/` is back on the site, unchanged from the 3 November release (corrected MFA policy, Managed SOC hours, Bybit source label).
+
 # Website changes — 3 November 2026 (Binance article withdrawn)
 
 - Removed the article `/insights/binance-hack-2026/` ("One Laptop, $6 Billion"), its images, and its entries in the Insights list, sitemap, llms.txt and structured data. The URL now returns the site's 404 page.
