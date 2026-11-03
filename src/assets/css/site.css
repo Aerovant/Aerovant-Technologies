@@ -675,6 +675,11 @@ main:focus { outline: none; }
 .art__meta span { margin-right: 1rem; color: var(--indigo); font-weight: 620; }
 .art__meta .art__upd { margin: 0 0 0 1rem; color: var(--muted); font-weight: 560; }
 .art__fig picture, .post__img picture { display: block; }
+/* Portrait article images: a narrower header on the article, and a 16:9 crop from the top on the list card. */
+.art__fig--portrait { max-width: calc(36rem + 2 * var(--gutter)); }
+.post__img--portrait { aspect-ratio: 16 / 9; }
+.post__img--portrait picture { height: 100%; }
+.post__img--portrait img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .art__t { max-width: 22em; margin-top: 0.75rem; font-size: clamp(2rem, 1.3rem + 2.6vw, 3.5rem); line-height: 1.06; font-weight: 640; font-stretch: 116%; letter-spacing: -0.024em; text-wrap: balance; }
 .art__by { margin-top: 1.25rem; font-weight: 560; color: var(--muted); }
 .art__fig img { display: block; width: 100%; height: auto; }
@@ -792,7 +797,7 @@ main:focus { outline: none; }
 }
 @media (max-width: 40rem) {
   /* On phones the comparison table reads as a stack: each cell carries its own column label, nothing scrolls sideways. */
-  .tbl { min-width: 0; }
+  .tbl, .art__tbl .tbl { min-width: 0; }
   .tbl thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .tbl, .tbl tbody, .tbl tr, .tbl th, .tbl td { display: block; }
   .tbl tbody th { width: auto; padding: 1rem 0 0.25rem; border-bottom: 0; font-size: 1.25rem; }

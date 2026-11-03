@@ -1,3 +1,13 @@
+# Website changes — 3 November 2026 (Binance article)
+
+- **New article:** `/insights/binance-hack-2026/`, "One Laptop, $6 Billion: What the Binance Heist Teaches Every Business" (Threat Intelligence). Search title "Binance Hack 2026 Explained: One Laptop, $6 Billion", from Google India autocomplete ("binance hack", "binance hack 2026", "binance hack explained").
+- **Corrections to the supplied text:**
+  - The MFA policy denied every action without MFA, including the actions needed to enrol MFA and `sts:GetSessionToken`, so a user without MFA could never set it up. Replaced with AWS's documented form, which exempts exactly those.
+  - "Managed SOC … around the clock" removed: the Managed Security page states business hours IST, out-of-hours by arrangement.
+  - The FBI/IC3 link listed as a primary source is the February 2025 **Bybit** PSA; it is now labelled as such.
+- **Portrait images:** an article image taller than it is wide now shows at a narrower width on the article, crops to 16:9 from the top on the list card, and can carry a separate landscape `ogImage` (1200×630) for social previews. The WebP helper now picks up any `<name>-<width>.webp`, not only 800 and 1600.
+- **Fixed on phones, all articles:** article tables were forced 544 px wide inside a 375 px screen (text cut off at the right edge), and stacked cells had no column labels. Both fixed.
+
 # Website changes — 23 October 2026 (mobile header, keywords)
 
 **Mobile navigation (fixed).** Between 320 and ~380 px wide the menu button wrapped onto a second line under the logo, making the sticky bar two rows tall. The bar is now one 64 px row at every width: logo, "Talk to us" (moves into the menu below 380 px) and a 44×44 px menu button. The menu opens as a full-height panel under the bar, the page behind it no longer scrolls, sub-items are stacked consistently, and "Talk to an expert" sits at the bottom of the panel. Rotating or widening to desktop closes the panel. Desktop is unchanged.

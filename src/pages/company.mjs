@@ -146,7 +146,7 @@ const insightsPage = () => [
     <div class="ins__list">
       ${insights.length ? insights.map((p) => `
       <article class="post${p.image ? ' post--img' : ''}">
-        ${p.image ? `<a class="post__img" href="${u(`/insights/${p.slug}/`)}" tabindex="-1" aria-hidden="true">${picture(p, { sizes: '(min-width: 68rem) 360px, (min-width: 40rem) 40vw, calc(100vw - 2.5rem)', attrs: 'loading="lazy" decoding="async"' })}</a>` : ''}
+        ${p.image ? `<a class="post__img${(p.imageH ?? 0) > (p.imageW ?? 1) ? ' post__img--portrait' : ''}" href="${u(`/insights/${p.slug}/`)}" tabindex="-1" aria-hidden="true">${picture(p, { sizes: '(min-width: 68rem) 360px, (min-width: 40rem) 40vw, calc(100vw - 2.5rem)', attrs: 'loading="lazy" decoding="async"' })}</a>` : ''}
         <div class="post__text">
           <p class="t-label"><time datetime="${p.date}">${fmt(p.date)}</time> <span>${p.category}</span></p>
           <h2 class="post__t"><a href="${u(`/insights/${p.slug}/`)}">${p.title}</a></h2>

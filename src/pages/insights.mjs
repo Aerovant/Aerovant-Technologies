@@ -16,7 +16,7 @@ const article = (p) => () => (collectCrumb([['Home', '/'], ['Insights', '/insigh
       <p class="art__by">${p.author}</p>
     </div>
   </header>
-  ${p.image ? `<figure class="wrap art__fig">${picture(p, { sizes: '(min-width: 82.5rem) 1210px, calc(100vw - 2.5rem)', alt: p.imageAlt, attrs: 'fetchpriority="high"' })}</figure>` : ''}
+  ${p.image ? `<figure class="wrap art__fig${(p.imageH ?? 0) > (p.imageW ?? 1) ? ' art__fig--portrait' : ''}">${picture(p, { sizes: '(min-width: 82.5rem) 1210px, calc(100vw - 2.5rem)', alt: p.imageAlt, attrs: 'fetchpriority="high"' })}</figure>` : ''}
   <div class="wrap"><div class="art__body">${p.body()}
     <p class="art__back">${go('/insights/', 'All insights')}</p>
   </div></div>
@@ -29,9 +29,10 @@ export default insights.map((p) => ({
   title: p.title,
   seo: p.seo,
   description: p.description ?? p.summary,
-  image: p.image,
-  imageW: p.imageW,
-  imageH: p.imageH,
+  // a portrait article image gets its own landscape social card (ogImage) so previews don't crop it
+  image: p.ogImage ?? p.image,
+  imageW: p.ogImage ? 1200 : p.imageW,
+  imageH: p.ogImage ? 630 : p.imageH,
   imageAlt: p.imageAlt,
   ogType: 'article',
   published: p.date,
